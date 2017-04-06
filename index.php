@@ -7,8 +7,6 @@
 </div>
 <div class="modal_booking hidden">
 </div>
-<?php echo $_SERVER['PHP_SELF']; 
-?>
     <div class="container-fluid">
         <div class="container today_info">
             <h4>Сегодня, <?php echo date("d.m.Y"); ?></h4>
