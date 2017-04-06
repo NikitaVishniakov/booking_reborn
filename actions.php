@@ -56,7 +56,7 @@ if(isset($_POST['edit-payment'])){
             if($_POST['amount'] > 0){
             $query = $link->query("INSERT INTO payments (`name`, `status`, `type`,`date`, `amount`, `comment`, `whoAdd`, `whoPay`, `bookingId`) VALUES ('{$_POST['payment_type']}', '{$_POST['status']}', '{$_POST['type']}', '{$_POST['date']}', {$_POST['amount']}, '{$_POST['comment']}', '{$_SESSION['id']}', '{$_POST['guestName']}', {$_POST['id']})");
             }
-            else{
+            if($_POST['amount'] < 0){
                 $amount = preg_replace("/[^0-9]/", '', $_POST['amount']);
 //                echo $amount
                 $query = $link->query("INSERT INTO payments (`name`, `status`, `type`,`date`, `amount`, `comment`, `whoAdd`, `whoPay`, `bookingId`) VALUES ('Возврат', '-', '{$_POST['type']}', '{$_POST['date']}', {$amount}, '{$_POST['comment']}', '{$_SESSION['id']}', '{$_POST['guestName']}', {$_POST['id']})");
@@ -137,7 +137,7 @@ if($_GET['action'] == "delete-payment"){
 /*ПРОСМОТР ПЛАТЕЖА*/
         if($_GET['action'] == "showPayment"){
             $id = $_GET['id'];
-            require("modal_payment_detail.php");
+            require("modals/modal_payment_detail_view.php");
         }
         
 /*УДАЛЕНИЕ УСЛУГИ ИЗ СПИСКА В ЛК*/
@@ -174,7 +174,7 @@ if($_GET['action'] == "delete-payment"){
             while($row = $options->fetch_array()){
                 array_push($options_array, $row['name']);
             }
-            require("modal_payment.php");
+            require("modals/modal_add_payment.php");
         }
         if($_GET['action'] == "minus"){
             $header = "Добавить списание";
@@ -185,7 +185,7 @@ if($_GET['action'] == "delete-payment"){
             while($row = $options->fetch_array()){
                 array_push($options_array, $row['name']);
             }
-            require("modal_payment.php");
+            require("modals/modal_add_payment.php");
         }
         
 /*ОТМЕНА ПОДВЕРЖДЕНИЯ ЗАЕЗДА ГОСТЯ*/
@@ -241,7 +241,7 @@ if($_GET['action'] == "delete-payment"){
         if($_GET['action'] == 'edit'){
             $query = $link->query("SELECT * FROM `booking` WHERE id = {$_GET['id']}");
             $row = $query->fetch_array();
-            include("modal.php");
+            include("modals/modal_add_booking.php");
         }
         
 /*ВЫХОД*/
@@ -277,7 +277,7 @@ if($_GET['action'] == "delete-payment"){
           $booking = $link->query("SELECT * FROM booking WHERE id = {$_GET['id']}")->fetch_array();
           $days = getDaysCount($booking['dateEnd'], $booking['dateStart']);
           $pre_pay = $booking['amount'] / $days;
-          include("modal_pre_pay.php");
+          include("modals/modal_add_prepayment.php");
     }
         
 /*ВЫЗОВ ОКНА ПОДТВЕРЖДЕНИЯ ЗАСЕЛЕНИЯ*/
@@ -288,7 +288,7 @@ if($_GET['action'] == "delete-payment"){
             $query = $query->fetch_array();
             $total = getDebt($_GET['id'], $query['amount']);
             $header ="Подтверждение заезда";
-            include("modal_confirm.php");
+            include("modals/modal_confirm_checkIn.php");
 //            $query = $link->query("UPDATE booking SET checkIn = 1 WHERE id = {$_GET['id']}");
 //            header("location:{$_SERVER['HTTP_REFERER']}");
             }

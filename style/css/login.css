@@ -8,7 +8,7 @@ body {
     margin-top: 50px;
     margin-bottom: 50px;
     height: 100px;
-    background-image: url(logotip.png);
+    background-image: url("style/css/logotip.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

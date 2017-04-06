@@ -31,7 +31,7 @@ $permission = permissionControl();
 ?>
 <div class="show_booked hidden"></div>
 <div class="container-fluid users-container">
-    <?php include("finance-menu.php"); ?>
+    <?php include("components/finance-menu.php"); ?>
     <div class="col-md-9 main-body">
             <form action="#" method="get" class="col-md-6 col-md-offset-6">
                 <div class="col-md-9 form-group">

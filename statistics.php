@@ -6,7 +6,7 @@ if(isset($_GET['month'])){
 }
 else{
     if(date("d") < 11){
-        $month_num = date("m") -1;
+        $month_num = date("m") - 1;
     }
     else{
         $month_num = date("m");
@@ -31,13 +31,12 @@ $booking_comission = getBookingComission($month_num);
 $salary = daysInMonth($current_date)*1500;
 
 
-
 $total_all = $income_revenue['total'] - $equairing - $booking_comission - $salary;
 $total_current = $income_revenue['total'] - $equairing - $booking_comission - $salary - $future_payments - $past_payments;
 
 ?>
 <div class="container-fluid users-container">
-    <?php include("statistics-menu.php"); ?>
+    <?php include("components/statistics-menu.php"); ?>
 <div class="col-md-9">
 <div class="col-md-10 col-md-offset-1">
     <p><h3 class="inline">Доход за </h3>

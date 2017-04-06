@@ -99,7 +99,7 @@ else{
 $date = date("Y-m-d H:i:s");
 ?>
 <div class="modal_confirm modal-payment hidden">
-<?php require("modal_payment_user.php"); ?>
+<?php require("modals/modal_payment_user.php"); ?>
 </div>
 <div class="modal-small"></div>
 <div class="canceled-alarm <?php echo $canceled_alarm; ?>">
@@ -437,12 +437,7 @@ foreach($sources as $option){
                             $('.modal-small').html(data);
                         }
                 });
-            }
-            
-            
-            
-            
-            
+            }       
             if(agree){
                 $.ajax({
                   url: "actions.php",

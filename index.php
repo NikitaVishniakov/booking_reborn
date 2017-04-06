@@ -7,6 +7,8 @@
 </div>
 <div class="modal_booking hidden">
 </div>
+<?php echo $_SERVER['PHP_SELF']; 
+?>
     <div class="container-fluid">
         <div class="container today_info">
             <h4>Сегодня, <?php echo date("d.m.Y"); ?></h4>
@@ -81,7 +83,7 @@
                 var roomNum = $(this).prop("id");
                 var date = $(this).prop("title");
                  $.ajax({
-                      url: "modal.php",
+                      url: "modals/modal_add_booking.php",
                       type: "GET",
                       data: {
                         date: date,
@@ -183,7 +185,7 @@
             });
             $('#add_booking').click(function(){
                  $.ajax({
-                            url: "modal.php",
+                            url: "modals/modal_add_booking.php",
                             type: "GET",
                             data: {
                                 type: "add"

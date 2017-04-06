@@ -4,7 +4,7 @@ $date = date("d.m.Y");
 $loading = new RoomLoading($date);
 ?>
 <div class="container-fluid users-container">
-    <?php include("statistics-menu.php"); ?>
+    <?php include("components/statistics-menu.php"); ?>
     <div class="col-md-9 main-body">
         <div class="col-md-10 col-md-offset-1 ">
     <p class="header text-bold">Статистика номерного фонда</p>

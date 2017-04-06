@@ -8,7 +8,7 @@
 <!--<script src="https://code.jquery.com/jquery-1.10.2.js"></script>-->
 <!--<script src="../air-datepicker/dist/js/datepicker.min.js"></script>-->
 <?php 
-require_once("funcs.php");
+require_once("../funcs.php");
         $header = "Добавить";
         $button = "insert";
 //FIELDS
@@ -174,7 +174,7 @@ if(isset($_GET['roomNum'])){
         function ajaxGuestsNum(){
         var roomNum = $('#roomNum').val();
         $.ajax({
-                      url: "ajax_booking.php",
+                      url: "../ajax_booking.php",
                       type: "GET",
                       data: {
                         type: "guestsNum",
@@ -226,7 +226,7 @@ if(isset($_GET['roomNum'])){
 //        if( $('.query_type').val() == "insert"){
                     if(newPrice.length > 1) {
                          $.ajax({
-                            url: "ajax_booking.php",
+                            url: "../ajax_booking.php",
                             type: "GET",
                             data: {
                                 type: "price",
@@ -247,7 +247,7 @@ if(isset($_GET['roomNum'])){
                     }
                     else {
                         $.ajax({
-                            url: "ajax_booking.php",
+                            url: "../ajax_booking.php",
                             type: "GET",
                             data: {
                                 type: "price",
@@ -277,7 +277,7 @@ if(isset($_GET['roomNum'])){
                     var newPrice = $('#edit_price').val();
                     if(newPrice.length > 1) {
                         $.ajax({
-                            url: "ajax_booking.php",
+                            url: "../ajax_booking.php",
                             type: "GET",
                             data: {
                                 type: "price",
@@ -298,7 +298,7 @@ if(isset($_GET['roomNum'])){
                     }
                     else {
                         $.ajax({
-                            url: "ajax_booking.php",
+                            url: "../ajax_booking.php",
                             type: "GET",
                             data: {
                                 type: "price",
@@ -324,7 +324,7 @@ if(isset($_GET['roomNum'])){
             var roomNum = $('#roomNum').val();
 //            prompt(roomNum);
             $.ajax({
-                    url: "ajax_booking.php",
+                    url: "../ajax_booking.php",
                     type: "GET",
                     data: {
                         type: "checkIsFree",

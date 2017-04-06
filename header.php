@@ -12,9 +12,9 @@ $permission = permissionControl();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/css/bootstrap.min.css">
     <link rel="stylesheet" href="air-datepicker/dist/css/datepicker.min.css" type="text/css">
-    <link rel="stylesheet" href="css/main.css?t=<?php echo(microtime(true)); ?>">
+    <link rel="stylesheet" href="style/css/main.css?t=<?php echo(microtime(true)); ?>">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="air-datepicker/dist/js/datepicker.min.js"></script>
     <title>Система бронирования</title>

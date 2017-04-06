@@ -36,7 +36,7 @@ function selectPaymentName($plus, $name){
             else{
                 $select = "";
             }
-            echo "<option $select value='$payment'>$payment</option>";
+        echo "<option $select value='$payment'>$payment</option>";
         }
     }
 }

@@ -8,7 +8,7 @@
     $loading_3 = new RoomLoading($prev_prev_month);
 ?>
 <div class="container-fluid users-container">
-    <?php include("statistics-menu.php"); ?>
+    <?php include("components/statistics-menu.php"); ?>
     <div class="col-md-9">
         <div class="col-md-10 col-md-offset-1">
                 <p class="header text-bold">Общая загрузка номерного фонда:</p>
