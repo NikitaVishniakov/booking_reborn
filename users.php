@@ -1,7 +1,6 @@
 <?php 
     include("header.php"); 
     onlyAdmin();
-    $users = $link->query("SELECT * FROM users");
 //SELECT whoAdd, source, guestName, amount*0.1 as b_sum from booking where (dateStart BETWEEN '2017-03-01' AND '2017-03-31') AND (canceled = 0) AND (checkIn = 1) AND (NOT source = 'постоянщик') AND (NOT source = 'Booking')
 
 ?>
@@ -13,47 +12,16 @@
         </ul>
     </div>
     <div class="col-md-9 main-body">                        
-        <div class="col-md-10 col-md-offset-1">
-            <table class="table">
-                    <thead>
-                        <th></th>
-                        <th>ID</th>
-                        <th>Логин</th>
-                        <th>Имя</th>
-                        <th>Статус</th>
-                        <th>Дата последнего входа</th>
-                    </thead>
-                    <tbody>
-                        <form>
-                        <?php 
-                                while($row = $users->fetch_array()){
-                                    echo "<tr>
-                                                <td><input type='checkbox' name='{$row['id']}' id='{$row['id']}'></td>
-                                                <td>{$row['id']}</td>
-                                                <td>{$row['login']}</td>
-                                                <td>{$row['name']}</td>
-                                                <td>{$row['status']}</td>
-                                                <td>{$row['dateSignUp']}</td>
-                                               
-                                          </tr>";
-                                }
-                        ?>
-                        </form>
-                    </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-<div class="modal add_user hidden">
+        <div class="add_user">
             <form class="form col-md-8 col-md-offset-2" action="actions.php?action=addUser" method="post" >
                 <legend>Добавить пользователя</legend>
                 <div class="form-group">
                     <label for="login">Логин</label>
-                    <input class="form-control" type="text" name="login" id="login" placeholder="Придумайте логин."
+                    <input class="form-control" type="text" name="login" id="login" placeholder="Придумайте логин.">
                 </div> 
                 <div class="form-group">
                     <label for="name">Имя</label>
-                    <input class="form-control" type="text" name="name" id="name" placeholder="Введите имя."
+                    <input class="form-control" type="text" name="name" id="name" placeholder="Введите имя.">
                 </div>
                 <div class="form-group">
                     <label for="password">Введите пароль</label>
@@ -68,4 +36,5 @@
                 </div>
             </form>
         </div>
+    </div>
 <?php include("footer.php"); ?>

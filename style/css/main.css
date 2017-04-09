@@ -362,3 +362,6 @@ tr:hover {
     padding: 10px;
     margin-bottom: 20px;
 }
+.add_user form-control{ 
+    width: 100% !important;
+}
