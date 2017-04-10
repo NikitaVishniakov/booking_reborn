@@ -758,7 +758,7 @@ class dayBalance{
             $this->endDay = $end;
             $nextStart = $end;
             $nextEnd = date_format(date_modify(date_create($nextStart), "+1 day"),"Y-m-d H:i");
-            $check = $link->query("SELECT * FROM payments WHERE (DATE_FORMAT(date, '%Y-%m-%d H:i') BETWEEN '{$nextStart}' AND '{$nextEnd}') AND name = 'Остаток в кассе'");
+            $check = $link->query("SELECT * FROM payments WHERE (date >= '{$nextStart}' AND date < '{$nextEnd}') AND name = 'Остаток в кассе'");
             $balance = $this->getBalance();
             if(mysqli_num_rows($check) == 0){
                 $date = date_format(date_modify(date_create($this->endDay),"+1 minute"), "Y-m-d H:i");
@@ -766,7 +766,7 @@ class dayBalance{
             }
             else{
                 if($check->fetch_array()['amount'] != $balance){
-                    $link->query("UPDATE payments SET amount = {$balance} WHERE (DATE_FORMAT(date, '%Y-%m-%d H:i') BETWEEN '{$nextStart}' AND '{$nextEnd}') AND name = 'Остаток в кассе'");
+                    $link->query("UPDATE payments SET amount = {$balance} WHERE (date >= '{$nextStart}' AND date < '{$nextEnd}') AND name = 'Остаток в кассе'");
               }
             }
     }
@@ -789,7 +789,7 @@ class dayBalance{
     function getPayments($type){
         global $link;
         $array = array();
-        $query = $link->query("SELECT * FROM payments WHERE (date BETWEEN '{$this->startDay}' AND '{$this->endDay}') AND status = '{$type}' ORDER by date");
+        $query = $link->query("SELECT * FROM payments WHERE (date >='{$this->startDay}' AND date < '{$this->endDay}') AND status = '{$type}' ORDER by date");
 //        $array = $query->fetch_all();
         while($row = $query->fetch_array()){
             array_push($array,$row);
@@ -800,7 +800,7 @@ class dayBalance{
     function getTotal($type){
         global $link;
         $array = [];
-        $sum = $link->query("SELECT type, SUM(amount) as total FROM payments WHERE (date BETWEEN '{$this->startDay}' AND '{$this->endDay}') AND status = '{$type}' GROUP BY type");
+        $sum = $link->query("SELECT type, SUM(amount) as total FROM payments WHERE (date >='{$this->startDay}' AND date < '{$this->endDay}') AND status = '{$type}' GROUP BY type");
         while($row = $sum->fetch_array()){
             array_push($array,$row);
         }
@@ -809,7 +809,7 @@ class dayBalance{
     }
     function getBalance(){
         global $link;
-        $total = $link->query("SELECT status, SUM(amount) as total FROM payments WHERE (date BETWEEN '{$this->startDay}' AND '{$this->endDay}') AND type = 'Наличные' GROUP BY status");
+        $total = $link->query("SELECT status, SUM(amount) as total FROM payments WHERE (date >='{$this->startDay}' AND date < '{$this->endDay}') AND type = 'Наличные' GROUP BY status");
             $profit = 0;
             $costs = 0;
             while($row = $total->fetch_array()){

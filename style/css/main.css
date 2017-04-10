@@ -101,9 +101,11 @@ body{
     position: relative;
     top: 10px;
 }
+/*
 .form-control{
     width: auto !important;
 }
+*/
 .save-panel{
     position: fixed;
     bottom: 50px;

@@ -13,21 +13,6 @@ for($i = $days - 1; $i >= 0; $i--){
 }
 $dates = array_reverse($dates);
 $permission = permissionControl();
-//    echo "<p>".$today->startDay." - ".$today->endDay."</p>";
-//    echo "<p>Поступления</p>";
-//
-//    foreach($today->getPayments("+") as $row){
-//        echo "<p>{$row['name']}, {$row['whoPay']}, {$row['type']} - {$row['amount']}</p>";
-//    }
-//    echo "<p>Списания</p>";
-//    foreach($today->getPayments("-") as $row){
-//        echo "<p>{$row['name']}, {$row['whoPay']},  - {$row['amount']}</p>";
-//    }
-//
-    
-//        echo "<p>".$val['type'].": ".$val['total']."</p>";
-//    }
-//    echo "<p>Остаток в кассе: ".$today->getBalance()."<hr>";
 ?>
 <div class="show_booked hidden"></div>
 <div class="container-fluid users-container">
@@ -57,7 +42,7 @@ $permission = permissionControl();
             </form>
 <?php foreach($dates as $today){ ?>
 <div class="row">
-    <p class="finance-header"><?php echo date_format(date_create($today->startDay), "d.m")." - ".date_format(date_create($today->endDay), "d.m"); ?></h4>
+    <p class="finance-header"><?php echo date_format(date_create($today->startDay), "d.m")." - ".date_format(date_create($today->endDay), "d.m"); ?></p>
     <div class="col-md-6 no_padding border-right">
         <p class="finance-colomn colomn-left btn-success plus" >Поступления</p>
         <table class="table table-condensed" >
@@ -81,7 +66,7 @@ $permission = permissionControl();
                 </tr>
     <?php } ?> 
                 <tr class="<?php echo $permission; ?>">
-                    <td colspan="5"><button title="<?php echo $today->startDay; ?>" class="btn btn-success payment-add" name="action" value="plus">Добавить поступление</button></span></td>
+                    <td colspan="5"><button title="<?php echo $today->startDay; ?>" class="btn btn-success payment-add" name="action" value="plus">Добавить поступление</button></td>
                 </tr>
             </tbody>
         </table>
@@ -106,7 +91,7 @@ $permission = permissionControl();
              </tr>
     <?php } ?>
                 <tr class="">
-                    <td colspan="4"><button title="<?php echo $today->startDay; ?>" class="btn btn-warning payment-add" name="action" value="minus">Добавить списание</button></span></td>
+                    <td colspan="4"><button title="<?php echo $today->startDay; ?>" class="btn btn-warning payment-add" name="action" value="minus">Добавить списание</button></td>
                 </tr>
             </tbody>
         </table>
