@@ -789,7 +789,7 @@ class dayBalance{
     function getPayments($type){
         global $link;
         $array = array();
-        $query = $link->query("SELECT * FROM payments WHERE (DATE_FORMAT(date, '%Y-%m-%d H:i') BETWEEN '{$this->startDay}' AND '{$this->endDay}') AND status = '{$type}' ORDER by date");
+        $query = $link->query("SELECT * FROM payments WHERE (date BETWEEN '{$this->startDay}' AND '{$this->endDay}') AND status = '{$type}' ORDER by date");
 //        $array = $query->fetch_all();
         while($row = $query->fetch_array()){
             array_push($array,$row);
@@ -800,7 +800,7 @@ class dayBalance{
     function getTotal($type){
         global $link;
         $array = [];
-        $sum = $link->query("SELECT type, SUM(amount) as total FROM payments WHERE (DATE_FORMAT(date, '%Y-%m-%d H:i') BETWEEN '{$this->startDay}' AND '{$this->endDay}') AND status = '{$type}' GROUP BY type");
+        $sum = $link->query("SELECT type, SUM(amount) as total FROM payments WHERE (date BETWEEN '{$this->startDay}' AND '{$this->endDay}') AND status = '{$type}' GROUP BY type");
         while($row = $sum->fetch_array()){
             array_push($array,$row);
         }
@@ -809,7 +809,7 @@ class dayBalance{
     }
     function getBalance(){
         global $link;
-        $total = $link->query("SELECT status, SUM(amount) as total FROM payments WHERE (DATE_FORMAT(date, '%Y-%m-%d H:i') BETWEEN '{$this->startDay}' AND '{$this->endDay}') AND type = 'Наличные' GROUP BY status");
+        $total = $link->query("SELECT status, SUM(amount) as total FROM payments WHERE (date BETWEEN '{$this->startDay}' AND '{$this->endDay}') AND type = 'Наличные' GROUP BY status");
             $profit = 0;
             $costs = 0;
             while($row = $total->fetch_array()){
