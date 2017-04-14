@@ -666,13 +666,23 @@ function getServices($id){
     global $link;
     $select = $link->query("SELECT * FROM services WHERE b_id = {$id}");
     while($row = $select->fetch_array()){
-        if($row['quantity'] == 1){
-            $row['quantity'] = "";
+        if($row['name'] == 'Почасовое продление'){
+            $hourStart = $link->query("SELECT PROLONGATION_HOURS_START FROM settings")->fetch_array()['PROLONGATION_HOURS_START'];
+            $hours = $row['quantity'];
+            $time = new DateTime($hourStart);
+            $time = $time->modify("+$hours hours")->format('H:i');
+            $row['quantity'] = "до $time ($hours ч.)";
         }
         else{
-            $row['quantity'] .= " шт.";
+            if($row['quantity'] == 1){
+                $row['quantity'] = "";
+            }
+            else{
+                $row['quantity'] .= " шт.";
+            }
         }
-        echo "<li>{$row['name']} {$row['quantity']} - {$row['price']} <button name='deleteService' value='{$row['id']}' class='btn btn-danger btn-small service-delete hidden'>Удалить</button></li>";
+        $price = money($row['price']);
+        echo "<li>{$row['name']} {$row['quantity']} - {$price} <button name='deleteService' value='{$row['id']}' class='btn btn-danger btn-small service-delete hidden'>Удалить</button></li>";
     }
 }
 function getPayments($type, $day = 0, $time = "11:00"){
@@ -1026,5 +1036,97 @@ function getBalanceByPaymentTypes($month){
         }
         $cash -= $first_day['first'];
         return ["cash" => $cash, "cashless" => $cashless];
+}
+function prolongationOptions(){
+    global $link;
+    $values = $link->query("SELECT PROLONGATION_HOURS_MAX, PROLONGATION_HOURS_STEP, PROLONGATION_HOURS_START FROM settings")->fetch_array();
+    $timeEnd = new DateTime($values['PROLONGATION_HOURS_MAX']);
+    $timeStart = new DateTime($values['PROLONGATION_HOURS_START']);
+    $step = $values['PROLONGATION_HOURS_STEP'];
+    $hours = $timeStart->diff($timeEnd)->h;
+    for($i = 0; $i <= $hours; $i += $step){
+        $selected = '';
+        if($i == 1){
+            $selected = 'selected';
+        }
+        $minutes = 60 * $i;
+        $timeStart = new DateTime($values['PROLONGATION_HOURS_START']);
+        $option = date_modify($timeStart, "+$minutes minutes")->format("H:i");
+        echo "<option $selected>$option</option>";
+    }
+}
+function prolongationMaxHours($choosen){
+    for($i = 0; $i <=24; $i++){
+        if(strlen($i) < 2){
+            $hour = '0'.$i;
+        }
+        else{
+            $hour = $i;
+        }
+        $hour .=":00";
+        $selected = '';
+        if($choosen == $hour){
+            $selected = "selected";
+        }
+        echo "<option $selected>$hour</option>";
+    }
+}
+function prolongationStep($choosen){
+    $arr = array('0.5'=>'Полчаса', '1' =>'Час');
+    foreach($arr as $key=>$value){
+        $selected = '';
+        if($choosen == $key){
+            $selected = 'selected';
+        }
+        echo "<option value='$key' $selected>$value</option>";
+    }
+}
+function update_multiple($table, $btn){
+    global $link;
+    $n = 0;
+    $multiple = false;  
+    foreach($_POST as $key=>$row){
+        if($key != $btn && $key != 'ID'){
+            $n++;
+            if(is_array($row)){
+                $multiple = true;
+            }
+        }
+    }
+    for($counter = 0; $counter < count($_POST['ID']); $counter++){
+        $string = "";
+        $colomns = 1;
+        foreach($_POST as $key=>$row){
+            if($key != $btn && $key != 'ID'){
+                if($colomns == $n){
+                    $comma = "";
+                }
+                else{
+                    $comma = ", ";
+                }
+                $colomns++;
+                if($multiple){
+                    $string .= "$key = '$row[$counter]'$comma";
+                }
+                else{
+                    $string .= "$key = '$row'$comma";
+                }
+            }
+        }
+        $id = $_POST['ID'][$counter];
+        $query = "UPDATE $table SET $string WHERE ID = $id";
+//        echo $query;
+        $update = $link->query($query);
+        if($update){
+            $message = "Изменения сохранены";
+            $class = "green";
+        }
+        else{
+            $message = "Ошибка";
+            $class = "red";
+        }
+    }
+    unset($_POST);
+    return array($message, $class);
 }
 ?>

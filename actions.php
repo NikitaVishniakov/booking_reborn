@@ -69,6 +69,19 @@ if(isset($_POST['edit-payment'])){
             }
         }
 
+/*ДОБАВЛЕНИЕ ПОЧАСОВОГО ПРОДЛЕНИЯ*/
+
+        if(isset($_POST['submit_prolongation_hours'])){
+            $amount = $_POST['prolongation_cost'];
+            $hours = $_POST['input-hours'];
+            $insert = $link->query("INSERT INTO services (`b_id`, `name`, `quantity`, `price`) VALUES ({$_POST['bookingId']},'Почасовое продление', $hours, {$amount})");
+            if($insert){
+                header("location:{$_SERVER['HTTP_REFERER']}");
+            }
+            else{
+                echo "INSERT INTO services (`b_id`, `name`, `quantity`, `price`) VALUES ({$_POST['bookingId']},'Почасовое продление', 1, {$amount})";
+            }
+        }
  /*ДОБАВЛЕНИЕ УСЛУГИ*/
 
         if(isset($_POST['add_service'])){
@@ -123,6 +136,25 @@ if(isset($_POST['edit-payment'])){
 /*БЛОК РАБОТЫ С АЯКС*/
 
     if(isset($_GET['action'])){
+if($_GET['action'] == 'hours-prolongation-modal'){
+    require("modals/modal-prolongation-hours.php");
+}
+if($_GET['action'] == 'modal-prolongation-options'){
+    require('modals/modal_prolongation_options.php');
+}
+if($_GET['action'] == 'prolongation-count-cost'){
+    $id = $_GET['id'];
+    $select = $link->query("SELECT * FROM booking WHERE id = $id");
+    $values = $link->query("SELECT PROLONGATION_HOURS_START FROM settings")->fetch_array();
+    $profile = $select->fetch_array();
+    $nights = getDaysCount($profile['dateStart'], $profile['dateEnd']);
+    $price_per_night = $profile['amount'] / $nights;
+    $time1 = strtotime($values['PROLONGATION_HOURS_START']);
+    $time2 = strtotime($_GET['hours']);
+    $difference = round(abs($time2 - $time1) / 3600,2);
+    $price_per_hour = $price_per_night / 24;
+    echo round($price_per_hour*$difference).",".$difference;
+}
         
  /*УДАЛЕНИЕ ПЛАТЕЖА ИЗ ФИНАНСОВ*/
 

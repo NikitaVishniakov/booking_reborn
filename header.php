@@ -30,6 +30,7 @@ $permission = permissionControl();
                     <li class="<?php echo $permission; ?>"><a href="#"><span class="glyphicon glyphicon-remove-circle"></span> Отмененные бронирования</a></li>
                     <li class="<?php echo $permission; ?>"><a href="statistics.php"><span class="glyphicon glyphicon glyphicon-info-sign"></span> Статистика</a></li>
                     <li class="<?php echo $permission; ?>"><a href="users.php"><span class="glyphicon glyphicon glyphicon-user"></span> Пользователи</a></li>
+                    <li class="<?php echo $permission; ?>"><a href="settings.php"><span class="glyphicon glyphicon-cog"></span> Настройки</a></li>
                 </ul>
                 <div class="nav navbar-form navbar-right">
                     Вы вошли как <a class="login_name" href="#"><?php echo $_SESSION['id']; ?></a>

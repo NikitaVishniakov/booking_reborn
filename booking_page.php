@@ -294,7 +294,7 @@ foreach($sources as $option){
               <button name="action" value="<?php echo $checkIn[0]; ?>" class="col-md-10 col-md-offset-1 action btn <?php echo $checkIn[2]; ?>"><?php echo $checkIn[1]; ?></button>
             <button name="action" value="cancel" class="col-md-10 col-md-offset-1 btn btn-default <?php echo $cancel_btn; ?>">Отмена брони</button>
             <button name="action" value="delete" class="col-md-10 col-md-offset-1 btn btn-default">Удалить бронь</button>
-            <button name="action" class="col-md-10 col-md-offset-1 btn btn-default">Продление</button>
+            <button name="action" value="prolongation" class="col-md-10 col-md-offset-1 btn btn-default">Продление</button>
             <button name="action" class="col-md-10 col-md-offset-1 btn btn-default">Печать подверждения</button>
             <button name="action" class="col-md-10 col-md-offset-1 btn btn-default">Возврат д/с</button>
           </div>
@@ -318,15 +318,11 @@ foreach($sources as $option){
             </form>
           </div>
     </div> 
-
-    </div>
-    
-    
+<div class="modal-box modal-prolongation hidden">
 </div>
 <script>
     $(document).ready(function(){
         var disabledDays = [0, 6];
-
         $('#disabled-days').datepicker({
             onRenderCell: function (date, cellType) {
                 if (cellType == 'day') {
@@ -413,6 +409,20 @@ foreach($sources as $option){
             var id = $('#bookingId').text();
             var reload = 0;
 //            prompt(name);
+            if(action == 'prolongation'){
+                $('.layout').removeClass('hidden');
+               $('.modal-prolongation').removeClass('hidden');
+                $.ajax({
+                      url: "actions.php",
+                      type: "GET",
+                      data: {
+                        action: "modal-prolongation-options"
+                      },
+                        success: function(data){
+                           $('.modal-prolongation').html(data);
+                        }
+                });
+            }
             if(action == 'delete'){
                var agree = confirm("Подтвердите удаление");
                 reload = 1;
