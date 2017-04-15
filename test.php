@@ -12,6 +12,9 @@
     $price_per_hour = $price_per_night / 24;
     echo round($price_per_hour)."<br>";
     echo money(round($price_per_hour*$difference))."<br>";
+if(preg_match('/test.php/', $_SERVER['REQUEST_URI'])){
+    echo "ok";
+}
 //    prolongationOptions()dcs
 ?>
 <!--
@@ -52,19 +55,7 @@
 </div>
 <script>
     $(document).ready(function(){
-        $('#btn').click(function(){
-            $('.modal-prolongation').removeClass('hidden');
-            $.ajax({
-                  url: "actions.php",
-                  type: "GET",
-                  data: {
-                    action: "modal-prolongation-options"
-                  },
-                    success: function(data){
-                       $('.modal-prolongation').html(data);
-                    }
-            });
-        });
+
     });
 </script>
 <?php
