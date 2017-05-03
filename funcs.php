@@ -13,6 +13,7 @@ $plus_payments = ['Проживание', 'Доп. услуги', 'Предоп�
 $minus_payments = ['Возврат', 'Инкассация', 'Закупки', 'Прачечная'];
 $guestsNum = array(1=>['1','2'], 2=>['1', '2', '2+1'], 3=>['1', '2'], 4=>['1', '2','2+1'], 5=>['1','2']);
 $pay_types = ['Наличные', 'Безналичный расчет'];
+$prolongation_cost_types = [1=>'Час/Стоимость ночи(по бронированию)',2=>'Час/Стоимость ночи(по тарифу)',3=>'Фиксированная цена'];
 $cleanTheRoom = 3;
 function selectPaymentName($plus, $name){
     global $plus_payments;
@@ -937,6 +938,16 @@ function getBookingBalance($month){
 (SELECT sum(price) as s_sum from services where (date BETWEEN '{$current_date}' AND '{$end_of_month}')) as serv")->fetch_array();
     return $booking_revenue;
 }
+function getReturns($month){
+    global $link;
+    if(strlen($month) == 1){
+        $month = "0".$month;
+    }
+    $current_date = date("Y-{$month}")."-01";
+    $end_of_month = date_format(date_modify(date_modify(date_create($current_date), "+1 month"), "-1 day"), "Y-m-d");
+    $returned = $link->query("SELECT SUM(amount) as returned FROM payments WHERE (DATE_FORMAT(date, '%Y-%m-%d') BETWEEN '{$current_date}' AND '{$end_of_month}') AND (name = 'Возврат')")->fetch_array();
+    return $returned['returned'];
+}
 function getPaymentsBalance($month){
     global $link;
     if(strlen($month) == 1){
@@ -1081,6 +1092,31 @@ function prolongationStep($choosen){
         echo "<option value='$key' $selected>$value</option>";
     }
 }
+function prolongationCostType($choosen){
+    global $prolongation_cost_types;
+    $input = "hidden";
+    $input_disabled = "disabled";
+    $select_disabled = "";
+    if(strlen($choosen) > 1){
+        $input = "";
+        $input_disabled = "";
+        $select_disabled = "disabled";
+    }
+    echo '<select id="PROLONGATION_PRICE_OPTION" name="PROLONGATION_PRICE_OPTION" class="form-control">';
+    foreach($prolongation_cost_types as $key=>$value){
+        $selected = '';
+        if($choosen == $key){
+            $selected = "selected";
+        }
+        if(strlen($choosen) > 1){
+            $selected = 'selected';
+        }
+        echo "<option $selected value='$key'>$value</option>";
+    }
+    echo  "</select>
+            <input type='text' name='PROLONGATION_PRICE_OPTION' class='form-control $input fixed-price-input-hours' value='$choosen' placeholder='Стоимость' $input_disabled>";
+    
+}
 function update_multiple($table, $btn){
     global $link;
     $n = 0;
@@ -1115,7 +1151,7 @@ function update_multiple($table, $btn){
         }
         $id = $_POST['ID'][$counter];
         $query = "UPDATE $table SET $string WHERE ID = $id";
-//        echo $query;
+        echo $query;
         $update = $link->query($query);
         if($update){
             $message = "Изменения сохранены";

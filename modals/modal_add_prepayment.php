@@ -12,7 +12,7 @@
                   </div>
                   <div class="col-md-3 form-group">
                       <input type="text" name="amount" class="form-control" value="<?php echo $pre_pay; ?>">
-                      <input type="text" name="type" class="hidden" value="Безначличный расчет">
+                      <input type="text" name="type" class="hidden" value="Безналичный расчет">
 <!--                      <input type="text" name="name" class="hidden" value="Безначличный расчет">-->
                   </div>
                   <div class="col-md-3">руб.</div>

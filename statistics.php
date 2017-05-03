@@ -29,6 +29,7 @@ $future_payments = getFuturePayments($month_num);
 $past_payments = getPastPayments($month_num);
 $booking_comission = getBookingComission($month_num);
 $salary = daysInMonth($current_date)*1500;
+$returns = getReturns($month_num);
 
 
 $total_all = $income_revenue['total'] - $equairing - $booking_comission - $salary;
@@ -42,18 +43,6 @@ $total_current = $income_revenue['total'] - $equairing - $booking_comission - $s
     <p><h3 class="inline">Доход за </h3>
     <form class="inline" action="#" method="get" id="month_select"><select name="month"class="income_month_select"><?php selectMonth($month_num); ?></select><input type="submit" value="Подтвердить"></form></p>
     <table class="table">
-<!--
-            <tr>
-                <td>Доход по бронированиям(ожидаемый):</td>
-                <td><?php echo money($booking_revenue['book']); ?></td>
-            </tr>
--->
-<!--
-            <tr>
-                <td class="text-bold text-right">Итого ожидаемый доход:</td>
-                <td><?php echo  money($booking_revenue['total']); ?></td>
-            </tr>
--->
             <tr>
                 <td>Доход по бронированиям:</td>
                 <td><?php echo  money($booking_income); ?></td>
@@ -61,10 +50,14 @@ $total_current = $income_revenue['total'] - $equairing - $booking_comission - $s
             <tr>
                 <td>Доход по доп.услугам:</td>
                 <td><?php echo  money($booking_revenue['serv']); ?></td>
+            </tr> 
+            <tr>
+                <td>Возвраты:</td>
+                <td><?php echo  money($returns); ?></td>
             </tr>   
             <tr>
                 <td class="text-bold text-right">Итого доход:</td>
-                <td><?php echo  money($income_revenue['total']); ?></td>
+                <td><?php echo  money($income_revenue['total'] - $returns); ?></td>
             </tr>
     </table>
     <h3>Безналичный расчет</h3>
@@ -106,7 +99,7 @@ $total_current = $income_revenue['total'] - $equairing - $booking_comission - $s
          <tr>
             <td>Выплаты по зарплате: </td>
             <td><?php echo  money($salary); ?></td>
-        </tr> 
+        </tr>
         <tr>
             <td>Комиссия Booking:</td>
             <td><?php echo  money($booking_comission); ?></td>
