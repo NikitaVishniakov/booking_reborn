@@ -1,4 +1,5 @@
 <?php 
+//    require_once("funcs.php");
     onlyAdmin();
 ?>
 <div class="col-md-3 left-block">

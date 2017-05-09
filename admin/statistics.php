@@ -1,4 +1,39 @@
 
+<?php
+require("header.php");
+$current_date = "01.".date("m.Y");
+if(isset($_GET['month'])){
+    $month_num = $_GET['month'];
+}
+else{
+    if(date("d") < 11){
+        $month_num = date("m") - 1;
+    }
+    else{
+        $month_num = date("m");
+    }
+}
+//$prev_month = date_format(date_modify(date_create($current_date), "-1 month"), "d.m.Y");
+//$prev_prev_month = date_format(date_modify(date_create($prev_month), "-1 month"), "d.m.Y");
+//$loading_1 = new RoomLoading($current_date);
+//$loading_2 = new RoomLoading($prev_month);
+//$loading_3 = new RoomLoading($prev_prev_month);
+$equairing = 0.025;
+$month_name = getMonthName($month_num);
+$booking_revenue = getBookingBalance($month_num);
+$income_revenue = getPaymentsBalance($month_num);
+$payment_type = getBalanceByPaymentTypes($month_num);
+$booking_income = $income_revenue['total'] - $booking_revenue['serv'];
+$clean_cashless = $payment_type['cashless']-$payment_type['cashless']*$equairing;
+$equairing_amount = $payment_type['cashless']*$equairing;
+$future_payments = getFuturePayments($month_num);
+$past_payments = getPastPayments($month_num);
+$booking_comission = getBookingComission($month_num);
+$salary = daysInMonth($current_date)*1500;
+$returns = getReturns($month_num);
+$total_all = $income_revenue['total'] - $equairing - $booking_comission - $salary;
+$total_current = $income_revenue['total'] - $equairing - $booking_comission - $salary - $future_payments - $past_payments;
+?>
 <div class="container-fluid users-container">
     <?php include("components/statistics-menu.php"); ?>
 <div class="col-md-9">
