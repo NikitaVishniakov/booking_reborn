@@ -15,6 +15,6 @@ function inputControl($string) {
         $message = inputControl($_POST['message']);
         $from = inputControl($_POST['mail']);
         $send = mail($to1,$subject,$message, "from:" . $from);
-        header("location:index.html");
+//        header("location:index.html");
     }
 ?>

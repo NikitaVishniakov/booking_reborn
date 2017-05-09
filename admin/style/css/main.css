@@ -9,9 +9,6 @@ body{
 /*    min-height: 100%;*/
     height: 100%;
 }
-.modal-booking{
-    width: 100%;
-}
 .main-body{
     padding: 20px;
 }
@@ -336,6 +333,9 @@ tr:hover {
 .row{
     margin: 0;
 }
+#edit_price, #auto_price, #total_price_input{
+    width: 100% !important;
+}
 .modal_confirm{
     position:absolute;
     left: 30%;
@@ -350,6 +350,7 @@ tr:hover {
     left: 28%
 }
 .modal_booking {
+    width: 100%;
     position:absolute;
     z-index: 10001;
 }

@@ -1,12 +1,3 @@
-<!--
-     <link rel="stylesheet" href="bootstrap.min.css">
-    <link rel="stylesheet" href="main.css">
--->
-<!--
-
--->
-<!--<script src="https://code.jquery.com/jquery-1.10.2.js"></script>-->
-<!--<script src="../air-datepicker/dist/js/datepicker.min.js"></script>-->
 <?php 
 require_once("../funcs.php");
         $header = "Добавить";
@@ -30,6 +21,7 @@ require_once("../funcs.php");
         $dateStart = "";
         $dateEnd = "";
         $plus = 1;
+
 if(isset($_GET['date'])){
     $dateStart = date_format(date_create($_GET['date']), 'd.m.Y');
     $dateEnd =  date_format(date_modify(date_create($_GET['date']), '1day'), 'd.m.Y');
@@ -170,11 +162,10 @@ if(isset($_GET['roomNum'])){
 
 <script>
     $(document).ready(function() {
-//        prompt();
         function ajaxGuestsNum(){
         var roomNum = $('#roomNum').val();
         $.ajax({
-                      url: "../ajax_booking.php",
+                      url: "/admin/ajax_booking.php",
                       type: "GET",
                       data: {
                         type: "guestsNum",
@@ -191,7 +182,6 @@ if(isset($_GET['roomNum'])){
     function addDays(date, days) {
         var dateArr = date.split('.');
         dateArr = dateArr[1] + "-" + dateArr[0] + "-" + dateArr[2];
-//        prompt(dateArr);
         var result = new Date(dateArr);
         result.setDate(result.getDate() + days);
         var month  = result.getMonth() + 1;
@@ -215,18 +205,9 @@ if(isset($_GET['roomNum'])){
                     var discount = $('#discount').val();
                     var guestsNum = $('#guestsNum').val();
                     var newPrice = $('#edit_price').val();
-        
-//         prompt(guestsNum);
-//                    if(discount.length == 0){
-//                        discount = 0;
-//                    }
-//                    else {
-//                    $('#discount').val();
-//                    }
-//        if( $('.query_type').val() == "insert"){
                     if(newPrice.length > 1) {
                          $.ajax({
-                            url: "../ajax_booking.php",
+                            url: "/admin/ajax_booking.php",
                             type: "GET",
                             data: {
                                 type: "price",
@@ -247,7 +228,7 @@ if(isset($_GET['roomNum'])){
                     }
                     else {
                         $.ajax({
-                            url: "../ajax_booking.php",
+                            url: "/admin/ajax_booking.php",
                             type: "GET",
                             data: {
                                 type: "price",
@@ -277,7 +258,7 @@ if(isset($_GET['roomNum'])){
                     var newPrice = $('#edit_price').val();
                     if(newPrice.length > 1) {
                         $.ajax({
-                            url: "../ajax_booking.php",
+                            url: "/admin/ajax_booking.php",
                             type: "GET",
                             data: {
                                 type: "price",
@@ -298,7 +279,7 @@ if(isset($_GET['roomNum'])){
                     }
                     else {
                         $.ajax({
-                            url: "../ajax_booking.php",
+                            url: "/admin/ajax_booking.php",
                             type: "GET",
                             data: {
                                 type: "price",
@@ -322,9 +303,8 @@ if(isset($_GET['roomNum'])){
             var dateStart = $('#dateStart').val();
             var dateEnd = $('#dateEnd').val();
             var roomNum = $('#roomNum').val();
-//            prompt(roomNum);
             $.ajax({
-                    url: "../ajax_booking.php",
+                    url: "/admin/ajax_booking.php",
                     type: "GET",
                     data: {
                         type: "checkIsFree",
@@ -342,29 +322,15 @@ if(isset($_GET['roomNum'])){
                         $('.cant_add').addClass('hidden');
                         $('.add_booking').prop('disabled', false);
                       }
-//                       prompt(check);
-//                    if(data.check){
-//                        $('.cant_add').removeClass('hidden');
-//                    }
-//                    else{
-//                        $('.cant_add').addClass('hidden');
-//                    };
                   }
             });
         }
-//            
-//        };
-//        else {
-//            ajaxTotal();
-//        }
-        
         $('#dateStart, #dateEnd, #roomNum').change(function(){
             var dateStart = $('#dateStart').val();
             var dateEnd = $('#dateEnd').val();
             if(dateStart != "" && dateEnd != ""){
                 var check = isFree();
         }
-//             $('.cant_add').removeClass('hidden');
         });
         var guestsNum = new ajaxGuestsNum();
         $('#roomNum').change(function(){
@@ -379,12 +345,10 @@ if(isset($_GET['roomNum'])){
         });
         $('#dateStart, #dateEnd').focusout(function(){
             if($('#dateStart').val() != "" && $('#dateStart').val().length == 10 && $('#dateEnd').val() != ""){
-//                 changeDate();
                  var total = new ajaxTotal();
                  var price = new ajaxPrice();
             }
         });
-//             var total = new ajaxTotal();
         $('select, #guestName, #guestPhone, #discount, #breakfast, #genious, #booker').click(function(){ 
              var total = new ajaxTotal();
              var price = new ajaxPrice();
@@ -414,13 +378,7 @@ if(isset($_GET['roomNum'])){
                 $('.modal_booking').addClass('hidden');
                 $('.show_booked').addClass('hidden');
             });
-//        $('#dateStart').on("click", '#dateStart', function(){
-//            $('#dateStart').datepicker();
-//            $('#dateStart').data('datepicker');
-//        })
     });
     
 </script>
 
-
-<!--<link rel="stylesheet" href="../air-datepicker/dist/css/datepicker.min.css" type="text/css">-->
