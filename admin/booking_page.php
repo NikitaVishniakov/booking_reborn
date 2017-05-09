@@ -322,19 +322,18 @@ foreach($sources as $option){
 </div>
 <script>
     $(document).ready(function(){
-        var disabledDays = [0, 6];
-        $('#disabled-days').datepicker({
-            onRenderCell: function (date, cellType) {
-                if (cellType == 'day') {
-                    var day = date.getDay(),
-                        isDisabled = disabledDays.indexOf(day) != -1;
-
-                    return {
-                        disabled: isDisabled
-                    }
-                }
-            }
-        })
+//        var disabledDays = [0, 6];
+//        $('#disabled-days').datepicker({
+//            onRenderCell: function (date, cellType) {
+//                if (cellType == 'day') {
+//                    var day = date.getDay(),
+//                        isDisabled = disabledDays.indexOf(day) != -1;
+//                    return {
+//                        disabled: isDisabled
+//                    }
+//                }
+//            }
+//        })
         $('#edit-info').click(function(){
             $('.view').addClass('hidden');
             $('.edit').removeClass('hidden');
