@@ -14,7 +14,7 @@ function inputControl($string) {
         $subject = "Сообщение с сайта от $name";
         $message = inputControl($_POST['message']);
         $from = inputControl($_POST['mail']);
-        $send = mail($to,$subject,$message, "from:" . $from);
+        $send = mail($to1,$subject,$message, "from:" . $from);
         header("location:index.html");
     }
 ?>
