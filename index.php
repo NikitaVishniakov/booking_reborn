@@ -3,9 +3,9 @@
 <head>
 <!--  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> -->
     <meta charset="utf-8">
-  <meta name="description" content="Мини-отель в центре Санкт-Петербурга"> 
+    <meta name="description" content="Мини-отель в центре Петербурга на улице Пушкинская 9"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="main.css?t=<?php echo(microtime(true)); ?>">
 <!--    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="pics/favicon.png" />
@@ -15,12 +15,12 @@
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
 
 
-    <title>Мини отель Welcome</title>
+    <title>Мини отель Welcome | Санкт-Петербург</title>
 </head>
 
 <body>        
     <div class="layout-global hidden"></div>
-    <article class="container main">
+    <div class="container main">
         <header>
             <div class="header-wrapper">
                 <div class="logo float-left">
@@ -28,7 +28,7 @@
                 </div>
                 <div class="contacts-top float-right text-center">
                     <div class="top-panel float-left adress">
-                        <p class="bold text-icon"><span class="icon icon-location"></span> Санкт-Петербург <br> ул. Пушкинская 9</p> 
+                        <address class="bold text-icon"><span class="icon icon-location"></span> Санкт-Петербург <br> ул. Пушкинская 9</address> 
                          
                     </div>
                     <div class="top-panel float-left phones">
@@ -280,7 +280,7 @@
         </div>
         <div class="clear"></div>
     </div>
-    </article>
+    </div>
     <footer>
         <div class="maps">
 <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A9bb5b3de47e84e72265ba09e3902699bddbe51c115c65245343647ccc5e8a708&amp;width=100%25&amp;height=100%&amp;lang=ru_RU&amp;scroll=false"></script>
@@ -291,9 +291,9 @@
                     <p class="adress-title">
                          Адрес
                     </p>
-                    <p>
+                    <address>
                          г. Санкт-Петербург, ул. Пушкинская, д.9, кв. 27
-                    </p>
+                    </address>
                 </div>
                 <div class="cont-phone-email-wrap">
                     <div class="cont-phone-item">
@@ -360,6 +360,15 @@
 </html>
 <script>
     $(document).ready(function(){
+          var screen = $(window).height();
+         screen = Math.round(0.8 * screen) + 'px';
+        $('.img-box').css('height', screen);
+        $(window).resize(function(){
+             var screen = $(window).height();
+            screen = Math.round(0.8 * screen) + 'px';
+            $('.img-box').css('height', screen);
+        })
+        
         $('.arrow-next-img').click(function(){
             var current = $('.img-box img').attr('title');
             var classImg = $('.img-box img').attr('class');

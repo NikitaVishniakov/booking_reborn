@@ -654,6 +654,9 @@ footer{
     font-size: 24px;
     margin-bottom: 15px;
 }
+address{
+    font-style: normal !important;
+}
 .backlink-btn{
     height: auto !important;
     padding: 15px 25px !important;
@@ -817,8 +820,7 @@ textarea{
 /*    justify-content: flex-end;*/
 }
 .img-box img{
-    max-width: 900px;
-    width: 80%;
+    height: 100%;
 }
 .arrow-img{
     position: fixed;
@@ -962,6 +964,7 @@ textarea{
         background: rgba(235,235,235, 0.6);
     }
     .img-box img{
+        height: auto;
         width: 100%;
     }
     .room-img-slider{
@@ -975,12 +978,14 @@ textarea{
     }
     .room-description-list{
         width: 100%;
+/*
         color: transparent;
         display: flex;
-        justify-content: space-around;
+*/
+/*        justify-content: space-around;*/
     }
     .room-description-list li{
-        width: 30px;
+        width: 50%;
     }
     
 }
@@ -1039,10 +1044,31 @@ textarea{
         height: 50px;
     }
 }
-@media (max-width: 520px) {
-    
+@media (max-width: 500px) {
+    .text-wide{
+        display: none;
+    }
+    .room-description-list li{
+        width: 30px;
+    }
+    .room-description-list{
+        width: 100%;
+        color: transparent;
+        display: flex;
+        justify-content: space-around;
+    }
 }
 @media (max-width: 450px) {
+    .modal-error{
+        background: #fff;
+        width: 80%;
+        height: 400px;
+        position: fixed;
+        top: 100px;
+        left: 10%;
+        z-index: 99999999;
+        margin: auto;
+    }
     .slick-next, .slick-prev{
         display: none !important;
     }
