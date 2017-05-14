@@ -32,8 +32,8 @@ $costs_list = getGroupsCategoryTotal($month_num);
 $clean_cash = $payment_type['cash'] - $returns_cash;
 $clean_cashless = $payment_type['cashless']-$payment_type['cashless']*$equairing - $returns_cashless;
 
-$total_all = $clean_cash + $payment_type['cashless'] - $costs_total;
-$total_current = $clean_cash + $payment_type['cashless'] - $future_payments - $past_payments - $costs_total;
+$total_all = $clean_cash + $clean_cashless - $costs_total;
+$total_current = $clean_cash + $clean_cashless - $future_payments - $past_payments - $costs_total;
 ?>
 <div class="container-fluid users-container">
     <?php include("components/statistics-menu.php"); ?>
