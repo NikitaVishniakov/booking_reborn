@@ -1,5 +1,4 @@
-
-<?php
+<?php 
 require_once("header.php");
 $current_date = "01.".date("m.Y");
 if(isset($_GET['month'])){
