@@ -333,8 +333,67 @@ tr:hover {
 .row{
     margin: 0;
 }
+#cat-name{
+    width: calc(100% -  40px);
+    margin: 10px 20px !important;
+}
+.btn-add-item{
+    display: block;
+}
+.costs-form .form-group label{
+    display: block;
+}
+.costs-form .form-group .form-control{
+    width: 200px !important;
+    margin: 0 !important;
+}
+.table-costs{
+    width: 800px;
+    margin: 20px;
+}
+.modal-show-cost{
+    z-index: 1000001;
+}
+#cost-category{
+    width: 200px !important;
+}
+.total-all{
+    float: right;
+}
+.costs-row{
+    width: 850px;
+    margin: auto;
+}
+.total-all-text{
+    font-size: 25px;
+    font-weight: bold;
+}
+.costs-form .form-group{
+    float: left;
+    margin-right: 20px;
+}
+.margin-top{
+    margin-top: 100px;
+    height: 20px;
+}
+.month-select-flex{
+    width: 400px;
+    float: left;
+    justify-content: space-around;
+    display: flex !important;
+}
+.error-input{
+    border: 1px solid red;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255,0,0,.6)
+}
+.margin-left-20{
+    margin-left: 20px;
+}
 #edit_price, #auto_price, #total_price_input{
     width: 100% !important;
+}
+.modal-cost .modal-dialog{
+    width: 700px !important;
 }
 .modal_confirm{
     position:absolute;
@@ -343,11 +402,33 @@ tr:hover {
     top: 5%;
     z-index: 10001;
 }
+.modal-costs-table{
+    width: 300px;
+    float: left;
+}
+.modal-costs-table .form-control{
+    width: 100% !important;
+}
 .modal-prolongation{
     position:absolute;
     top: 5%;
     z-index: 10001;
     left: 28%
+}
+.modal-add-cat{
+    position:fixed;
+    top: 5%;
+    z-index: 10001;
+    left: 28%  
+}
+.modal-cost{
+    position:fixed;
+    top: 5%;
+    z-index: 10001;
+    left: 28% 
+}
+#show-costs{
+    left: calc(50% - 350px);
 }
 .modal_booking {
     width: 100%;
@@ -364,7 +445,6 @@ tr:hover {
     min-height: 100%;
 }
 .left-block{
-    height: 100%;
     padding: 0;
 }
 .left-menu{
@@ -395,17 +475,43 @@ tr:hover {
     font-size: 16px;
     font-weight: bold;
 }
+.clear{
+    clear: both;
+}
 .text-bold {
     font-weight: bold;
 }
 #night_price:hover{
     background: yellow;
 }
+.cost-item{
+    cursor: pointer;
+}
+.costs-container h2, h3{
+    width: 850px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin: 0 !important;
+}
+.category{
+    margin: 10px 0;
+}
+.costs-container h2{
+    background: #428bca;
+    color: #fff;
+}
+.costs-container h3{
+    background: #dddddd;
+    padding-left: 40px;
+}
+.totals{
+    float: right;
+    margin-right: 20px;
+}
 .navbar {
     z-index: 0;
 }
 .income_month_select{
-    height: 30px;
     font-size: 25px;
 }
 .today_info{

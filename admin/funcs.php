@@ -1,5 +1,6 @@
 <?php
 //constants
+require_once("connection.php");
 date_default_timezone_set('Europe/Moscow');
 if(!isset($_SESSION['id'])){
     session_start();
@@ -41,6 +42,15 @@ function selectPaymentName($plus, $name){
         }
     }
 }
+function selectGetUnity(){
+    global $link;
+    $sql = "SELECT * FROM costs_units";
+    $units = $link->query($sql);
+    while ($unit = $units->fetch_array()){
+        echo "<option value='{$unit['NAME']}'>{$unit['NAME']}</option>";
+    }
+}
+
 function selectPaymentType($selected = ""){
     global $pay_types;
     foreach($pay_types as $type){
@@ -405,6 +415,15 @@ function permissionControl(){
     }
     return $class;
 }
+
+function isAdmin(){
+    if($_SESSION['status'] == "main"){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 function selectPayments($payment = "0"){
     global $payments;
     for($i = 0; $i < count($payments);$i++){
@@ -415,6 +434,42 @@ function selectPayments($payment = "0"){
             $selected = "";
         }
         echo "<option {$selected} value='{$payments[$i]}'>{$payments[$i]}</option>";
+    }
+}
+function selectCostCategories($chosen = 0){
+    global $link;
+    $sql = "SELECT * FROM costs_categories";
+    $categories = $link->query($sql);
+    if(mysqli_num_rows($categories)){
+        while($category = $categories->fetch_array()){
+            if($chosen == $category['NAME']){
+                $selected = "selected";
+            }
+            else {
+                $selected = "";
+            }
+            echo "<option {$selected} value='{$category['ID']}'>{$category['NAME']}</option>";
+        }
+    }
+}
+function selectCostSubCategories($parent, $chosen = ''){
+    global $link;
+    $sql = "SELECT * FROM costs_sub_categories WHERE ID_CATEGORY = {$parent}";
+    $categories = $link->query($sql);
+    if(mysqli_num_rows($categories) > 0){
+        echo "<option value='0'>Не выбрано</option>";
+        while($category = $categories->fetch_array()){
+            if($chosen == $category['NAME']){
+                $selected = "selected";
+            }
+            else {
+                $selected = "";
+            }
+            echo "<option {$selected} value='{$category['NAME']}'>{$category['NAME']}</option>";
+        }
+    }
+    else{
+        echo "<option value='-1'>Нет подкатегорий</option>";
     }
 }
 function selectGuestNum($roomNum, $chosen = '1'){
@@ -945,8 +1000,22 @@ function getReturns($month){
     }
     $current_date = date("Y-{$month}")."-01";
     $end_of_month = date_format(date_modify(date_modify(date_create($current_date), "+1 month"), "-1 day"), "Y-m-d");
-    $returned = $link->query("SELECT SUM(amount) as returned FROM payments WHERE (DATE_FORMAT(date, '%Y-%m-%d') BETWEEN '{$current_date}' AND '{$end_of_month}') AND (name = 'Возврат')")->fetch_array();
-    return $returned['returned'];
+    $sql = "SELECT SUM(amount) as returned, type FROM payments WHERE (DATE_FORMAT(date, '%Y-%m-%d') BETWEEN '{$current_date}' AND '{$end_of_month}') AND (name = 'Возврат') GROUP BY type";
+    $returned = $link->query($sql);
+    $total = 0;
+    $returns_array = [];
+    while($row = $returned->fetch_assoc()){
+        $returns_array[$row['type']] = $row['returned'];
+        $total += $row['returned'];
+    }
+    if(!array_key_exists("Безналичный расчет", $returns_array)){
+        $returns_array['Безналичный расчет'] = 0;
+    }
+    if(!array_key_exists("Наличные", $returns_array)){
+        $returns_array['Наличные'] = 0;
+    }
+    $returns_array['total'] = $total;
+    return $returns_array;
 }
 function getPaymentsBalance($month){
     global $link;
@@ -956,7 +1025,6 @@ function getPaymentsBalance($month){
     $current_date = date("Y-").$month."-01";
     $end_of_month = date_format(date_modify(date_modify(date_create($current_date), "+1 month"), "-1 day"), "Y-m-d");
     $income_revenue = $link->query("SELECT m_sum - first as total FROM (SELECT SUM(amount) as m_sum from payments where (DATE_FORMAT(date, '%Y-%m-%d') BETWEEN '{$current_date}' AND '{$end_of_month}') AND (NOT name = 'Остаток в кассе') AND (NOT name = 'внесение в кассу') AND (status = '+')) total, (SELECT amount as first FROM payments WHERE DATE_FORMAT(date, '%Y-%m-%d') = '{$current_date}' AND name = 'Остаток в кассе') first_p")->fetch_array();
-//    echo "SELECT m_sum - first as total FROM (SELECT SUM(amount) as m_sum from payments where (DATE_FORMAT(date, '%Y-%m-%d') BETWEEN '{$current_date}' AND '{$end_of_month}') AND (NOT name = 'Остаток в кассе') AND (NOT name = 'внесение в кассу') AND (status = '+')) total, (SELECT amount as first FROM payments WHERE DATE_FORMAT(date, '%Y-%m-%d') = '{$current_date}' AND name = 'Остаток в кассе') first_p";
     return $income_revenue;
 }
 function getFuturePayments($month){
@@ -1164,5 +1232,80 @@ function update_multiple($table, $btn){
     }
     unset($_POST);
     return array($message, $class);
+}
+function getCostsAmoun($month){
+    global $link;
+    if(strlen($month) == 1){
+        $month = "0".$month;
+    }
+    $current_date = date("Y-").$month."-01";
+    $end_of_month = date_format(date_modify(date_modify(date_create($current_date), "+1 month"), "-1 day"), "Y-m-d");
+    $sql = "SELECT SUM(AMOUNT) as total FROM `costs` WHERE (DATE_FORMAT(DATE, '%Y-%m-%d') BETWEEN '{$current_date}' AND '{$end_of_month}')";
+    $total = $link->query($sql)->fetch_array()['total'];
+    return $total;
+    
+    
+
+}
+function getSortedCosts($month){
+    global $link;
+    if(strlen($month) == 1){
+        $month = "0".$month;
+    }
+    $current_date = date("Y-").$month."-01";
+    $end_of_month = date_format(date_modify(date_modify(date_create($current_date), "+1 month"), "-1 day"), "Y-m-d");
+    $sql = "SELECT * FROM `costs` WHERE (DATE_FORMAT(DATE, '%Y-%m-%d') BETWEEN '{$current_date}' AND '{$end_of_month}')";
+    $all_costs = $link->query($sql);
+    $costs_sorted = [];
+    $no_cat = 'Без подкатегории';
+    while($row = $all_costs->fetch_assoc()){
+        if(array_key_exists($row['CATEGORY'], $costs_sorted)){
+            if($row['SUB_CATEGORY'] != ''){
+                if(array_key_exists($row['SUB_CATEGORY'], $costs_sorted[$row['CATEGORY']])){
+                      array_push($costs_sorted[$row['CATEGORY']][$row['SUB_CATEGORY']], $row);
+                }
+                else{
+                    $costs_sorted[$row['CATEGORY']][$row['SUB_CATEGORY']] = [];
+                    array_push($costs_sorted[$row['CATEGORY']][$row['SUB_CATEGORY']], $row);
+                }
+            }
+            else{
+                if(array_key_exists($no_cat, $costs_sorted[$row['CATEGORY']])){
+                        array_push($costs_sorted[$row['CATEGORY']][$no_cat], $row);
+                }
+                else{
+                    $costs_sorted[$row['CATEGORY']][$no_cat] = [];
+                    array_push($costs_sorted[$row['CATEGORY']][$no_cat], $row);
+                }
+            } 
+        }
+        else{
+            $costs_sorted[$row['CATEGORY']] = [];
+            if($row['SUB_CATEGORY'] != ''){
+                $costs_sorted[$row['CATEGORY']][$row['SUB_CATEGORY']] = [];
+                array_push($costs_sorted[$row['CATEGORY']][$row['SUB_CATEGORY']], $row);
+            }
+            else{
+                $costs_sorted[$row['CATEGORY']][$no_cat] = [];
+                array_push($costs_sorted[$row['CATEGORY']][$no_cat], $row);
+            }
+        }
+    }
+    return $costs_sorted;
+}
+function getGroupsCategoryTotal($month){
+    global $link;
+    if(strlen($month) == 1){
+        $month = "0".$month;
+    }
+    $current_date = date("Y-").$month."-01";
+    $end_of_month = date_format(date_modify(date_modify(date_create($current_date), "+1 month"), "-1 day"), "Y-m-d");
+    $sql = "SELECT SUM(AMOUNT) as total, CATEGORY FROM costs WHERE (DATE_FORMAT(DATE, '%Y-%m-%d') BETWEEN '{$current_date}' AND '{$end_of_month}') GROUP BY CATEGORY";
+    $query = $link->query($sql);
+    $array = [];
+    while($row = $query->fetch_assoc()){
+        array_push($array, $row);
+    }
+    return $array;
 }
 ?>

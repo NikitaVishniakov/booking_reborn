@@ -5,7 +5,7 @@ require_once("connection.php");
 //session_start();
 authCheck();
 $permission = permissionControl();
-
+$admin = isAdmin();
 ?>
 <!DOCTYPE html>
 <html lang="RU">
@@ -27,9 +27,11 @@ $permission = permissionControl();
                 <ul class="nav navbar-nav navbar-left">
                     <li class="<?php if(preg_match('/index.php/', $_SERVER['REQUEST_URI'])){echo "active";}?>"><a href="index.php"><span class="glyphicon glyphicon-calendar"></span> Таблица бронирований</a></li>
                     <li class="<?php if(preg_match('/finance.php/', $_SERVER['REQUEST_URI'])){echo "active";}?>"><a href="finance.php"><span class="glyphicon glyphicon-ruble"></span> Финансы</a></li>
-                    <li class="<?php if(preg_match('/statistics.php/', $_SERVER['REQUEST_URI'])){echo "active";}?> <?php echo $permission; ?>"><a href="statistics.php"><span class="glyphicon glyphicon glyphicon-info-sign"></span> Статистика</a></li>
-                    <li class="<?php if(preg_match('/users.php/', $_SERVER['REQUEST_URI'])){echo "active";}?> <?php echo $permission; ?>"><a href="users.php"><span class="glyphicon glyphicon glyphicon-user"></span> Пользователи</a></li>
-                    <li class="<?php if(preg_match('/settings.php/', $_SERVER['REQUEST_URI'])){echo "active";}?><?php echo $permission; ?>"><a href="settings.php"><span class="glyphicon glyphicon-cog"></span> Настройки</a></li>
+                    <?php if($admin){ ?>
+                        <li class="<?php if(preg_match('/statistics.php/', $_SERVER['REQUEST_URI'])){echo "active";}?>"><a href="statistics.php"><span class="glyphicon glyphicon glyphicon-info-sign"></span> Статистика</a></li>
+                        <li class="<?php if(preg_match('/users.php/', $_SERVER['REQUEST_URI'])){echo "active";}?>"><a href="users.php"><span class="glyphicon glyphicon glyphicon-user"></span> Пользователи</a></li>
+                        <li class="<?php if(preg_match('/settings.php/', $_SERVER['REQUEST_URI'])){echo "active";}?>"><a href="settings.php"><span class="glyphicon glyphicon-cog"></span> Настройки</a></li>
+                    <?php } ?> 
                 </ul>
                 <div class="nav navbar-form navbar-right">
                     Вы вошли как <a class="login_name" href="#"><?php echo $_SESSION['id']; ?></a>

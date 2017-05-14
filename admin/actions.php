@@ -12,7 +12,85 @@ if(isset($_POST['submit_pre_pay'])){
     $insert = $link->query("INSERT INTO `payments`(`name`, `status`, `type`, `amount`, `comment`, `whoPay`,`whoAdd`, `bookingId` ) VALUES ('Предавторизация', '+', '{$type}', {$amount}, '', '{$name}', '{$_SESSION['id']}', {$_POST['id']})");
     header("location:{$_SERVER['HTTP_REFERER']}");
 }
+if(isset($_POST['add-category'])){
+    $name = inputControl($_POST['CAT_NAME']);
+    $sql = "INSERT INTO `costs_categories`(`NAME`) VALUES ('{$name}')";
+    $query = $link->query($sql);
+    if($query){
+        header("location:{$_SERVER['HTTP_REFERER']}");
+    }
+    else{
+        echo $sql;
+    }
+}
 
+if(isset($_POST['edit-cost'])){
+    $id = $_POST['ID'];
+    $category_id = $_POST['cost_category'];
+    $sql = "SELECT NAME FROM `costs_categories` WHERE ID = {$category_id}";
+    $category = $link->query($sql)->fetch_array()['NAME'];    
+    $subcategory = $_POST['cost_sub_category'];
+    $unit = $_POST['costs-units'];
+    $payment_type = $_POST['PAYMENT_TYPE'];
+    $name = inputControl($_POST['cost_name']);
+    $amount = inputControl($_POST['cost_amount']);
+    if(inputControl($_POST['cost-quantity']) == 0){
+        $quantity = '';
+    }
+    else{
+        $quantity = inputControl($_POST['cost-quantity']);
+    }
+    $sql = "UPDATE `costs` SET `NAME`='$name',`PAYMENT_TYPE`='$payment_type', `AMOUNT`=$amount,`CATEGORY`='$category',`SUB_CATEGORY`='$subcategory',`UNIT`='$unit',`QUANTITY`='$quantity' WHERE ID = $id";
+    $query = $link->query($sql);
+    if($query){
+        header("location:{$_SERVER['HTTP_REFERER']}");
+    }
+    else{
+        echo $sql;
+    }
+}
+
+
+if(isset($_POST['ADD_COST'])){
+    $category_id = $_POST['cost_category'];
+    $sql = "SELECT NAME FROM `costs_categories` WHERE ID = {$category_id}";
+    $category = $link->query($sql)->fetch_array()['NAME'];    
+    $subcategory = $_POST['cost_sub_category'];
+    $unit = $_POST['costs-units'];
+    $payment_type = $_POST['PAYMENT_TYPE'];
+    $name = inputControl($_POST['cost_name']);
+    $amount = inputControl($_POST['cost_amount']);
+    if(inputControl($_POST['cost-quantity']) == 0){
+        $quantity = '';
+    }
+    else{
+        $quantity = inputControl($_POST['cost-quantity']);
+    }
+    $sql = "INSERT INTO `costs`(`NAME`, `PAYMENT_TYPE`, `AMOUNT`, `CATEGORY`, `SUB_CATEGORY`, `UNIT`, `QUANTITY`) VALUES ('{$name}', '{$payment_type}', {$amount}, '{$category}', '{$subcategory}', '{$unit}', '{$quantity}')";
+    $query = $link->query($sql);
+    if($query){
+        header("location:{$_SERVER['HTTP_REFERER']}");
+    }
+    else{
+        echo $sql;
+    }
+}
+
+
+if(isset($_POST['add-sub-category'])){
+    $name = inputControl($_POST['SUB_CAT_NAME']);
+    $p_id = $_POST['cost_category_modal'];
+    $sql = "INSERT INTO `costs_sub_categories`(`ID_CATEGORY`, `NAME`) VALUES ({$p_id}, '{$name}')
+";
+    $query = $link->query($sql);
+    if($query){
+        header("location:{$_SERVER['HTTP_REFERER']}");
+    }
+    else{
+        echo $sql;
+    }
+
+}
 
 /*ПОДТВЕРЖДЕНИЕ ЗАСЕЛЕНИЯ И ВНЕСЕНИЕ ДАННЫХ ПЛАТЕЖА*/
 
@@ -136,11 +214,24 @@ if(isset($_POST['edit-payment'])){
 /*БЛОК РАБОТЫ С АЯКС*/
 
     if(isset($_GET['action'])){
+        
 if($_GET['action'] == 'hours-prolongation-modal'){
     require("modals/modal-prolongation-hours.php");
 }
 if($_GET['action'] == 'modal-prolongation-options'){
     require('modals/modal_prolongation_options.php');
+}
+        
+if($_GET['action'] == 'get_subcategories'){
+    selectCostSubCategories($_GET['parent_id']);
+}
+if($_GET['action'] == 'showCostItem'){
+    $id = $_GET['id'];
+    include("modals/modal-show-cost.php");
+}
+if($_GET['action'] == 'delete-cost'){
+    $sql = "DELETE FROM `costs` WHERE ID = {$_GET['id']}";
+    $delete = $link->query($sql);
 }
         
 /* РАССЧЕТ СТОИМОСТИ ПОЧАСОВОГО ПРОДЛЕНИЯ*/

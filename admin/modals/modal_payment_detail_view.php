@@ -22,31 +22,36 @@ $date = date_format(date_create($payment['date']), "d.m.Y H:i");
           <?php } ?>
       </div>
           <div class="modal-body">
-              <h3 class="message"></h3>
               <table class="table">
+                    <tr>
                         <td>Вид платежа</td><td><span class="show"><?php  echo $payment['name']; ?></span>
                         <select class="hidden edit form-control" name="name"><?php selectPaymentName($payment['status'], $payment['name']); ?></select>
-                  </td>
+                        </td>
                     </tr>
+                  <tr>
                         <td>Способ оплаты</td><td><span class="show"><?php echo $payment['type']; ?></span>
                             <select class="form-control edit hidden" name="type"><?php selectPaymentType($payment['type']); ?></select>
                         </td>
                     </tr>
+                    <tr>
                         <td>Дата внесения</td><td><span><?php echo $date;?></span></td>
                     </tr>
+                    <tr>
                         <td>Сумма</td><td><span class="show"><?php echo $payment['amount']; ?></span>
                             <input type="text" class="hidden edit form-control" name="amount" value="<?php echo $payment['amount']; ?>">
                             <input type="text" class="hidden" name="id" value="<?php echo $payment['id']; ?>">
                         </td>
                     </tr>
+                    <tr>
                         <td>Плательщик</td><td><span><?php echo $payment['whoPay'] ?></span></td>
                     </tr>
+                    <tr>
                         <td>Комментарий</td><td><span class="show"><?php echo $payment['comment']; ?></span>
                         <input type="text" class="hidden edit form-control" name="comment" value="<?php echo $payment['comment']; ?>">
                         </td>
                     </tr>
+                    <tr>
                         <td>Кем внесен платеж</td><td><span><?php echo $payment['whoAdd']; ?></span></td>
-                    </tr>
                     </tr>
               </table>
             </div>
