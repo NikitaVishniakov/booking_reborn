@@ -937,9 +937,9 @@ class Room {
 class RoomLoading {
    function __construct($date){
        global $rooms;
-       $from = "01.".date_format(date_create($date)."m.Y");
+       $from = "01.".date_format(date_create($date), "m.Y");
        $days = daysInMonth($from);
-       $to = date_format(date_modify(date_create($from)."{$days} days"), "Y-m-d");
+       $to = date_format(date_modify(date_create($from), "{$days} days"), "Y-m-d");
        $booking = makeDateArray($from, $days, "dateStart");
        $dates = allDatesInPeriod($from, $to);
        

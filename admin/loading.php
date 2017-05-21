@@ -6,6 +6,9 @@
     $loading_1 = new RoomLoading($current_date);
     $loading_2 = new RoomLoading($prev_month);
     $loading_3 = new RoomLoading($prev_prev_month);
+     $current_month_name = getMonthName(date("m"));
+    $prev_month_name = getMonthName(date_format(date_create($prev_month), "m"));
+    $prev_prev_month_name = getMonthName(date_format(date_create($prev_prev_month), "m"));
 ?>
 <div class="container-fluid users-container">
     <?php include("components/statistics-menu.php"); ?>
@@ -14,15 +17,15 @@
                 <p class="header text-bold">Общая загрузка номерного фонда:</p>
                 <table class="table">
                         <tr>
-                            <td>Загрузка за январь:</td>
+                            <td>Загрузка за <?php echo $prev_prev_month_name; ?>:</td>
                             <td><?php echo $loading_3->percents(); ?> %</td>
                         </tr>
                         <tr>
-                            <td>Загрузка за февраль:</td>
+                            <td>Загрузка за <?php echo $prev_month_name; ?>:</td>
                             <td><?php echo $loading_2->percents(); ?> %</td>
                         </tr>
                         <tr>
-                            <td>Загрузка за текущий месяц(март):</td>
+                            <td>Загрузка за текущий месяц (<?php echo $current_month_name; ?>):</td>
                             <td><?php echo $loading_1->percents(); ?> %</td>
                         </tr>
                 </table>    

@@ -1,7 +1,7 @@
 <?php 
 require_once("funcs.php");
 require_once("table.php");
-require_once("connection.php");
+//require_once("connection.php");
 //session_start();
 authCheck();
 $permission = permissionControl();
