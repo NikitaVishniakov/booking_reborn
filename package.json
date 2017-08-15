@@ -1,0 +1,25 @@
+{
+  "name": "htdocs",
+  "version": "1.0.0",
+  "description": "Структура проекта немного хромает, но: www/ - корень сайта, здесь расположен лэндинг     /admin - система бронирования         /components - включаемые файлы по типу меню второго уровня         /modals - модальные окна         /style - стили, шрифты, картинки     На данный момент все разделы и страницы лежат в корне папки админ.",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "chart.js": "^2.6.0",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikitaVishniakov/booking_system.git"
+  },
+  "author": "NikitaVishniakov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NikitaVishniakov/booking_system/issues"
+  },
+  "homepage": "https://github.com/NikitaVishniakov/booking_system#readme"
+}
