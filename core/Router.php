@@ -78,17 +78,30 @@ class Router {
                     $cObj -> getView();
                 }
                 else{
-                    echo "Метод <strong>$controller::$action</strong> не найден";
-                }
+                    http_response_code(404);
+                    $controller = 'controllers\\NotFound';
+                    $cObj = new $controller(array("controller" => 'NotFound', 'action' => 'index'));
+                    $cObj->setVariablesForView($url);
+                    $cObj ->indexAction();
+                    $cObj ->getView();                }
             }
             else{
-                require_once HEADER;
-                echo "Контроллер $controller не найден";
+                http_response_code(404);
+                $controller = 'controllers\\NotFound';
+                $cObj = new $controller(array("controller" => 'NotFound', 'action' => 'index'));
+                $cObj->setVariablesForView($url);
+                $cObj ->indexAction();
+                $cObj ->getView();
             }
         }
         else{
             http_response_code(404);
-            require_once('404.php');
+            $controller = 'controllers\\NotFound';
+            $cObj = new $controller(array("controller" => 'NotFound', 'action' => 'index'));
+            $cObj->setVariablesForView($url);
+            $cObj ->indexAction();
+            $cObj ->getView();
+
         }
     }
     public static function removeQueryString($url){

@@ -35,7 +35,6 @@ abstract class Controller
 
     /**
      * Передем данные из контроллера во вьюху
-     * @todo asda
      * @return mixed
      */    public function setVariablesForView($vars){
         $this->vars = $vars;

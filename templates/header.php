@@ -3,17 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Base template</title>
-    <link rel="stylesheet" href="../libs/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../libs/air-datepicker/dist/css/datepicker.min.css">
-    <link rel="stylesheet" href="style/style.css?<?php echo(microtime(true)); ?>">
-<!--    <link rel="stylesheet" href="inputs.css?--><?php //echo(microtime(true)); ?><!--">-->
-<!--    <link rel="stylesheet" href="main.css?--><?php //echo(microtime(true)); ?><!--">-->
-<!--    <link rel="stylesheet" href="header.css?--><?php //echo(microtime(true)); ?><!--">-->
-<!--    <link rel="stylesheet" href="booking_table.css?--><?php //echo(microtime(true)); ?><!--">-->
-<!--    <link rel="stylesheet" href="cashdesk.css?--><?php //echo(microtime(true)); ?><!--">-->
-<!--    <link rel="stylesheet" href="booking_page.css?--><?php //echo(microtime(true)); ?><!--">-->
-<!--    <link rel="stylesheet" href="costs.css?--><?php //echo(microtime(true)); ?><!--">-->
-<!--    <link rel="stylesheet" href="modals.css?--><?php //echo(microtime(true)); ?><!--">-->
+    <link rel="stylesheet" href="/libs/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/air-datepicker/dist/css/datepicker.min.css">
+    <link rel="stylesheet" href="/style/style.css?<?php echo(microtime(true)); ?>">
 </head>
 <body>
     <div class="header">

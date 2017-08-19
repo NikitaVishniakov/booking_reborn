@@ -12,6 +12,14 @@
   border-bottom: 5px solid #1b85b8;
   margin-bottom: 20px;
   font-size: 26px;
+  @media (max-width: 500px) {
+    &:first-child{
+      border: none;
+      width: 100%;
+      background: $blue;
+      color: #fff;
+    }
+  }
 }
 .cashdesk{
   padding: 10px;
@@ -47,10 +55,15 @@
   padding: 5px;
   margin-bottom: 5px;
 }
-.costs {
+.costs, .cashdesk {
   .cashdesk-body{
     .row{
       border-bottom: 1px solid $blue;
+      @media (max-width: 500px) {
+        .payment-type, .payer{
+          display: none;
+        }
+      }
     }
   }
 }
@@ -99,8 +112,14 @@
   &.source{
     width: 30%;
   }
+  @media (max-width: 500px) {
+    width: 50%;
+    &.source{
+        width: 50%;
+    }
+  }
 }
-.costs .td{
+.costs .td {
   width: 33%;
 }
 .totals{
@@ -121,38 +140,12 @@
 }
 
 @media (max-width: 1000px) {
-  //.cashdesk-body{
-  //  display: none;
-  //}
-  //.visible .cashdesk-body{
-  //  display: block;
-  //}
   .cashdesk-block{
     width: 100%;
     margin: 20px;
+    min-width: 330px;
   }
-  //.incomes{
-  //  left:0;
-  //}
-  //.costs{
-  //  right: 0;
-  //}
-  //.income-header, .cost-header {
-  //  width: 50%;
-  //  z-index: 100;
-  //}
-  //.income-header{
-  //  z-index: 2000;
-  //}
-  //.cost-header{
-  //  float: right;
-  //}
-  //.cashdesk-body{
-  //  margin-top: 50px;
-  //}
-  //.shift{
-    //font-size: 0.9em;
-  //}
+
   .shift-date{
     font-size: 20px;
   }

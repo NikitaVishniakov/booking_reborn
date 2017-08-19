@@ -14,10 +14,13 @@ else{
 <head>
     <meta charset="UTF-8">
     <title>Система управления отелем</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="icon" type="image/png" href="favicon.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/libs/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/libs/air-datepicker/dist/css/datepicker.min.css">
-    <link rel="stylesheet" href="/templates/style/style.css">
+    <link rel="stylesheet" href="/style/style.css">
 </head>
 <body>
     <div class="header">

@@ -10,11 +10,11 @@
         <?php foreach($dates as $key => $today):
             $array = $today->getTotal("+");
         ?>
+        <div class="shift">
             <div class="shift-header">
                 <div class="shift-date"><?=$today->getDateStart()?> | 11:00 - <?=$today->getDateEnd()?> | 11:00</div>
                 <div class="shift-date">Остаток в кассе: <?=separateThousands($today->getBalance())?> руб.</div>
             </div>
-        <div class="shift">
             <div class="cashdesk">
                 <div class="cashdesk-block incomes">
                     <div class="cashdesk-header income-header">Поступления</div>
