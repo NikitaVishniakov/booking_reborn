@@ -1,3 +1,4 @@
 core/config.php
 .DS_store
 .idea/
+controllers/.DS_store
