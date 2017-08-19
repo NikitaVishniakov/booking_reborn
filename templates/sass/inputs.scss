@@ -1,0 +1,141 @@
+.input{
+  text-indent: 10px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #bbbaba;
+  padding: 0 5px;
+  background-color: #fff;
+  font-size: 16px;
+  height: 32px;
+  display: inline-block;
+  width: 200px;
+  &.select{
+    height: 34px;
+  }
+  &.tooltip-open{
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+}
+.label {
+  label {
+    font-weight: bold;
+  }
+}
+  .month-select {
+    border: none;
+    font-size: 30px;
+    font-weight: bold;
+    background: none;
+    outline: none;
+    display: inline-block;
+    padding-right: 25px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    &:hover {
+      color: $blue;
+    }
+  }
+  .month-select-caret{
+    position: relative;
+    left: -30px;
+    z-index: -1;
+  }
+  .one-line-form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 700px;
+    .btn-wrapper {
+      margin-top: 0px;
+    }
+  }
+    .label, .input-wrapper, .btn-wrapper{
+      display: inline-block;
+      width: 200px;
+      margin: auto 0;
+    }
+  .form-horizontal .row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .form-horizontal .label,.form-horizontal .input-wrapper{
+    width: 50%;
+    line-height: 34px;
+  }
+  .form-vertical .label,.form-vertical .input-wrapper{
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+  }
+  .form-vertical .label{
+    margin-bottom: 5px;
+  }
+  .input-wrapper{
+    position: relative;
+    min-width:  200px;
+  }
+  .input-wrapper .text{
+    line-height: 32px;
+  }
+  .booking-price .input{
+    width: 100px;
+  }
+  #cancel{
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  .booking-price form{
+    text-align: center;
+  }
+  .input-search{
+    padding-right: 30px;
+    /*width: 200px;*/
+  }
+  .textarea{
+    padding: 5px;
+    height: auto !important;
+    text-indent: 0;
+    width: 300px;
+  }
+  .btn-seatch{
+    background: transparent url(/templates/pics/search-icon.png);
+    background-position: center;
+    background-size: cover;
+    cursor: pointer;
+    width: 30px;
+    border: none;
+    height: 30px;
+    outline: none;
+  }
+  .search-pad{
+    position: absolute;
+    right: 3px;
+    top: 1px;
+    width: 30px;
+    height: 30px;
+  }
+  .date-input{
+    padding-left: 32px;
+  }
+  .date-pad{
+    line-height: 32px;
+    text-align: center;
+    position: absolute;
+    top:1px;
+    width: 32px;
+    border-right: 1px solid #bbbaba;
+  }
+  @media (max-width: 460px) {
+    .label, .input-wrapper{
+      width: 100% !important;
+      text-align: center;
+    }
+    .input-wrapper .input{
+      width: 100%;
+      text-align: center;
+    }
+  }

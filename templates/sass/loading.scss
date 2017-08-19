@@ -1,0 +1,25 @@
+canvas{
+  display: inline-block !important;
+}
+.loading-container{
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  caption{
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .month-loading{
+    width: 45%;
+    margin-top: 20px;
+    td{
+      font-size: 16px;
+      text-align: center;
+    }
+    @media (max-width: 700px) {
+      width: 100%;
+    }
+  }
+}

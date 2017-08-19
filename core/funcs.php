@@ -302,7 +302,7 @@ function divRooms()
 function bookingContainerFill($dates, $booking){
     global $link;
 
-    $hourStart = $link->query("SELECT PROLONGATION_HOURS_START FROM Settings")->fetch_array()['PROLONGATION_HOURS_START'];
+    $hourStart = $link->query("SELECT PROLONGATION_HOURS_START FROM settings")->fetch_array()['PROLONGATION_HOURS_START'];
 
     $rooms = getRoomNames();
     $arrBookings = [];
@@ -954,7 +954,7 @@ function getServices($id){
     $arrServices = [];
     while($row = $select->fetch_array()){
         if($row['name'] == 'Почасовое продление'){
-            $hourStart = $link->query("SELECT PROLONGATION_HOURS_START FROM Settings")->fetch_array()['PROLONGATION_HOURS_START'];
+            $hourStart = $link->query("SELECT PROLONGATION_HOURS_START FROM settings")->fetch_array()['PROLONGATION_HOURS_START'];
             $hours = $row['quantity'];
             $time = new DateTime($hourStart);
             $time = $time->modify("+$hours hours")->format('H:i');

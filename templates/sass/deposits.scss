@@ -1,0 +1,16 @@
+.table-deposits{
+  width: 80%;
+  margin: auto;
+  thead{
+    tr{
+      th {
+        border-bottom: 2px solid $blue !important;
+      }
+    }
+  }
+  tbody{
+    tr{
+      border-bottom: 1px solid $blue;
+    }
+  }
+}

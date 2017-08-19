@@ -1,0 +1,475 @@
+/**
+ * Created by vishniakov on 28.06.17.
+ */
+$(document).ready(function(){
+    $('.mobile-open').click(function () {
+        $('.menu').toggle();
+        $('.menu').toggleClass('menu-hidden');
+        $('.mobile-open .burger-wrapper').toggleClass('open');
+    });
+    $('.main-container').click(function () {
+        $('.menu').addClass('menu-hidden');
+        $('.mobile-open .burger-wrapper').removeClass('open');
+    });
+    if($(window).width() < 1030) {
+        $('.menu').addClass('menu-hidden');
+    }
+    $('.menu').click(function () {
+        if($(window).width() < 1030) {
+            // $('.menu').addClass('menu-hidden');
+            // $('.mobile-open .burger-wrapper').removeClass('open');
+        }
+    });
+    $('#night_price, #total_price_val').keyup(function () {
+        var id = $('#bookingId').val();
+        var total = $('#total_price_val').val();
+        var price = $('#night_price').val();
+        alert(total);
+        $.ajax({
+            url: "/admin/booking_page/changeTotalPriceAction/"
+        })
+    })
+    $('.user-name').click(function () {
+        $('.user-menu').toggle();
+    })
+    $('.user-menu').click(function () {
+        $('.user-menu').addClass('menu-hidden');
+    })
+    $(window).resize(function() {
+        if($(window).width() > 1030){
+            $('.menu').removeClass('menu-hidden');
+            $('.mobile-open .burger-wrapper').addClass('open');
+        }
+        else{
+            $('.menu').addClass('menu-hidden');
+            $('.mobile-open .burger-wrapper').removeClass('open');
+        }
+    });
+    function layout_close() {
+        $('.layout').hide();
+    }
+    function layout_small_close() {
+        $('.layout-small').hide();
+    }
+
+    function layout_small() {
+        $('.layout-small').show();
+    }
+    function modal_small_open() {
+        $('.modal-small').show();
+        var left = ($(window).width() - $('.modal-small').width()) / 2;
+        $('.modal-small').css({'left': + left + 'px'});
+        layout_small();
+    }
+    function modal_close() {
+        $('.modal').hide();
+        layout_close();
+    }
+    function modal_small_close() {
+        $('.modal-small').hide();
+        $('.modal-small').removeClass('modal-confirm');
+    }
+    function confirm_modal(action_name, btn_class, btn_text) {
+        $.ajax({
+            url: "/templates/modals/modal_confirm.php",
+            type: "GET",
+            data: {
+                ACTION_NAME: action_name,
+                BTN_CLASS: btn_class,
+                BTN_TEXT: btn_text
+            },
+            success: function(data){
+                $('.modal-small').html(data);
+            }
+        });
+        $('.modal-small').addClass('modal-confirm');
+        modal_small_open();
+    }
+
+
+    $('.layout').click(function () {
+        layout_close();
+        modal_close();
+    });
+    $('.modal').on('click', '.modal-close', function () {
+        layout_close();
+        modal_close();
+    });
+    $('.Cashdesk-header').click(function () {
+        $(this).parent().toggleClass('class');
+    });
+    $('.modal').on('click', '#cancel' ,function () {
+        layout_close();
+        modal_close();
+    });
+
+    $('.call-modal').click(function(){
+       var modal =  $(this).attr('id');
+        $.ajax({
+            url: "/templates/modals/modal_" + modal + ".php",
+            type: 'GET',
+            success: function(data){
+                modal_open();
+                $('.modal').html(data);
+            }
+        });
+    });
+    $('.has-children').click(function () {
+        $(this).next().toggleClass('opened');
+        $(this).toggleClass('hide');
+    })
+    $('#cost-category').on("change", function(){
+        var parent_id = $('#cost-category').val();
+        $.ajax({
+            url: "actions.php",
+            type: 'GET',
+            data:{
+                action: 'get_subcategories',
+                parent_id: parent_id
+            },
+            success: function(data){
+                $('#cost-sub-category').html(data);
+            }
+        });
+    });
+    var tableWidth = $('.booking-table-container').width()*0.125;
+    $('.table-cell').width(tableWidth - 1);
+    $('.rooms-block').width(tableWidth);
+    $('.bookings').css({"margin-left":tableWidth});
+    $('.booking-cell').width(tableWidth - 2);
+
+
+
+
+    $('.costs-form').submit(function(){
+        var parent_val = $('#cost-category').val();
+        var quantity = $('#cost-quantity').val();
+        var units = $('#costs-units').val()
+        var error = false;
+        if(parent_val == ''){
+            $('#cost-category').addClass('error-input');
+            $('#cost-category-label').addClass('red');
+            error = true;
+        }
+        else{
+            $('#cost-category').removeClass('error-input');
+            $('#cost-category-label').removeClass('red');
+        }
+        if(quantity != ''){
+            if(units == ''){
+                $('#costs-units').addClass('error-input');
+                $('#cost-units-label').addClass('red');
+                error = true;
+            }
+            else{
+                $('#costs-units').removeClass('error-input');
+                $('#cost-units-label').removeClass('red');
+            }
+        }
+
+        if(error){
+            return false;
+        }
+    });
+    $('.cost-item').click(function(){
+        // var id = $(this).attr("id");
+        // var action = "showCostItem";
+        // $.ajax({
+        //     url: "actions.php",
+        //     type: "GET",
+        //     data: {
+        //         action: action,
+        //         id: id
+        //     },
+        //     success: function(data){
+        //         $('#show-costs, .layout').removeClass('hidden');
+        //         $('#show-costs').html(data);
+        //     }
+        //
+        // });
+        modal_open();
+        layout();
+    });
+
+    $('.modal').on('click', '.tooltip-row', function () {
+        $('.booker-name').val($(this).find('.guest-name').text());
+        $('#guest-phone').val($(this).find('.guest-phone').text());
+        $('#guest-id').val($(this).attr('data-id'));
+        $('.booker-name').removeClass('tooltip-open');
+        $('.tooltip').hide();
+    });
+    $('div.category').click(function(){
+        $(this).next().toggle("slow");
+    });
+    // $('.modal-header').append('<span class="modal-close"><i class="fa fa-times" aria-hidden="true"></i></span>')
+    $('.layout-small').click(function () {
+        layout_small_close();
+        modal_small_close();
+    })
+    $('.modal-small').on('click', '#cancel' ,function () {
+        layout_small_close();
+        modal_small_close();
+    });
+    $('.modal-small').on('click', '.modal-close' ,function () {
+        layout_small_close();
+        modal_small_close();
+    });
+    $('#booking-actions').click(function () {
+        $('.actions-menu').toggle();
+    });
+    $('#edit_info').click(function () {
+        $('.edit').toggleClass('hidden');
+        $('.view').toggleClass('hidden');
+    });
+    $('#cancel_edit').click(function () {
+        $('.edit').toggleClass('hidden');
+        $('.view').toggleClass('hidden');
+    });
+    $('.textarea').on('change keyup paste',function () {
+        $('#save_comment').removeClass('hidden');
+    });
+    $('.booking-total-amount').click(function () {
+        $(this).next().removeClass('hidden');
+        $(this).next().find('input[type="text"]').focus();
+        $(this).addClass('hidden')
+    });
+    $('.modal').on('click', '.booking-total', function () {
+        $(this).next().removeClass('hidden');
+        $(this).next().find('input[type="text"]').focus();
+        $(this).addClass('hidden')
+    })
+    $('.edit-price').focusout(function () {
+        $(this).val($(this).parent().parent().find('.price-value').text());
+    })
+    $('#month-select').change(function () {
+        var month = $(this).val()
+        var data = $(this).data();
+        $.ajax({
+            url: '/admin/' + data.action,
+            type: 'GET',
+            data: {
+                month: month,
+                ajax: 'Y'
+            },
+            success: function (data) {
+                $('.main-container').replaceWith(data);
+            }
+        })
+    });
+
+    $('.modal').on('change', '#prolongation_hours', function () {
+        var price = $('#prolongation_hour_cost').val();
+        var hoursStart = $('#hours_start').text();
+        var hoursEnd = $('#prolongation_hours').val();
+        $.ajax({
+            url: "/admin/booking_page/addProlongationHours",
+            type: "GET",
+            data: {
+                AJAX: 'Y',
+                hoursStart: hoursStart,
+                hoursEnd: hoursEnd,
+                price: price
+            },
+            success: function (data) {
+                $('#prolongation_hour_quantity').val(data.hours);
+                $('#prolongation_hour_total').val(data.price);
+            }
+        })
+    });
+    $('.modal').on('keyup', '#prolongation_hour_cost', function () {
+        var price = $('#prolongation_hour_cost').val();
+        var hoursStart = $('#hours_start').text();
+        var hoursEnd = $('#prolongation_hours').val();
+        $.ajax({
+            url: "/admin/booking_page/addProlongationHours",
+            type: "GET",
+            data: {
+                AJAX: 'Y',
+                hoursStart: hoursStart,
+                hoursEnd: hoursEnd,
+                price: price
+            },
+            success: function (data) {
+                $('#prolongation_hour_quantity').val(data.hours);
+                $('#prolongation_hour_total').val(data.price);
+            }
+        })
+    });
+
+    $(document).mouseup(function (e){ // событие клика по веб-документу
+        var div = $(".price-form"); // тут указываем ID элемента
+        if (!div.is(e.target) // если клик был не по нашему блоку
+            && div.has(e.target).length === 0) { // и не по его дочерним элементам
+            $('.price-form').addClass('hidden');
+            $('.booking-total-amount').removeClass('hidden');
+        }
+    });
+    $('.modal, body').on('click', '.btn, .btn-modal', function (event) {
+        var data = $(this).data();
+        if(data.modal) {
+            if (data.modal == 'modal') {
+                if (!data.id) {
+                    data.id = '';
+                }
+                event.preventDefault();
+                $.ajax({
+                    url: '/admin/modal/' + data.action + '/' + data.id,
+                    success: function (data) {
+                        $('.modal').html(data);
+                        modal_open();
+                    }
+                })
+            }
+            if (data.modal == 'modal-small') {
+                if (!data.id) {
+                    data.id = '';
+                }
+                event.preventDefault();
+                $.ajax({
+                    url: '/admin/modal/' + data.action + '/' + data.id,
+                    success: function (data) {
+                        $('.modal-small').html(data);
+                        modal_small_open()
+                    }
+                })
+            }
+        }
+    });
+    $('.modal, body').on('click', '.need-confirm', function () {
+        var data = $(this).data();
+        if (data.action) {
+            event.preventDefault();
+            $.ajax({
+                url: "/templates/modals/modal_confirm.php",
+                type: "GET",
+                data: {
+                    ACTION: data.action,
+                    ID: data.id
+                },
+                success: function(data){
+                    $('.modal-small').html(data);
+                }
+            });
+            $('.modal-small').addClass('modal-confirm');
+            modal_small_open();
+        }
+    });
+    $('.modal').on('click', '.confirm-price-btn', function () {
+    })
+    $(document).mouseup(function (e){ // событие клика по веб-документу
+        var div = $(".price-form"); // тут указываем ID элемента
+        if (!div.is(e.target) // если клик был не по нашему блоку
+            && div.has(e.target).length === 0) { // и не по его дочерним элементам
+            $('.price-form').addClass('hidden');
+            $('.booking-total').removeClass('hidden');
+        }
+    });
+    $(document).mouseup(function (e){ // событие клика по веб-документу
+        var div = $(".different-price-block"); // тут указываем ID элемента
+        if (!div.is(e.target) // если клик был не по нашему блоку
+            && div.has(e.target).length === 0) { // и не по его дочерним элементам
+            $('.different-price-block').addClass('hidden');
+        }
+    });
+    $(document).mouseup(function (e){ // событие клика по веб-документу
+        var div = $(".actions-menu, #booking-actions"); // тут указываем ID элемента
+        if (!div.is(e.target) // если клик был не по нашему блоку
+            && div.has(e.target).length === 0) { // и не по его дочерним элементам
+            $('.actions-menu').addClass('hidden');
+        }
+        else{
+            $('.actions-menu').removeClass('hidden');
+        }
+    });
+    $('.modal').on('click', '#delete_service', function () {
+            var confirmed = confirm_modal('Удаление', 'red', 'Удалить');
+    });
+    $('.booking-total').click(function () {
+        $('.different-price-block').toggleClass('hidden');
+    });
+    $('.edit-prices').click(function () {
+        $('.cost .view').addClass('hidden');
+        $('.cost .input').removeClass('hidden');
+        $('.edit-prices').addClass('hidden');
+        $('.save-changes').removeClass('hidden');
+    })
+
+
+    $('.modal').on('change', '#cost-category', function () {
+        var category = $(this).val();
+        $.ajax({
+            url: "/admin/finance/ajaxSubCat",
+            type: 'GET',
+            data: {
+                category: category
+            },
+            success: function(data){
+                $('#cost-sub-category').html(data);
+            }
+        });
+    });
+
+    $('.modal').on('click', '#add_cat', function () {
+        $.ajax({
+            url: "/templates/modals/modal_add_cost_category.php",
+            type: "GET",
+            data: {
+            },
+            success: function(data){
+                modal_small_open();
+                layout_small();
+                $('.modal-small').html(data);
+            }
+        });
+    });
+    $('.modal').on('click', '#add_subcat', function () {
+        $.ajax({
+            url: "/templates/modals/modal_add_cost_subcategory.php",
+            type: "GET",
+            data: {
+            },
+            success: function(data){
+                modal_small_open();
+                layout_small();
+                $('.modal-small').html(data);
+            }
+        });
+    });
+    $('#add_cost').click(function(){
+        $.ajax({
+            url: "/templates/modals/modal_add_cost.php",
+            type: "GET",
+            data: {
+            },
+            success: function(data){
+                modal_open();
+                $('.modal').html(data);
+            }
+        });
+    });
+    $('.cost-item').click(function(){
+        var id = $(this).attr('id');
+        $.ajax({
+            url: "/templates/modals/modal_edit_cost.php",
+            type: "GET",
+            data: {
+            },
+            success: function(data){
+                modal_open();
+                $('.modal').html(data);
+            }
+        });
+    });
+    $('#add_payment').click(function () {
+        $.ajax({
+            url: "/templates/modals/modal_add_payment.php",
+            type: "GET",
+            data: {
+            },
+            success: function(data){
+                modal_open();
+                $('.modal').html(data);
+            }
+        });
+    })
+})

@@ -1,0 +1,5 @@
+@mixin border-rounded($color) {
+  border-radius: 10px;
+  border: 1px solid $color;
+  padding: 10px;
+}

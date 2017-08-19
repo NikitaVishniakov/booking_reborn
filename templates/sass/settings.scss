@@ -1,0 +1,19 @@
+.settings-block{
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #1b85b8;
+  box-shadow: -1px 1px 1px 0px rgba(0, 0, 0, 0.22);
+  .settings-header{
+    margin-bottom: 10px;
+    h3{
+      display: inline-block;
+      border-bottom: 3px solid #1b85b8;
+    }
+  }
+  .textarea-description{
+    padding: 5px;
+    text-indent: 0;
+    width: 300px;
+    height: 300px;
+  }
+}

@@ -1,0 +1,67 @@
+@charset "UTF-8";
+.incomes-container{
+  max-width: 850px;
+  width: 100%;
+  margin: auto;
+  margin-top: 40px;
+}
+.revenue{
+  margin-top: 50px;
+  .category-header{
+    background: $blue;
+    .category-name, .category-total{
+      color: #fff;
+    }
+  }
+}
+.category-header {
+  padding: 10px 20px;
+  font-size: 25px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-bottom: 2px solid $blue;
+  cursor: pointer;
+  &.has-children {
+    .category-total {
+      &:after {
+        content: '\25bc';
+        font-size: 14px;
+        margin-left: 10px;
+      }
+    }
+
+    &.hide {
+      .category-total {
+        &:after {
+          content: '\25b2';
+          font-size: 14px;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+  &:hover{
+    .category-name, .category-total{
+      color: $dark-red;
+    }
+  }
+
+}
+.category-list{
+  overflow: hidden;
+  height: 0;
+  //padding: 20px;
+  table {
+    width: 100%;
+    td {
+      text-align: center;
+      font-size: 16px;
+    }
+  }
+    &.opened{
+      height: auto;
+      padding: 20px;
+      overflow: auto;
+    }
+}

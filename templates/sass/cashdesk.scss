@@ -1,0 +1,159 @@
+.shift{
+  margin-top: 55px;
+}
+.shift-header{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.shift-date{
+  display: inline-block;
+  padding: 5px;
+  border-bottom: 5px solid #1b85b8;
+  margin-bottom: 20px;
+  font-size: 26px;
+}
+.cashdesk{
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.cashdesk-block{
+  width: 45%;
+  min-width: 450px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid #1b85b8;
+  border-radius: 8px;
+  color: #1b85b8;
+}
+.button-wrapper{
+  text-align: center;
+  margin: 15px 0;
+}
+
+.incomes{
+  border-color: #78bda9;
+}
+.cashdesk-body{
+  background: #fff;
+}
+.costs{
+  border-color: #f07f13;
+}
+.cashdesk-block .row {
+  display: flex;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+.costs {
+  .cashdesk-body{
+    .row{
+      border-bottom: 1px solid $blue;
+    }
+  }
+}
+.incomes .cashdesk-body .row{
+  border-bottom: 1px solid #78bda9;
+}
+.income-header, .cost-header{
+  text-align: center;
+  font-size: 20px;
+  color: #fff;
+  padding:10px;
+}
+.income-header{
+  background: #78bda9;
+}
+.cost-header{
+  background: #f07f13;
+}
+.cashdesk-body .row:last-child{
+  border-bottom: none;
+}
+.cashdesk-body{
+  transition: 1s all ease;
+  padding: 5px;
+}
+.costs .table-header {
+  border-bottom: 2px solid #f07f13 !important;
+}
+.incomes .table-header{
+  border-bottom: 2px solid #78bda9 !important;
+}
+.table-header.row:hover {
+  background: #fff !important;
+}
+.table-header span{
+  font-weight: bold;
+}
+.incomes .row:hover {
+  background: #78bda9;
+}
+.costs .row:hover {
+  background: #f07f13;
+}
+.incomes .td {
+  width: 22%;
+  &.source{
+    width: 30%;
+  }
+}
+.costs .td{
+  width: 33%;
+}
+.totals{
+  margin: 10px 0;
+}
+.totals .totals-text{
+  font-weight: bold;
+  text-align: right;
+}
+.totals .totals-sum,
+.totals .totals-text{
+  width: 49%;
+  display: inline-block;
+}
+.td{
+  text-align: center;
+  display: inline-block;
+}
+
+@media (max-width: 1000px) {
+  //.cashdesk-body{
+  //  display: none;
+  //}
+  //.visible .cashdesk-body{
+  //  display: block;
+  //}
+  .cashdesk-block{
+    width: 100%;
+    margin: 20px;
+  }
+  //.incomes{
+  //  left:0;
+  //}
+  //.costs{
+  //  right: 0;
+  //}
+  //.income-header, .cost-header {
+  //  width: 50%;
+  //  z-index: 100;
+  //}
+  //.income-header{
+  //  z-index: 2000;
+  //}
+  //.cost-header{
+  //  float: right;
+  //}
+  //.cashdesk-body{
+  //  margin-top: 50px;
+  //}
+  //.shift{
+    //font-size: 0.9em;
+  //}
+  .shift-date{
+    font-size: 20px;
+  }
+}

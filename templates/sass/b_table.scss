@@ -1,0 +1,395 @@
+.main-container{
+  margin: 20px;
+}
+.digest{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  vertical-align: top;
+}
+.digest-block{
+  border-radius: 10px;
+  padding: 10px 0;
+  min-height: 100px;
+  display: inline-block;
+  width: 49%;
+}
+.today{
+  width: 100%;
+  font-size: 18px;
+}
+#submit_booking:disabled{
+  background: #bbbaba;
+}
+.today-info{
+  background: rgba(140, 252, 96, 0.2);
+  border: 1px solid #73eaaf;
+}
+.prepayments{
+  /*background: rgba(140, 252, 96, 0.5);*/
+  border: 1px solid #1b85b8;
+}
+.prepayments .guest-status  .text{
+  width: 150px;
+}
+.add-booking{
+  text-align: right;
+  padding: 15px;
+}
+.filter{
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+  /*border: 1px solid #1b85b8;*/
+}
+.date-wrapper, .period-wrapper{
+  width: 200px;
+  margin-right: 20px;
+  float: left;
+}
+.search-wrapper{
+  margin-top: 20px;
+  width: 200px;
+  margin-right: 20px;
+  float: left;
+}
+.check-in .icon .fa{
+  color: #78bda9;
+}
+.check-out .icon .fa{
+  color: #f07f13;
+}
+.prolongation{
+  color: $dark-red;
+}
+.btn-wrapper{
+  float: left;
+  margin-top: 25px;
+}
+.search-form{
+  float: right;
+}
+.canceled_booking{
+  background: $red;
+}
+.guest-status .icon{
+  margin-right: 10px;
+}
+.guest-status .text{
+  width: 120px;
+  display: inline-block;
+  text-align: center;
+  line-height: 32px;
+}
+.is-late{
+  background-color: rgba(238,92,92, 0.7);
+}
+.guest-debt{
+  font-weight: bold;
+  color: #ee5c5c;
+}
+.guest-action{
+  padding-left: 10px;
+}
+.guest-action .fa-check{
+  color: #5cb85c;
+}
+.booking-table{
+  border-collapse: collapse;
+}
+.today-info .icon, .prepayments .icon{
+  margin-left: 5px;
+}
+.prepayments .row .booked_pole{
+  width: 150px;
+  display: inline-block;
+  text-align: center;
+  margin: auto 0;
+}
+.prepayments .row{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+
+
+
+.booked{
+  background-color: rgb(255,255,168);
+  &:hover{
+    background: rgba(255,255,0,0.2);
+  }
+}
+.booking-table-container{
+  position: relative;
+  overflow-x: scroll;
+  margin-bottom: 30px;
+  width: 100%;
+  display: flex;
+  @include border-rounded($blue);
+  padding: 0;
+}
+.rooms-block{
+  z-index: 1000;
+  position: absolute;
+  flex-shrink: 0;
+  .rooms{
+    background: $blue;
+    width: 100%;
+    display: flex;
+    .room {
+      margin: auto;
+      color: #fff;
+      text-align: center;
+    }
+    &:hover{
+      background: #03396c;
+    }
+    border-bottom: 1px solid #fff;
+    &:last-child{
+      border-bottom: none;
+    }
+  }
+}
+.spacer{
+  background: $blue;
+  height: 50px;
+  border: none;
+}
+.table-сell{
+  height: 130px;
+}
+.booking-cell{
+  height: 130px;
+  display: flex;
+  border: 1px solid $blue;
+}
+.dates-block{
+  position: absolute;
+  top:0;
+  height: 50px;
+  border-bottom: 1px solid #1b85b8;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  display: flex;
+  .date-cell{
+    line-height: 50px;
+    border-right: 1px solid $blue;
+    text-align: center;
+    &:last-child{
+      border-right: none;
+    }
+  }
+}
+.guest-name{
+  color: #586069;
+  text-decoration: none;
+  &:hover{
+    color: $blue;
+  }
+}
+.fa-phone{
+  color: $green;
+}
+.bookings{
+  margin: 50px 0;
+  .table-row{
+    display: flex;
+  }
+  .booking-cell{
+    border: 0.5px solid $blue;
+    color: #000;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-decoration: none;
+    &.hasDebt{
+      background: rgba(238,92,92,0.7) !important;
+    }
+    &.not-confirmed{
+      background: #c8c9c1;
+      &:hover{
+        background: #bbbaba;
+      }
+    }
+    &.free{
+      &:hover{
+        background: rgba(27,133,184,0.3);
+      }
+    }
+    .icons-box{
+      text-align: center;
+    }
+    .booking-info{
+      text-align: center;
+    }
+    .fa{
+      margin: 3px;
+      &:before{
+        font-size: 20px;
+      }
+      &.fa-bed {
+        color: $blue;
+      }
+      &.fa-sign-out {
+       color: $red;
+      }
+      &.fa-sign-in{
+        color: #5cb85c;
+      }
+    }
+  }
+  .last-day{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  .first-day, .move-out{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+}
+.second-price-header{
+  color: $red;
+}
+.second-price-date{
+  display: block;
+}
+.tooltip{
+  max-height: 300px;
+  overflow-y: scroll;
+  position: absolute;
+  top:32px;
+  border: 1px solid #bbbaba;
+  z-index: 1001;
+  display: none;
+  background: #f7f7f7;
+  width: 100%;
+  .row{
+    border-bottom: 1px solid #bbbaba;
+    &:last-child{
+      border-bottom: none;
+    }
+    .guest-name{
+      width: 65%;
+      text-align: center;
+    }
+    .guest-phone{
+      width: 35%;
+      text-align: center;
+    }
+    &:hover{
+        background: $blue;
+
+      span {
+        color: #fff;
+      }
+    }
+  }
+}
+.checkboxes{
+  label{
+    text-align: right;
+    width: 100%;
+    display: inline-block;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+}
+.border-left{
+  border-left: 1px solid #bbbaba;
+}
+@media (max-width: 1200px) {
+  .digest-block{
+    width: 90%;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 800px) {
+  .prepayments .row{
+    display: block;
+  }
+  .today-info .text{
+    display: none;
+  }
+  .today-info .icon{
+    margin: 0;
+  }
+  .guest-status{
+    /*        width: 0px;*/
+  }
+  .digest-block{
+    width: 90%;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 500px) {
+  .add-booking .btn{
+    width: 100%;
+    text-align: center;
+  }
+}
+@media (max-width: 600px) {
+  .date-wrapper, .period-wrapper, .search-wrapper{
+    width: 100%;
+    margin-right: 0px;
+    float: left;
+  }
+  .search-form, .form-filter-date{
+    float: left;
+    width: 100%;
+    margin-bottom: 25px;
+  }
+  .date-wrapper .input, .period-wrapper .input, .search-wrapper .input{
+    width: 100%;
+  }
+  .btn-wrapper{
+    float: left;
+    margin-top: 5px;
+    width: 100%;
+  }
+  .btn-wrapper .btn{
+    width: 100%;
+  }
+
+  .header{
+    position: sticky;
+    width: 100%;
+    top: 0;
+    background-color: #fff;
+    z-index: 10000;
+  }
+  .today-info .row, .prepayments .row{
+    text-align: center;
+    border-bottom: 1px solid gainsboro;
+    height: 90px;
+  }
+  .today-info .row{
+    height: 90px;
+  }
+  .prepayments .row{
+    height: 120px;
+  }
+  .today-info .row .guest-action, .prepayments .row .guest-action{
+    margin-top: 15px;
+    display: inline-block;
+    width: 100%;
+  }
+  .prepayments .row .booked_pole, .prepayments .row .guest-action{
+    margin-top: 5px;
+    display: inline-block;
+    width: 100%;
+  }
+}
+@media (max-width: 900px) {
+  .filter .search-form{
+    display: none;
+  }
+}

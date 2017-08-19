@@ -1,0 +1,229 @@
+.booking-block{
+  border-radius: 10px;
+  padding: 10px;
+  min-height: 350px;
+  border: 1px solid #1b85b8;
+  display: inline-block;
+  width: 45%;
+  box-shadow: -1px 1px 1px 0px rgba(0, 0, 0, 0.22);
+}
+.booking-block .row{
+  padding: 5px 10px ;
+}
+.canceled{
+  background: rgba(238,92,92,0.7);
+  height: 70px;
+  text-align: center;
+  font-size: 40px;
+  color: #fff;
+  line-height: 70px;
+}
+.booking-block h3{
+  display: inline-block;
+  border-bottom: 3px solid #1b85b8;
+}
+.edit-icon:hover{
+  color: #ee5c5c;
+}
+.price-header{
+  text-align: center;
+}
+.booking-price .half-len{
+  margin: auto;
+}
+.booking-total-amount, .booking-total{
+  font-weight: bold;
+  font-size: 22px;
+  text-align: center;
+  height: 32px;
+}
+.edit-icon{
+  float: right;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  font-size: 1.5em;
+  color: #317256;
+}
+.deposit-block{
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.deposit-block .half-len{
+  min-width: 150px !important;
+}
+.bottom-booking-block{
+  box-shadow: -1px 1px 1px 0px rgba(0, 0, 0, 0.22);
+  border-radius: 10px;
+  padding: 10px;
+  min-height: 100px;
+  border: 1px solid #1b85b8;
+  display: inline-block;
+  width: 100%;
+  margin-top: 30px;
+}
+.booking-wrap, .booking-price{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.booking-wrap .half-len{
+  min-width: 200px;
+}
+.actions-wrapper .btn .fa{
+  color: #fff;
+  margin-left: 5px;
+}
+.actions-wrapper{
+  position: relative;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.booking-confirmed{
+  margin: auto 0;
+}
+.actions-menu{
+  box-shadow: -1px 1px 1px 0px rgba(0, 0, 0, 0.22);
+  border-radius: 10px;
+  padding: 10px;
+  width: 300px;
+  position: absolute;
+  background: #03396c;
+  display: none;
+  top: 35px;
+  z-index: 1000;
+  right: 0px;
+}
+.cashdesk-row{
+  border-bottom: 1px solid #78bda9;
+}
+.check-desk{
+  margin-top: 30px;
+}
+.total-to-pay .half-len{
+  min-width: 0 !important;
+}
+.total-to-pay{
+  width: 60% !important;
+  margin-left: 40%;
+}
+.actions-menu .btn{
+  width: 100%;
+  margin-bottom:5px;
+  text-align: center;
+}
+.bottom-block{
+  margin-top: 30px;
+  width: 30%;
+  border-radius: 10px;
+  border: 1px solid #1b85b8;
+  display: inline-block;
+}
+.comment .textarea{
+  width: 100%;
+  padding: 10px;
+  border: none;
+  resize: none;
+}
+.booking-block-header{
+  margin-bottom: 10px;
+}
+.bottom-block-header{
+  border-bottom: 1px solid #1b85b8;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.bottom-block-header .text{
+  display: inline-block;
+  margin: auto 0;
+}
+.bottom-block-body{
+  padding: 10px;
+}
+.services-list td.total{
+  min-width: 100px;
+}
+.services-list tr:hover{
+  background: #eee;
+  cursor: pointer;
+}
+.services-list td{
+  border-bottom: 1px solid #eee;
+  padding: 5px;
+  text-align: center;
+}
+.services-list{
+  width: 100%;
+}
+.different-price-block{
+  text-align: left !important;
+  position: absolute;
+  background: rgba(27,133,184, 0.9);
+  padding: 20px;
+  z-index: 999999;
+  @media (max-width: 500px) {
+    left:0;
+  }
+  .edit-prices{
+    color: #fff;
+  }
+  table{
+    tr{
+      border-bottom: 1px solid #fff;
+    }
+    td{
+      color: #fff;
+      padding: 10px;
+      span{
+        color: #fff;
+      }
+      &.cost{
+        .input{
+          width: 70px;
+          text-indent: 2px;
+          border: none;
+          color: #333;
+        }
+      }
+
+    }
+    .date{
+      font-weight: bold;
+    }
+  }
+}
+@media (max-width: 1100px) {
+  .bottom-block{
+    width: 45%;
+  }
+  .deposit-block .row{
+    width: 50%;
+  }
+  .deposit-block{
+    border: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}
+@media (max-width: 900px) {
+  .booking-block, .bottom-block {
+    margin-top: 0;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+}
+@media (max-width: 500px) {
+  .deposit-block .row{
+    width: 100%;
+  }
+  .booking-price .half-len{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+}

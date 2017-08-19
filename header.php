@@ -10,10 +10,11 @@ else{
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="RU">
 <head>
     <meta charset="UTF-8">
     <title>Система управления отелем</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/libs/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/libs/air-datepicker/dist/css/datepicker.min.css">
     <link rel="stylesheet" href="/templates/style/style.css">
