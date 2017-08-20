@@ -25,7 +25,7 @@
                     <td class="login"><?=$user['login']?></td>
                     <td class="name"><?=$user['name']?></td>
                     <td class="status"><?=$user['status']?></td>
-                    <td class="date-login"><?=$user['dateSignUp']?></td>
+                    <td class="date-login"><?=date_format(date_create($user['dateSignUp']), "d.m.Y")?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

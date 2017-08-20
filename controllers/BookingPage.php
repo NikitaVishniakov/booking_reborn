@@ -159,8 +159,32 @@ class BookingPage extends \core\base\Controller
 
     public function changeTotalPriceAction(){
         $this->layout = false;
+        $arrPrice['price'] = str_replace(' ', '', $_GET['price']);
+        $arrPrice['amount'] = str_replace(' ', '', $_GET['total']);
+        $arrPrice['id'] = $_GET['id'];
 
+        if(Booking::update('booking', $arrPrice)){
+            return true;
+        }
+    }
 
+    public function countTotalPriceAction(){
+        $this->layout = false;
+        $arrPrice['price'] = str_replace(' ', '', $_GET['price']);
+        $arrPrice['amount'] = str_replace(' ', '', $_GET['total']);
+        $arrPrice['id'] = $_GET['id'];
+        $dates = Booking::getPropertyList('booking', $arrPrice['id'], array('dateStart', 'dateEnd',));
+        $days = getDaysCount($dates['dateEnd'], $dates['dateStart']);
+
+        if($_GET['action'] == 'total_price_val'){
+            $arrPrice['price'] = round($arrPrice['amount'] / $days, 0);
+//            Booking::update('booking', $arrPrice);
+            echo $arrPrice['price'];
+        }
+        else{
+            $arrPrice['amount'] = intval($arrPrice['price']) * intval($days);
+            echo $arrPrice['amount'];
+        }
     }
 
     public function getDepositAction(){

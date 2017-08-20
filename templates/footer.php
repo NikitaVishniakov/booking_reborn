@@ -44,7 +44,7 @@
 <div class="layout-small"></div>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="../libs/air-datepicker/dist/js/datepicker.min.js"></script>
-<script src="script.js?<?php echo(microtime(true)); ?>"></script>
-<script src="add_booking.js?<?php echo(microtime(true)); ?>"></script>
+<script src="../js/script.js?<?php echo(microtime(true)); ?>"></script>
+<script src="../js/add_booking.js?<?php echo(microtime(true)); ?>"></script>
 </body>
 </html>

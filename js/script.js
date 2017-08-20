@@ -22,21 +22,6 @@ $(document).ready(function(){
     if($(window).width() < 1030) {
         $('.menu').addClass('menu-hidden');
     }
-    $('.menu').click(function () {
-        if($(window).width() < 1030) {
-            // $('.menu').addClass('menu-hidden');
-            // $('.mobile-open .burger-wrapper').removeClass('open');
-        }
-    });
-    $('#night_price, #total_price_val').keyup(function () {
-        var id = $('#bookingId').val();
-        var total = $('#total_price_val').val();
-        var price = $('#night_price').val();
-        alert(total);
-        $.ajax({
-            url: "/admin/booking_page/changeTotalPriceAction/"
-        })
-    })
     $('.user-name').click(function () {
         $('.user-menu').toggle();
     })
@@ -131,20 +116,7 @@ $(document).ready(function(){
         $(this).next().toggleClass('opened');
         $(this).toggleClass('hide');
     })
-    $('#cost-category').on("change", function(){
-        var parent_id = $('#cost-category').val();
-        $.ajax({
-            url: "actions.php",
-            type: 'GET',
-            data:{
-                action: 'get_subcategories',
-                parent_id: parent_id
-            },
-            success: function(data){
-                $('#cost-sub-category').html(data);
-            }
-        });
-    });
+
     var tableWidth = $('.booking-table-container').width()*0.125;
     $('.table-cell').width(tableWidth - 1);
     $('.rooms-block').width(tableWidth);
@@ -185,21 +157,6 @@ $(document).ready(function(){
         }
     });
     $('.cost-item').click(function(){
-        // var id = $(this).attr("id");
-        // var action = "showCostItem";
-        // $.ajax({
-        //     url: "actions.php",
-        //     type: "GET",
-        //     data: {
-        //         action: action,
-        //         id: id
-        //     },
-        //     success: function(data){
-        //         $('#show-costs, .layout').removeClass('hidden');
-        //         $('#show-costs').html(data);
-        //     }
-        //
-        // });
         modal_open();
         layout();
     });
@@ -214,7 +171,6 @@ $(document).ready(function(){
     $('div.category').click(function(){
         $(this).next().toggle("slow");
     });
-    // $('.modal-header').append('<span class="modal-close"><i class="fa fa-times" aria-hidden="true"></i></span>')
     $('.layout-small').click(function () {
         layout_small_close();
         modal_small_close();
@@ -230,30 +186,27 @@ $(document).ready(function(){
     $('#booking-actions').click(function () {
         $('.actions-menu').toggle();
     });
+
     $('#edit_info').click(function () {
         $('.edit').toggleClass('hidden');
         $('.view').toggleClass('hidden');
     });
+
     $('#cancel_edit').click(function () {
         $('.edit').toggleClass('hidden');
         $('.view').toggleClass('hidden');
     });
+
     $('.textarea').on('change keyup paste',function () {
         $('#save_comment').removeClass('hidden');
     });
-    $('.booking-total-amount').click(function () {
-        $(this).next().removeClass('hidden');
-        $(this).next().find('input[type="text"]').focus();
-        $(this).addClass('hidden')
-    });
+
     $('.modal').on('click', '.booking-total', function () {
         $(this).next().removeClass('hidden');
         $(this).next().find('input[type="text"]').focus();
         $(this).addClass('hidden')
-    })
-    $('.edit-price').focusout(function () {
-        $(this).val($(this).parent().parent().find('.price-value').text());
-    })
+    });
+
     $('#month-select').change(function () {
         var month = $(this).val()
         var data = $(this).data();
@@ -348,6 +301,8 @@ $(document).ready(function(){
             }
         }
     });
+
+
     $('.modal, body').on('click', '.need-confirm', function () {
         var data = $(this).data();
         if (data.action) {
@@ -367,8 +322,7 @@ $(document).ready(function(){
             modal_small_open();
         }
     });
-    $('.modal').on('click', '.confirm-price-btn', function () {
-    })
+
     $(document).mouseup(function (e){ // событие клика по веб-документу
         var div = $(".price-form"); // тут указываем ID элемента
         if (!div.is(e.target) // если клик был не по нашему блоку
@@ -377,6 +331,7 @@ $(document).ready(function(){
             $('.booking-total').removeClass('hidden');
         }
     });
+
     $(document).mouseup(function (e){ // событие клика по веб-документу
         var div = $(".different-price-block"); // тут указываем ID элемента
         if (!div.is(e.target) // если клик был не по нашему блоку
@@ -384,6 +339,7 @@ $(document).ready(function(){
             $('.different-price-block').addClass('hidden');
         }
     });
+
     $(document).mouseup(function (e){ // событие клика по веб-документу
         var div = $(".actions-menu, #booking-actions"); // тут указываем ID элемента
         if (!div.is(e.target) // если клик был не по нашему блоку
@@ -394,18 +350,10 @@ $(document).ready(function(){
             $('.actions-menu').removeClass('hidden');
         }
     });
-    $('.modal').on('click', '#delete_service', function () {
-            var confirmed = confirm_modal('Удаление', 'red', 'Удалить');
-    });
+
     $('.booking-total').click(function () {
         $('.different-price-block').toggleClass('hidden');
     });
-    $('.edit-prices').click(function () {
-        $('.cost .view').addClass('hidden');
-        $('.cost .input').removeClass('hidden');
-        $('.edit-prices').addClass('hidden');
-        $('.save-changes').removeClass('hidden');
-    })
 
 
     $('.modal').on('change', '#cost-category', function () {

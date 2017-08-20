@@ -101,7 +101,8 @@ class BookingTable extends \core\base\Controller
             $query = $link->query($sql);
             if($query){
                 if($booking['breakfast']){
-                    $quantity = $booking['guestsNum'] * getDaysCount($booking['dateEnd'], $booking['dateStart']);
+                    $guests = $booking['guestsNum'] == '2+1' ? 3 : $booking['guestsNum'];
+                    $quantity = $guests * getDaysCount($booking['dateEnd'], $booking['dateStart']);
                     $b_id = $link->insert_id;
                     $arrBreakfast = array(
                         'name' => 'Завтрак(тариф)',
@@ -226,7 +227,7 @@ class BookingTable extends \core\base\Controller
                     $arrDays[$counter] = getDaysCount($date2, $date1);
 
                     if($breakfast){
-                        $breakfast_cost = 150 * intval($guestsNum);
+                        $breakfast_cost = 150 * (intval($guestsNum) + intval($additionalBed));
                         $arrPrice[$counter] +=$breakfast_cost;
                     }
                     if($specialGuest){
@@ -246,7 +247,7 @@ class BookingTable extends \core\base\Controller
                 $price = $price->fetch_assoc()['RATE'] + $additionalBed_price;
                 onePrice:
                 if($breakfast){
-                    $breakfast_cost = 150 * intval($guestsNum);
+                    $breakfast_cost = 150 * (intval($guestsNum) +  + intval($additionalBed));
                     $price +=$breakfast_cost;
                 }
                 if($specialGuest){

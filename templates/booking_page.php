@@ -170,7 +170,7 @@
                     <div class="price-header">
                         Стоимость проживания(общая):
                     </div>
-                    <div class="booking-total-amount"><span class="price-total"><?= $arrPayment['amount']?></span> руб.</div>
+                    <div class="booking-total-amount"><span class="price-total price-val" id="total-price-text"><?= $arrPayment['amount']?></span> руб.</div>
                     <?php if($arrPayment['two_prices'] == 'Y'): ?>
                     <form class="different-price-block hidden">
                         <a class="edit-prices" href="javascript:void(0)">Изменить</a>
@@ -204,7 +204,7 @@
                     <?php else: ?>
                         <form class="price-form hidden">
                             <input type="text" id="total_price_val" value="<?= $arrPayment['amount']?>" class="input edit-price ">
-                            <span class="btn btn-small btn-green">ок</span>
+                            <span class="btn btn-small btn-green confirm-price" id="confirm-total-price">ок</span>
                         </form>
                    <?php endif; ?>
                 </div>
@@ -213,10 +213,12 @@
                 <div class="price-header">
                     Цена за сутки:
                 </div>
-                    <div class="booking-total-amount"><span class="price-value"><?=$arrPayment['price']?></span> руб.</div>
+                    <div class="booking-total-amount">
+                        <span class="price-value price-val" id="night_price_text"><?=$arrPayment['price']?></span> руб.
+                    </div>
                     <form class="price-form hidden">
                         <input type="text" id="night_price" value="<?=$arrPayment['price']?>" class="input edit-price ">
-                        <span  class="btn btn-small btn-green">ок</span>
+                        <span  class="btn btn-small btn-green confirm-price" id="confirm-night-price">ок</span>
                     </form>
             </div>
             <?php endif;?>
