@@ -8,8 +8,19 @@ $(document).ready(function(){
         $('.mobile-open .burger-wrapper').toggleClass('open');
     });
     $('.main-container').click(function () {
+        $('.menu').hide();
         $('.menu').addClass('menu-hidden');
         $('.mobile-open .burger-wrapper').removeClass('open');
+    });
+    $(document).mouseup(function (e){ // событие клика по веб-документу
+        var div = $('.menu'); // тут указываем ID элемента
+        var menu = $('.mobile-open');
+        if (!div.is(e.target) && !menu.is(e.target) // если клик был не по нашему блоку
+            && div.has(e.target).length === 0) { // и не по его дочерним элементам
+            $('.menu').hide();
+            $('.menu').addClass('menu-hidden');
+            $('.mobile-open .burger-wrapper').removeClass('open');
+        }
     });
     if($(window).width() < 1030) {
         $('.menu').addClass('menu-hidden');
@@ -36,6 +47,11 @@ $(document).ready(function(){
         $('.user-menu').addClass('menu-hidden');
     })
     $(window).resize(function() {
+        var tableWidth = $('.booking-table-container').width()*0.125;
+        $('.table-cell').width(tableWidth - 1);
+        $('.rooms-block').width(tableWidth);
+        $('.bookings').css({"margin-left":tableWidth});
+        $('.booking-cell').width(tableWidth - 2);
         if($(window).width() > 1030){
             $('.menu').removeClass('menu-hidden');
             $('.mobile-open .burger-wrapper').addClass('open');

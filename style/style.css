@@ -842,6 +842,11 @@ table {
       margin: auto;
       color: #fff;
       text-align: center; }
+      .rooms-block .rooms .room .category-name {
+        color: #fff; }
+        @media (max-width: 600px) {
+          .rooms-block .rooms .room .category-name {
+            display: none; } }
     .rooms-block .rooms:hover {
       background: #03396c; }
     .rooms-block .rooms:last-child {
@@ -999,14 +1004,24 @@ table {
   .guest-status {
     /*        width: 0px;*/ }
   .digest-block {
-    width: 90%;
+    width: 100%;
     margin: auto;
     margin-bottom: 20px; } }
 
 @media (max-width: 500px) {
-  .add-booking .btn {
+  .add-booking {
     width: 100%;
-    text-align: center; } }
+    padding: 0;
+    margin-bottom: 10px; }
+    .add-booking .btn {
+      width: 100%;
+      text-align: center; }
+  .booking-cell .guest-name {
+    display: none; } }
+
+@media (max-width: 1030px) {
+  .search-wrapper {
+    display: none; } }
 
 @media (max-width: 600px) {
   .date-wrapper, .period-wrapper, .search-wrapper {

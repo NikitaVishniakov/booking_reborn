@@ -112,7 +112,7 @@
         <?php foreach ($arrRooms as $room): ?>
             <div class="table-сell rooms">
                 <div class='room'>
-                    <?=$room?>
+                   <span class="category-name"><?=$room['category']?></span> <?=$room['room']?>
                 </div>
             </div>
         <?php endforeach; ?>

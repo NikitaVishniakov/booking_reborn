@@ -143,6 +143,12 @@
     width: 100%;
     display: flex;
     .room {
+      .category-name{
+        color: #fff;
+        @media (max-width: 600px){
+          display: none;
+        }
+      }
       margin: auto;
       color: #fff;
       text-align: center;
@@ -326,15 +332,31 @@
     /*        width: 0px;*/
   }
   .digest-block{
-    width: 90%;
+    width: 100%;
     margin: auto;
     margin-bottom: 20px;
   }
 }
 @media (max-width: 500px) {
-  .add-booking .btn{
+  .add-booking {
     width: 100%;
-    text-align: center;
+    padding: 0;
+    margin-bottom: 10px;
+    .btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  .booking-cell{
+    .guest-name{
+      display: none;
+    }
+  }
+
+}
+@media (max-width: 1030px) {
+  .search-wrapper{
+    display: none;
   }
 }
 @media (max-width: 600px) {

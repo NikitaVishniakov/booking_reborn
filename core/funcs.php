@@ -78,6 +78,22 @@ function getRoomNames(){
     }
     return($array);
 }
+function getSeparatedRoomNames(){
+    $categories = getCategoriesList();
+    $rooms = getRoomsList();
+    $array = [];
+    foreach ($categories as $key => $value){
+        foreach ($rooms as $cat=>$room){
+            if ($cat == $key){
+                foreach ($room as $id => $name){
+                    $roomName = array('category' => $value, 'room' => " № " . $name);
+                    $array[$name] = $roomName;
+                }
+            }
+        }
+    }
+    return($array);
+}
 function selectGuestNum($roomNum, $chosen = '1'){
     global $guestsNum;
     foreach($guestsNum[$roomNum] as $guests){
@@ -289,13 +305,13 @@ function tableRoom($dates){
 function divDates($dates){
     $arrDates = [];
     foreach($dates as $key => $date) {
-        $arrDates[$key] = date_format(date_create($date), "d.m.Y");
+        $arrDates[$key] = date_format(date_create($date), "d.m");
     }
     return $arrDates;
 }
 function divRooms()
 {
-    $rooms = getRoomNames();
+    $rooms = getSeparatedRoomNames();
 
     return $rooms;
 }
