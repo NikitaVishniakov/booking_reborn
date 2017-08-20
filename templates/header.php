@@ -12,11 +12,12 @@
         <nav>
             <ul class="menu">
                 <li>
-                    <form class="form-vertical search-form">
+                    <form action="/admin/search/search" method="post" class="form-vertical search-form">
                             <div class="input-wrapper">
                                 <input type="text" class="input input-search">
                                 <span class="search-pad">
-                                    <input type="submit" class="btn-seatch" value="" >
+                                    <input name="search" type="submit" class="btn-seatch" value="">
+                                    <input type="submit" class="" id="submit-search">
                                 </span>
                             </div>
                     </form>

@@ -24,13 +24,20 @@ class Payments extends \core\base\Controller
      */
     public function checkInAction(){
         global $link;
-        if(Payment::save('payments', $_POST)){
+
+        if(intval($_POST['amount']) > 0){
+            $added = Payment::save('payments', $_POST);
+        }
+        else{
+            $added =  true;
+        }
+        if($added){
             $id = $_POST['bookingId'];
             $arrData = array(
                 'checkIn' => 1,
                 'isConfirmed' => 1
             );
-            Booking::update('booking', $arrData, $id );
+            Booking::update('booking', $arrData, $id);
             header("location:{$_SERVER['HTTP_REFERER']}");
         }
         else{

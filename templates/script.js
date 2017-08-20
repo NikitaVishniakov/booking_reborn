@@ -7,19 +7,16 @@ $(document).ready(function(){
         $('.menu').toggleClass('menu-hidden');
         $('.mobile-open .burger-wrapper').toggleClass('open');
     });
-    $('.main-container').click(function () {
-        $('.menu').hide();
-        $('.menu').addClass('menu-hidden');
-        $('.mobile-open .burger-wrapper').removeClass('open');
-    });
     $(document).mouseup(function (e){ // событие клика по веб-документу
         var div = $('.menu'); // тут указываем ID элемента
         var menu = $('.mobile-open');
-        if (!div.is(e.target) && !menu.is(e.target) // если клик был не по нашему блоку
-            && div.has(e.target).length === 0) { // и не по его дочерним элементам
-            $('.menu').hide();
-            $('.menu').addClass('menu-hidden');
-            $('.mobile-open .burger-wrapper').removeClass('open');
+        if($(window).width() < 1030) {
+            if (!div.is(e.target) && !menu.is(e.target) // если клик был не по нашему блоку
+                && div.has(e.target).length === 0) { // и не по его дочерним элементам
+                $('.menu').hide();
+                $('.menu').addClass('menu-hidden');
+                $('.mobile-open .burger-wrapper').removeClass('open');
+            }
         }
     });
     if($(window).width() < 1030) {
