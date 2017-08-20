@@ -169,6 +169,9 @@
 }
 .table-сell{
   height: 130px;
+  @media (max-width: 600px ) {
+   height: 70px;
+  }
 }
 .booking-cell{
   height: 130px;
@@ -232,6 +235,9 @@
     }
     .icons-box{
       text-align: center;
+      @media (max-width: 600px ) {
+        display: none;
+      }
     }
     .booking-info{
       text-align: center;
@@ -250,6 +256,9 @@
       &.fa-sign-in{
         color: #5cb85c;
       }
+    }
+    @media (max-width: 600px ) {
+      height: 70px;
     }
   }
   .last-day{
@@ -310,6 +319,9 @@
 }
 .border-left{
   border-left: 1px solid #bbbaba;
+  @media (max-width: 600px ) {
+    border: none;
+  }
 }
 @media (max-width: 1200px) {
   .digest-block{
@@ -392,13 +404,6 @@
   .today-info .row, .prepayments .row{
     text-align: center;
     border-bottom: 1px solid gainsboro;
-    height: 90px;
-  }
-  .today-info .row{
-    height: 90px;
-  }
-  .prepayments .row{
-    height: 120px;
   }
   .today-info .row .guest-action, .prepayments .row .guest-action{
     margin-top: 15px;

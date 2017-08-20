@@ -55,6 +55,10 @@
   .btn-red:hover {
     background-color: #bf0000; }
 
+@media (max-width: 600px) {
+  .table-users .status {
+    display: none; } }
+
 .table-deposits {
   width: 80%;
   margin: auto; }
@@ -566,6 +570,8 @@ nav {
         .dropdown li a:before {
           content: "-";
           margin-right: 5px; }
+        .dropdown li a:hover {
+          color: #fff; }
   .mobile-open {
     text-decoration: none;
     display: inline-block;
@@ -596,7 +602,7 @@ nav {
   margin: 0 !important; }
 
 .costs-container .subcategory {
-  widows: 100%;
+  width: 100%;
   padding: 10px 20px;
   border-radius: 20px;
   font-size: 25px;
@@ -605,6 +611,14 @@ nav {
   padding-left: 40px; }
   .costs-container .subcategory span {
     margin: auto 0; }
+  @media (max-width: 600px) {
+    .costs-container .subcategory {
+      font-size: 18px !important; } }
+
+@media (max-width: 600px) {
+  .total-label, .total-value {
+    display: block;
+    width: 100%; } }
 
 .page-header {
   display: -webkit-box;
@@ -615,6 +629,11 @@ nav {
           justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap; }
+  @media (max-width: 600px) {
+    .page-header .right {
+      width: 100%;
+      text-align: right;
+      margin-bottom: 20px; } }
 
 .category-main {
   font-size: 30px;
@@ -622,6 +641,9 @@ nav {
   .category-main span {
     color: #fff;
     margin: auto 0; }
+  @media (max-width: 600px) {
+    .category-main {
+      font-size: 20px !important; } }
 
 .category-main, .subcategory {
   display: -webkit-box;
@@ -637,6 +659,10 @@ nav {
   max-width: 800px;
   width: 100%;
   margin: 20px; }
+  @media (max-width: 600px) {
+    .table-costs {
+      margin: 5%;
+      width: 90%; } }
 
 table {
   border-spacing: 0;
@@ -651,6 +677,9 @@ table {
   padding: 8px;
   font-size: 14px;
   color: #333; }
+  @media (max-width: 600px) {
+    .table th td.name, .table td td.name {
+      width: 60%; } }
 
 .table tbody tr:hover {
   background: rgba(27, 133, 184, 0.5); }
@@ -860,6 +889,9 @@ table {
 
 .table-сell {
   height: 130px; }
+  @media (max-width: 600px) {
+    .table-сell {
+      height: 70px; } }
 
 .booking-cell {
   height: 130px;
@@ -929,6 +961,9 @@ table {
       background: rgba(27, 133, 184, 0.3); }
     .bookings .booking-cell .icons-box {
       text-align: center; }
+      @media (max-width: 600px) {
+        .bookings .booking-cell .icons-box {
+          display: none; } }
     .bookings .booking-cell .booking-info {
       text-align: center; }
     .bookings .booking-cell .fa {
@@ -941,6 +976,9 @@ table {
         color: #ee5c5c; }
       .bookings .booking-cell .fa.fa-sign-in {
         color: #5cb85c; }
+    @media (max-width: 600px) {
+      .bookings .booking-cell {
+        height: 70px; } }
   .bookings .last-day {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px; }
@@ -988,6 +1026,9 @@ table {
 
 .border-left {
   border-left: 1px solid #bbbaba; }
+  @media (max-width: 600px) {
+    .border-left {
+      border: none; } }
 
 @media (max-width: 1200px) {
   .digest-block {
@@ -1050,12 +1091,7 @@ table {
     z-index: 10000; }
   .today-info .row, .prepayments .row {
     text-align: center;
-    border-bottom: 1px solid gainsboro;
-    height: 90px; }
-  .today-info .row {
-    height: 90px; }
-  .prepayments .row {
-    height: 120px; }
+    border-bottom: 1px solid gainsboro; }
   .today-info .row .guest-action, .prepayments .row .guest-action {
     margin-top: 15px;
     display: inline-block;

@@ -9,23 +9,23 @@
         </div>
     </div>
     <div class="incomes-container">
-        <table class="table table-costs">
+        <table class="table table-costs table-users">
             <thead>
-            <th>ID</th>
-            <th>Логин</th>
-            <th>Имя</th>
-            <th>Статус</th>
-            <th>Дата последнего входа</th>
+            <th class="id">ID</th>
+            <th class="login">Логин</th>
+            <th class="name">Имя</th>
+            <th class="status">Статус</th>
+            <th class="date-login">Дата последнего входа</th>
             </thead>
 
             <tbody>
             <?php foreach ($arrUsers as $user): ?>
                 <tr class="btn-modal" data-action="edit_user" data-modal="modal" data-id="<?=$user['id']?>">
-                    <td><?=$user['id']?></td>
-                    <td><?=$user['login']?></td>
-                    <td><?=$user['name']?></td>
-                    <td><?=$user['status']?></td>
-                    <td><?=$user['dateSignUp']?></td>
+                    <td class="id"><?=$user['id']?></td>
+                    <td class="login"><?=$user['login']?></td>
+                    <td class="name"><?=$user['name']?></td>
+                    <td class="status"><?=$user['status']?></td>
+                    <td class="date-login"><?=$user['dateSignUp']?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

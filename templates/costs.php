@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="costs-container">
-        <div class="costs-header">Итого расходы: <?=$totalCostsAmount?></div>
+        <div class="costs-header"><span class="total-label"> Итого расходы: </span> <span class="total-value"><?=$totalCostsAmount?></span></div>
         <?php foreach ($costs as $cat_name => $category): ?>
             <div class="category">
                 <div class="category-main">
