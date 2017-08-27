@@ -7,9 +7,7 @@
  */
 $month = date("m");
 if(isset($_GET['month'])){
-//    if(is_numeric($_GET['month']) && 0 > $_GET['month'] && $_GET['month'] <= 12){
     $month = $_GET['month'];
-//    }
 }
 
 $totalCosts = getCostsAmount($month);

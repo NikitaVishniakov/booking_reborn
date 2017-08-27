@@ -17,6 +17,10 @@ class Model
      * @param $id - айди необходимой записи
      * @return array
      */
+
+    private $table = '';
+
+
     public static function getPropertyList($table_name, $id, $arrProperties = '*'){
         global $link;
 
@@ -25,6 +29,24 @@ class Model
         }
 
         $sql = "SELECT $arrProperties FROM $table_name WHERE id = $id";
+        $result = $link->query($sql);
+        if($result) {
+            if (mysqli_num_rows($result) == 0){
+                return false;
+            }
+            return $result->fetch_assoc();
+        }
+        else{
+            return false;
+        }
+    }
+    public static function getPropertyListNew($id, $arrProperties = '*'){
+        global $link;
+        if(is_array($arrProperties)){
+            $arrProperties = implode(', ', $arrProperties);
+        }
+        debug($table);
+        $sql = "SELECT $arrProperties FROM {$table} WHERE id = $id";
         $result = $link->query($sql);
         if($result) {
             if (mysqli_num_rows($result) == 0){
@@ -87,7 +109,7 @@ class Model
             return true;
         } else {
             echo "ошибка при добавлении записи. Пожалуйста, попробуйте еще раз. В случае повторения ошибки, скиньте код ошибки в службу поддержки. <br> Код ошибки: {$link->error}<br>";
-            echo $sql;
+            if(isAdmin()) echo $sql;
             return false;
         }
     }
@@ -115,7 +137,7 @@ class Model
             return true;
         } else {
             echo "ошибка при обновлении данных записи. Пожалуйста, попробуйте еще раз. В случае повторения ошибки, скиньте код ошибки в службу поддержки. <br> Код ошибки: {$link->error}<br>";
-            echo $sql;
+            if(isAdmin()) echo $sql;
             return false;
         }
     }

@@ -78,6 +78,11 @@ function getRoomNames(){
     }
     return($array);
 }
+
+function hotelHasDebt(){
+    $hotel = $_SESSION['HOTEL']['ID'];
+}
+
 function getSeparatedRoomNames(){
     $categories = getCategoriesList();
     $rooms = getRoomsList();
@@ -210,7 +215,8 @@ function selectPaymentTypeBooking($selected = ""){
 
 function accessControl(array $groups){
     if(!in_array($_SESSION['status'], $groups)){
-        header('location:'.$_SERVER['HTTP_REFERER']);
+        http_response_code(404);
+        header('location: /admin/not_found');
         die();
     }
 }

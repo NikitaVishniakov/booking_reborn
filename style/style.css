@@ -191,6 +191,8 @@ canvas {
     .category-list table td {
       text-align: center;
       font-size: 16px; }
+    .category-list table th {
+      text-align: center; }
   .category-list.opened {
     height: auto;
     padding: 20px;

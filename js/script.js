@@ -2,11 +2,17 @@
  * Created by vishniakov on 28.06.17.
  */
 $(document).ready(function(){
+
+    //Блок работы с меню
+
+    //открываем мобильное меню
     $('.mobile-open').click(function () {
         $('.menu').toggle();
         $('.menu').toggleClass('menu-hidden');
         $('.mobile-open .burger-wrapper').toggleClass('open');
     });
+
+    //клик вне области меню - скрываем
     $(document).mouseup(function (e){ // событие клика по веб-документу
         var div = $('.menu'); // тут указываем ID элемента
         var menu = $('.mobile-open');
@@ -19,15 +25,24 @@ $(document).ready(function(){
             }
         }
     });
+
+    //отображение мобильного меню только при разрешении менее 1030рх
     if($(window).width() < 1030) {
         $('.menu').addClass('menu-hidden');
     }
-    $('.user-name').click(function () {
-        $('.user-menu').toggle();
-    })
-    $('.user-menu').click(function () {
-        $('.user-menu').addClass('menu-hidden');
-    })
+
+
+    //Расчет размера колонок в таблице бронирования
+
+    //Инициализация таблицы
+    var tableWidth = $('.booking-table-container').width()*0.125;
+    $('.table-cell').width(tableWidth - 1);
+    $('.rooms-block').width(tableWidth);
+    $('.bookings').css({"margin-left":tableWidth});
+    $('.booking-cell').width(tableWidth - 2);
+
+
+    //Изменение размера при ресайзе
     $(window).resize(function() {
         var tableWidth = $('.booking-table-container').width()*0.125;
         $('.table-cell').width(tableWidth - 1);
@@ -43,47 +58,51 @@ $(document).ready(function(){
             $('.mobile-open .burger-wrapper').removeClass('open');
         }
     });
+
+
+    //Блок пользователя
+    //Клик по имени - открываем менюшку
+    $('.user-name').click(function () {
+        $('.user-menu').toggle();
+    })
+    //Клик по меню - скрываем его
+    $('.user-menu').click(function () {
+        $('.user-menu').addClass('menu-hidden');
+    })
+
+
+
+    //Воспомогательные функции для работы с модальными окнами
     function layout_close() {
         $('.layout').hide();
-    }
-    function layout_small_close() {
-        $('.layout-small').hide();
     }
 
     function layout_small() {
         $('.layout-small').show();
     }
+
+    function layout_small_close() {
+        $('.layout-small').hide();
+    }
+
+    //Открыть/закрыть маленькое модальное окно
     function modal_small_open() {
         $('.modal-small').show();
         var left = ($(window).width() - $('.modal-small').width()) / 2;
         $('.modal-small').css({'left': + left + 'px'});
         layout_small();
     }
-    function modal_close() {
-        $('.modal').hide();
-        layout_close();
-    }
     function modal_small_close() {
         $('.modal-small').hide();
         $('.modal-small').removeClass('modal-confirm');
     }
-    function confirm_modal(action_name, btn_class, btn_text) {
-        $.ajax({
-            url: "/templates/modals/modal_confirm.php",
-            type: "GET",
-            data: {
-                ACTION_NAME: action_name,
-                BTN_CLASS: btn_class,
-                BTN_TEXT: btn_text
-            },
-            success: function(data){
-                $('.modal-small').html(data);
-            }
-        });
-        $('.modal-small').addClass('modal-confirm');
-        modal_small_open();
-    }
 
+
+
+    function modal_close() {
+        $('.modal').hide();
+        layout_close();
+    }
 
     $('.layout').click(function () {
         layout_close();
@@ -93,13 +112,15 @@ $(document).ready(function(){
         layout_close();
         modal_close();
     });
-    $('.Cashdesk-header').click(function () {
-        $(this).parent().toggleClass('class');
-    });
     $('.modal').on('click', '#cancel' ,function () {
         layout_close();
         modal_close();
     });
+
+    $('.Cashdesk-header').click(function () {
+        $(this).parent().toggleClass('class');
+    });
+
 
     $('.call-modal').click(function(){
        var modal =  $(this).attr('id');
@@ -112,18 +133,12 @@ $(document).ready(function(){
             }
         });
     });
+
+
     $('.has-children').click(function () {
         $(this).next().toggleClass('opened');
         $(this).toggleClass('hide');
     })
-
-    var tableWidth = $('.booking-table-container').width()*0.125;
-    $('.table-cell').width(tableWidth - 1);
-    $('.rooms-block').width(tableWidth);
-    $('.bookings').css({"margin-left":tableWidth});
-    $('.booking-cell').width(tableWidth - 2);
-
-
 
 
     $('.costs-form').submit(function(){
@@ -156,6 +171,8 @@ $(document).ready(function(){
             return false;
         }
     });
+
+
     $('.cost-item').click(function(){
         modal_open();
         layout();
@@ -168,6 +185,8 @@ $(document).ready(function(){
         $('.booker-name').removeClass('tooltip-open');
         $('.tooltip').hide();
     });
+
+    //Тугл блоков в издержках
     $('div.category').click(function(){
         $(this).next().toggle("slow");
     });
@@ -270,7 +289,15 @@ $(document).ready(function(){
             $('.booking-total-amount').removeClass('hidden');
         }
     });
-    $('.modal, body').on('click', '.btn, .btn-modal', function (event) {
+
+
+    //Инициализация модального окна
+    /* устанавливаем на кнопку класс  .btn  или btn-modal (если не хотим придавать ей вид кнопки)
+     ** ставим атрибут data-modal[modal || modal_small]
+     ** ставим аттрибут data-action - название экшна к которому мы обратимся
+     ** опционально - data-id - передаем необходимый id
+     **
+     */    $('.modal, body').on('click', '.btn, .btn-modal', function (event) {
         var data = $(this).data();
         if(data.modal) {
             if (data.modal == 'modal') {
@@ -303,6 +330,7 @@ $(document).ready(function(){
     });
 
 
+    //Вызов модалки подверждения
     $('.modal, body').on('click', '.need-confirm', function () {
         var data = $(this).data();
         if (data.action) {
@@ -322,6 +350,7 @@ $(document).ready(function(){
             modal_small_open();
         }
     });
+
 
     $(document).mouseup(function (e){ // событие клика по веб-документу
         var div = $(".price-form"); // тут указываем ID элемента

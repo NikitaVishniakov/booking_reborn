@@ -31,9 +31,9 @@ else{
                         <div class="input-wrapper">
                             <input type="text" class="input input-search">
                             <span class="search-pad">
-                                    <input name="search" type="submit" class="btn-seatch" value="">
-                                    <input type="submit" class="hidden" id="submit-search">
-                                </span>
+                                <input name="search" type="submit" class="btn-seatch" value="">
+                                <input type="submit" class="hidden" id="submit-search">
+                            </span>
                         </div>
                     </form>
                 </li>
@@ -62,6 +62,9 @@ else{
                         </li>
                         <li>
                             <a href="/admin/finance/loading">Загрузка отеля</a>
+                        </li>
+                        <li>
+                            <a href="/admin/finance/services">Отчет по услугам</a>
                         </li>
                     </ul>
                 </li>
@@ -100,3 +103,6 @@ else{
             <div class="clear"></div>
         </nav>
     </div>
+    <?php if(isAdmin() && hotelHasDebt()):?>
+        <div class="hotel-debt"> Имеется задолженность по абонентской плате в размере 15000 руб.</div>
+    <? endif; ?>

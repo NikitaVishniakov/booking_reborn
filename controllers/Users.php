@@ -16,12 +16,13 @@ class Users extends \core\base\Controller
         if(isset($_POST['login'])){
             $pass = inputControl(passHash($_POST['pass']));
             $login = inputControl($_POST['login']);
-            $query = $link->query("SELECT login, status FROM users WHERE login ='".$login."' AND password = '".$pass."'");
+            $query = $link->query("SELECT login, status, HOTEL_ID FROM users WHERE login ='".$login."' AND password = '".$pass."'");
             if (mysqli_num_rows($query) > 0) {
                 $query = $query->fetch_array();
                 $_SESSION['id'] = $query['login'];
                 $_SESSION['status'] = $query['status'];
                 $link->query("UPDATE users SET dateSignUp='".date('Y-m-d')."' WHERE login = '".$_SESSION['id']."'");
+                $_SESSION['HOTEL'] = \models\Hotels::getPropertyList('HOTELS', $query['HOTEL_ID'], array('ID', 'NAME', 'SUPERUSER'));
                 header("location: /admin");
             }
             else {

@@ -264,5 +264,31 @@ class BookingTable extends \core\base\Controller
         }
     }
     public function testAction(){
+        $this->layout = false;
+        global $link;
+        $id = $link->query("SELECT id, guestName, dateStart, dateEnd, guestsNum, bookingDate FROM booking WHERE breakfast = 1");
+
+        while($row = $id->fetch_assoc()){
+            $arrId[]= $row['id'];
+            $row['guestsNum'] = getDaysCount($row['dateEnd'], $row['dateStart']) * $row['guestsNum'];
+            $arrBooking[] = $row;
+        }
+        $haveBreakfast = $link->query("SELECT b_id FROM services WHERE name ='Завтрак(тариф)'");
+
+        while($row_b = $haveBreakfast->fetch_assoc()){
+            $b_Id[]= $row_b['b_id'];
+        }
+        $arrRes = array_intersect($arrId, $b_Id);
+
+        foreach ($arrRes as $key => $value){
+            unset($arrBooking[$key]);
+        }
+        $counter=0;
+        foreach ($arrBooking as $booking){
+            $sql = "INSERT INTO `services`(`b_id`, `name`, `quantity`, `price`, `date`, `whoAdd`) VALUES ({$booking['id']}, 'Завтрак(тариф)', {$booking['guestsNum']}, 0, '{$booking['bookingDate']}', 'admin')";
+            $link->query($sql);
+            $counter++;
+        }
+        echo "Добавлено $counter строк";
     }
 }
