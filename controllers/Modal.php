@@ -99,4 +99,7 @@ class Modal extends \core\base\Controller
     public function editUserAction(){
 
     }
+    public function addRateAction(){
+
+    }
 }

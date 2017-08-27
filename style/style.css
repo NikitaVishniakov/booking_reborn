@@ -129,22 +129,62 @@ canvas {
       .loading-container .month-loading {
         width: 100%; } }
 
+.settings-header {
+  margin-bottom: 10px; }
+  .settings-header h3 {
+    display: inline-block;
+    border-bottom: 3px solid #1b85b8; }
+
 .settings-block {
   border-radius: 10px;
   padding: 10px;
   border: 1px solid #1b85b8;
   -webkit-box-shadow: -1px 1px 1px 0px rgba(0, 0, 0, 0.22);
           box-shadow: -1px 1px 1px 0px rgba(0, 0, 0, 0.22); }
-  .settings-block .settings-header {
-    margin-bottom: 10px; }
-    .settings-block .settings-header h3 {
-      display: inline-block;
-      border-bottom: 3px solid #1b85b8; }
   .settings-block .textarea-description {
     padding: 5px;
     text-indent: 0;
     width: 300px;
     height: 300px; }
+
+.settings-block {
+  width: 80%;
+  min-width: 700px;
+  max-width: 850px;
+  margin: auto;
+  margin-bottom: 40px;
+  margin-top: 50px; }
+
+.rates-table {
+  width: 100%; }
+
+.rates-input {
+  width: auto; }
+  .rates-input.date {
+    width: 150px !important; }
+  .rates-input.guests {
+    width: 70px; }
+  .rates-input.rate {
+    width: 100px; }
+
+.left-menu {
+  width: 300px;
+  display: inline-block;
+  margin-top: 20px; }
+  .left-menu ul {
+    list-style: none; }
+    .left-menu ul li a {
+      display: inline-block;
+      text-decoration: none;
+      padding: 15px 20px;
+      border-bottom: 1px solid #1b85b8;
+      border-right: 1px solid #1b85b8;
+      width: 100%; }
+      .left-menu ul li a.active {
+        border-right: 5px solid #1b85b8; }
+      .left-menu ul li a:hover {
+        background: #1b85b8;
+        color: #fff; }
 
 .incomes-container {
   max-width: 850px;
@@ -1593,6 +1633,18 @@ html, body, * {
           box-sizing: border-box;
   padding: 0; }
 
+input, textarea, button {
+  -webkit-appearance: none;
+  /*Safari/Chrome*/
+  -moz-appearance: none;
+  /*Firefox*/
+  -ms-appearance: none;
+  /*IE*/
+  -o-appearance: none;
+  /*Opera*/
+  appearance: none;
+  -webkit-border-radius: 0; }
+
 * {
   font-family: 'Roboto', sans-serif;
   color: #586069; }
@@ -1672,3 +1724,6 @@ h4, h5, h6, h4, h5, h6 {
 
 .pad-15 {
   padding: 15px; }
+
+.main-container {
+  padding-bottom: 150px; }

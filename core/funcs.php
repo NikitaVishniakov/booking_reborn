@@ -1434,13 +1434,16 @@ function prolongationHourOptions($arrSettings){
     }
 }
 
-function selectHours($arrSettings, $choosen = ''){
-    $dateStart = new DateTime('12:00');
+function selectHours($arrSettings, $choosen = '', $dateStart = ''){
+
+    if(!$dateStart){
+        $dateStart = $arrSettings['PROLONGATION_HOURS_START'];
+    }
     $step = $arrSettings['PROLONGATION_HOURS_STEP'];
     $hours = 12;
     for($i = 0; $i <= $hours; $i += $step){
         $minutes = 60 * $i;
-        $timeStart = new DateTime($arrSettings['PROLONGATION_HOURS_START']);
+        $timeStart = new DateTime($dateStart);
         $selected = '';
         $option = date_modify($timeStart, "+$minutes minutes")->format("H:i");
         if($choosen == $option){

@@ -73,6 +73,24 @@ else{
                 </li>
                 <li>
                     <a class="<?=getActiveTab($this, 'Settings')?> <?=$permission?>" href="/admin/settings">Настройки</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="/admin/settings/">Настройки отеля</a>
+                        </li>
+                        <li>
+                            <a href="/admin/settings/prolongation">Настройки продления</a>
+                        </li>
+                        <li>
+                            <a href="/admin/settings/site">Настройки сайта</a>
+                        </li>
+                        <li>
+                            <a href="/admin/settings/rates">Тарифы</a>
+                        </li>
+                        <li>
+                            <a href="/admin/settings/prolongation">Услуги</a>
+                        </li>
+                    </ul>
+
                 </li>
             </ul>
             <span class="mobile-open">

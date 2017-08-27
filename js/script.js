@@ -351,6 +351,11 @@ $(document).ready(function(){
         }
     });
 
+    //Добавление нового тарифа
+    $('.add_rate').click(function () {
+
+    });
+
 
     $(document).mouseup(function (e){ // событие клика по веб-документу
         var div = $(".price-form"); // тут указываем ID элемента

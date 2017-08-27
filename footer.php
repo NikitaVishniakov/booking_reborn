@@ -1,5 +1,8 @@
 <?php
 ?>
+<footer>
+<!--    Hotel Adminer TM-->
+</footer>
         <div class="layout"></div>
         <div class="modal"></div>
         <div class="modal-small"></div>

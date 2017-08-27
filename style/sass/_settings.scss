@@ -1,19 +1,67 @@
+.settings-header{
+  margin-bottom: 10px;
+  h3{
+    display: inline-block;
+    border-bottom: 3px solid #1b85b8;
+  }
+}
 .settings-block{
   border-radius: 10px;
   padding: 10px;
   border: 1px solid #1b85b8;
   box-shadow: -1px 1px 1px 0px rgba(0, 0, 0, 0.22);
-  .settings-header{
-    margin-bottom: 10px;
-    h3{
-      display: inline-block;
-      border-bottom: 3px solid #1b85b8;
-    }
-  }
   .textarea-description{
     padding: 5px;
     text-indent: 0;
     width: 300px;
     height: 300px;
+  }
+}
+.settings-block{
+      width: 80%;
+      min-width: 700px;
+      max-width: 850px;
+      margin: auto;
+      margin-bottom: 40px;
+      margin-top: 50px;
+}
+.rates-table{
+  width: 100%;
+}
+.rates-input{
+  &.date{
+    width: 150px !important;
+  }
+  &.guests{
+    width: 70px;
+  }
+  &.rate{
+    width: 100px;
+  }
+  width: auto ;
+}
+.left-menu{
+  width: 300px;
+  display: inline-block;
+  margin-top: 20px;
+  ul{
+    list-style: none;
+    li{
+      a{
+        display: inline-block;
+        text-decoration: none;
+        padding: 15px 20px;
+        border-bottom: 1px solid $blue;
+        border-right: 1px solid $blue;
+        width: 100%;
+        &.active{
+          border-right: 5px solid $blue;
+        }
+        &:hover{
+          background: $blue;
+          color: #fff;
+        }
+      }
+    }
   }
 }
