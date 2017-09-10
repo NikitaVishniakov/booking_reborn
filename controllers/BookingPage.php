@@ -134,6 +134,7 @@ class BookingPage extends \core\base\Controller
 
     public function saveInfoAction(){
         $this->layout = false;
+        $_POST['bookingInfo']['breakfast'] = isset($_POST['bookingInfo']['breakfast']) ? 1 : 0;
         if(Booking::safetyUpdate($_POST['bookingInfo'], $this->route['id'])){
             header('location:' . $_SERVER['HTTP_REFERER']);
         }

@@ -12,7 +12,11 @@ $arrResult['bookingDate'] = date_format(date_create($arrResult['bookingDate']), 
 $arrResult['nights'] = getDaysCount($arrResult['dateStart'], $arrResult['dateEnd']);
 $arrResult['booker'] =  strlen($arrResult['booker']) > 0 ? $arrResult['booker'] : $arrResult['guestName'];
 $arrResult['guestName'] =  strlen($arrResult['guestName']) > 0 ? $arrResult['guestName'] : $arrResult['booker'];
+$arrResult['has_breakfast'] = $arrResult['breakfast'] == 1 ? 'Да' : 'Нет';
+$arrResult['has_breakfast_checkbox'] = $arrResult['breakfast'] == 1 ? 'checked' : '';
+
 $arrPayment['has_payed'] = getUserPayments($arrResult['id']);
+
 
 $returns_filter = "bookingId = " . $arrResult['id'] . " AND name = 'Возврат'";
 $returns  = \models\Payment::getElementList('payments', array('amount'), $returns_filter);

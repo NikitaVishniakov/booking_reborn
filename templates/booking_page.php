@@ -112,6 +112,17 @@
             </div>
             <div class="row">
                 <div class="half-len bold">
+                    Завтрак:
+                </div>
+                <div class="half-len">
+                    <span class="view"><?=$arrResult['has_breakfast']?></span>
+                    <div class="input-wrapper hidden edit">
+                        <input id="breakfast" name="bookingInfo[breakfast]" type="checkbox" <?=$arrResult['has_breakfast_checkbox']?>>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="half-len bold">
                     Имя гостя:
                 </div>
                 <div class="half-len">
