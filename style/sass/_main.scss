@@ -4,7 +4,7 @@ html, body, *{
   box-sizing:border-box;
   padding: 0;
 }
-input, textarea, button {
+input[type="submit"], textarea, button {
   -webkit-appearance: none; /*Safari/Chrome*/
   -moz-appearance: none; /*Firefox*/
   -ms-appearance: none; /*IE*/
