@@ -21,6 +21,7 @@ else{
     <link rel="stylesheet" href="/libs/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/libs/air-datepicker/dist/css/datepicker.min.css">
     <link rel="stylesheet" href="/style/style.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <div class="header">
