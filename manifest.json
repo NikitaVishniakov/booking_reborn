@@ -4,8 +4,9 @@
   "start_url": "./admin/",
   "display": "standalone",
   "background_color": "#1b85b8",
+  "theme_color": "#1b85b8",
   "description": "Автоматизировая система управления мини-отлем в кармане",
-  "icons.ico": [
+  "icons": [
     {
       "src": "/icons.ico/android-icon-36x36.png",
       "sizes": "36x36",
