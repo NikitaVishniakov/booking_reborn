@@ -178,13 +178,16 @@ function selectPaymentName($plus, $name = ''){
 function debug($var){
     echo "<pre>".print_r($var, true)."</pre>";
 }
-function selectGetUnity(){
-    global $link;
-    $sql = "SELECT * FROM costs_units";
-    $units = $link->query($sql);
-    while ($unit = $units->fetch_array()){
-        echo "<option value='{$unit['NAME']}'>{$unit['NAME']}</option>";
+function selectGetUnity($chosen = ''){
+    $units = \core\base\Model::getElementList('costs_units');
+    foreach ($units as $unit){
+        $selected = '';
+        if($chosen == $unit['NAME']){
+            $selected = 'selected';
+        }
+        $options[] = "<option $selected value='{$unit['NAME']}'>{$unit['NAME']}</option>";
     }
+    return $options;
 }
 
 function selectPaymentType($selected = ""){

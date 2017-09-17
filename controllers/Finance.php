@@ -109,4 +109,28 @@ class Finance  extends \core\base\Controller
           $this->layout = false;
       }
   }
+
+  public function updateCostAction(){
+      $permission = array('main');
+      accessControl($permission);
+
+      if(is_numeric($_POST['cost']['CATEGORY'])){
+          $_POST['cost']['CATEGORY'] = Costs::getPropertyList('costs_categories', $_POST['cost']['CATEGORY'], array('NAME'))['NAME'];
+      }
+      $_POST['cost']['DATE'] = date_format(date_create($_POST['cost']['DATE']), "Y-m-d H:i");
+
+      if(Costs::update('costs', $_POST['cost'])){
+          header('location:' . $_SERVER['HTTP_REFERER']);
+      }
+  }
+  public function deleteCostAction(){
+        $this->layout = false;
+        $groups = array('main');
+
+        accessControl($groups);
+
+        if(Services::delete('costs', $this->route['id'])){
+            header('location:' . $_SERVER['HTTP_REFERER']);
+        }
+    }
 }

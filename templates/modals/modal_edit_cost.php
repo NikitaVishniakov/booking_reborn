@@ -15,20 +15,31 @@
  */
 ?>
 <div class="modal-header">
-    <div class="modal-header-text">Внесение нового расхода</div>
+    <div class="modal-header-text">Редактирование расхода</div>
     <span class="modal-close"><i class="fa fa-times" aria-hidden="true"></i></span>
     <div class="header-actions">
-        <div id="delete_service" class="btn btn-small btn-red">Удалить</div>
+        <div data-action="finance/delete_cost" data-id="<?=$item['ID']?>" class="btn need-confirm btn-small btn-red">Удалить</div>
     </div>
 </div>
+<form  method="post" action="/admin/finance/update_cost" class="form form-vertical form-add-cost">
 <div class="modal-content">
-    <form class="form form-vertical form-add-cost">
+        <input type="hidden" name="cost[id]" value="<?=$item['ID']?>">
         <div class="row">
-            <div class="label">
-                <label class="">Наименование:</label>
+            <div class="half-len">
+                <div class="label">
+                    <label class="">Наименование:</label>
+                </div>
+                <div class="input-wrapper">
+                    <input class="input" name="cost[NAME]" value="<?=$item['NAME']?>" type="text">
+                </div>
             </div>
-            <div class="input-wrapper">
-                <input class="input cost-name" name="name" type="text">
+            <div class="half-len">
+                <div class="label">
+                    <label class="">Дата:</label>
+                </div>
+                <div class="input-wrapper">
+                    <input required class="input datepicker-here" name="cost[DATE]" type="text" value="<?=date("d.m.Y", strtotime($item['DATE']))?>">
+                </div>
             </div>
         </div>
         <div class="row">
@@ -37,9 +48,10 @@
                     <label class="">Выберите категорию:</label>
                 </div>
                 <div class="input-wrapper">
-                    <select class="input select" name="name" type="text">
-                        <option>Категория 1</option>
-                    </select>
+                    <select class="input select" name="cost[CATEGORY]" type="text">
+                        <?php
+                        foreach ($categories as $category) echo $category;
+                        ?>                    </select>
                     <a href="#" id="add_cat">+ Добавить категорию</a>
                 </div>
             </div>
@@ -48,9 +60,10 @@
                     <label class="">Выберите подкатегорию:</label>
                 </div>
                 <div class="input-wrapper">
-                    <select class="input select" name="name" type="text">
-                        <option>Подкатегория 1</option>
-                    </select>
+                    <select class="input select" name="cost[SUB_CATEGORY]" type="text">
+                        <?php
+                        foreach ($subcategories as $subcategory) echo $subcategory;
+                        ?>                    </select>
                     <a href="#" id="add_subcat">+ Добавить подкатегорию</a>
                 </div>
             </div>
@@ -61,7 +74,7 @@
                     <label class="">Введите сумму:</label>
                 </div>
                 <div class="input-wrapper">
-                    <input type="number" class="input" name="">
+                    <input type="number" value="<?=$item['AMOUNT']?>" class="input" name="cost[AMOUNT]">
                 </div>
             </div>
             <div class="half-len">
@@ -69,9 +82,8 @@
                     <label class="">Способ оплаты:</label>
                 </div>
                 <div class="input-wrapper">
-                    <select class="input select" name="name" type="text">
-                        <option>Наличные</option>
-                        <option>Безналичный расчет</option>
+                    <select class="input select"  name="cost[PAYMENT_TYPE]" type="text">
+                        <?php selectPaymentType($item['PAYMENT_TYPE'])?>
                     </select>
                 </div>
             </div>
@@ -82,7 +94,7 @@
                     <label class="">Введите количество:</label>
                 </div>
                 <div class="input-wrapper">
-                    <input type="number" class="input" name="">
+                    <input type="number" VALUE="<?=$item['QUANTITY']?>" class="input" name="cost[QUANTITY]">
                 </div>
             </div>
             <div class="half-len">
@@ -90,22 +102,13 @@
                     <label class="">Единица измерения:</label>
                 </div>
                 <div class="input-wrapper">
-                    <select class="input select" name="name" type="text">
-                        <option>Кг.</option>
-                        <option>Шт.</option>
+                    <select class="input select" name="cost[UNIT]" type="text">
+                        <?php foreach ($units_options as $unit) echo $unit?>
                     </select>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="half-len">
-                <div class="label">
-                    <label class="">Дата добавления:</label>
-                </div>
-                <div class="input-wrapper">
-                    <p>12.12.2017</p>
-                </div>
-            </div>
             <div class="half-len">
                 <div class="label">
                     <label class="">Кем добавлено:</label>
@@ -115,10 +118,10 @@
                 </div>
             </div>
         </div>
-    </form>
 </div>
 <div class="modal-footer">
     <div id="cancel" class="btn btn-big btn-default">Отмена</div>
-    <div class="btn btn-big btn-green">Сохранить</div>
+    <input type="submit" name="cost[submit]" class="btn btn-big btn-green" value="Сохранить"/>
 </div>
+</form>
 

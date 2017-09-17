@@ -73,8 +73,7 @@
                 </div>
                 <div class="input-wrapper">
                     <select class="input select" name="cost[PAYMENT_TYPE]" type="text">
-                        <option>Наличные</option>
-                        <option>Безналичный расчет</option>
+                        <?php selectPaymentType()?>
                     </select>
                 </div>
             </div>
