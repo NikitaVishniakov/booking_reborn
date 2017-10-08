@@ -1132,7 +1132,7 @@ class DayBalance{
     function getTotal($type){
         global $link;
         $array = [];
-        $sum = $link->query("SELECT type, SUM(amount) as total FROM payments WHERE (date >='{$this->startDay}' AND date < '{$this->endDay}') AND status = '{$type}' GROUP BY type");
+        $sum = $link->query("SELECT type, SUM(amount) as total FROM payments WHERE (date >='{$this->startDay}' AND date < '{$this->endDay}') AND (status = '{$type}') AND (NOT name = 'Остаток в кассе') GROUP BY type");
         while($row = $sum->fetch_array()){
             array_push($array,$row);
         }
