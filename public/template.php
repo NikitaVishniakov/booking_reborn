@@ -75,7 +75,44 @@
     <div class="content">
         <div class="slider-wrapper">
             <form class="booking-form" action="#" method="post">
-                <div class="dates">
+
+                <div class="left" id="_bn_widget_">
+   <a href="http://bnovo.ru/" id="_bnovo_link_" target="_blank">Bnovo</a>
+</div>
+<script src="http://widget.bnovo.ru/v2/js/bnovo.js"></script>
+<script type="text/javascript">
+  Bnovo_Widget.init(function(){
+    Bnovo_Widget.open('_bn_widget_', {
+        type: "vertical",
+        lcode: "1508341078",
+        lang: "ru",
+        width: "300",
+        background: "#000000",
+        bg_alpha: "80",
+        padding: "18",
+        border_radius: "1",
+        font_type: "arial",
+        font_color: "#222222",
+        font_size: "16",
+        title_color: "#ffffff",
+        title_size: "18",
+        inp_color: "#222222",
+        inp_bordhover: "#3796e5",
+        inp_bordcolor: "#cccccc",
+        inp_alpha: "100",
+        btn_background: "#3b4b76",
+        btn_background_over: "#314475",
+        btn_textcolor: "#ffffff",
+        btn_textover: "#ffffff",
+        btn_bordcolor: "#3b4b76",
+        btn_bordhover: "#314475",
+        text_concierge: "Получи скидку через Bnovo Concierge"
+    });
+  });
+</script>
+
+            
+                <!--<div class="dates">
                     <div class="form-group col-md-5 col-md-offset-1">
                         <label for="startDate" class="bold label-dates">Въезд:</label>
                         <input type="date" id="startDate" class="dates-input" name="startDate">
@@ -93,7 +130,7 @@
                         <option>2+1</option>
                     </select>
                 </div>
-                <input type="submit" name="submit" class="btn-booking" value="Подобрать номер">
+                <input type="submit" name="submit" class="btn-booking" value="Подобрать номер"> -->
             </form>
             <div class="slider">
                 <div class="slide" id="slide1">
@@ -180,7 +217,8 @@
                             </ul>
                         </div>
                         <div class="float-right btn-room-wrapper">
-                            <a href="javascript:void(0)" class="btn-room btn-booking">Забронировать</a>
+                            <!--<a href="javascript:void(0)" class="btn-room btn-booking">Забронировать</a>-->
+                            <a href="https://wubook.net/wbkd/wbk/?lcode=1508341078&dfrom=&dto=&onlyrooms=257850&lang=ru" class="btn-room btn-booking">Забронировать</a>
                             <div class="room-price">
                                 <p>От <?=$STANDART['ROOM_PRICE']?> рублей</p>
                             </div>
@@ -227,7 +265,8 @@
                             </ul>
                         </div>
                         <div class="float-right btn-room-wrapper">
-                            <a href="javascript:void(0)" class="btn-room btn-booking">Забронировать</a>
+                            <!--<a href="javascript:void(0)" class="btn-room btn-booking">Забронировать</a>-->
+                            <a href="https://wubook.net/wbkd/wbk/?lcode=1508341078&dfrom=&dto=&onlyrooms=257852&lang=ru" class="btn-room btn-booking">Забронировать</a>
                             <div class="room-price">
                                 <p>От <?=$SUPERIOR['ROOM_PRICE']?> рублей</p>
                             </div>

@@ -167,7 +167,7 @@ select, input[type="text"], input[type="date"]{
 }
 .booking-form{
     z-index: 1000;
-    background: rgba(0,0,0, 0.7);
+    /* background: rgba(0,0,0, 0.7); */
     float: right;
     width: 300px;
     margin: 100px 50px;
