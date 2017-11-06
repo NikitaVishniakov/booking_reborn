@@ -28,7 +28,7 @@
             <div class="category">
                 <div class="category-main">
                     <span class="category-name"><?=$cat_name?></span>
-                    <span class="totals float-left"><?=separateThousands($totals[$cat_name])?> руб.</span>
+                    <span class="totals float-left"><?=separateThousands($totals[$cat_name]['TOTAL'])?> руб.</span>
                 </div>
             </div>
             <div class="category-elements">
@@ -36,7 +36,7 @@
             <div class="category">
                 <div class="subcategory">
                     <span class="subcategory-name"><?=$subcat_name?></span>
-                    <span class="totals float-left"><?=separateThousands($totals[$subcat_name])?> руб.</span>
+                    <span class="totals float-left"><?=separateThousands($totals[$cat_name]['SUBCATS'][$subcat_name])?> руб.</span>
                 </div>
             </div>
             <div class="category-elements" style="display: none">

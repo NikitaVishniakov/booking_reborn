@@ -11,7 +11,6 @@
             require_once $file;
         }
     });
-
 //    Router::addRoute('^admin/Users$',['controller' => 'Users', 'action' => 'Users']);
     Router::addRoute('^admin/booking_page/(?P<id>[\d+]+)$',['controller' => 'BookingPage', 'action' => 'index']);
     Router::addRoute('^admin/booking_page/(?P<action>[a-z_-]+)/(?P<id>[\d+]+)$',['controller' => 'BookingPage']);

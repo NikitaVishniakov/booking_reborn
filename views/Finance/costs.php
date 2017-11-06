@@ -17,18 +17,18 @@ $totalCostsAmount = separateThousands(getCostsAmount($month), 'руб.');
 $costs = getSortedCosts($month);
 if($costs) {
     foreach ($costs as $cat_name => $category) {
-        $totals[$cat_name] = 0;
+        $totals[$cat_name]['TOTAL'] = 0;
         foreach ($category as $subcat_name => $item) {
             if (is_array($item)) {
-                $totals[$subcat_name] = 0;
+                $totals[$cat_name]['SUBCATS'][$subcat_name] = 0;
                 foreach ($item as $row) {
-                    $totals[$subcat_name] += $row['AMOUNT'];
+                    $totals[$cat_name]['SUBCATS'][$subcat_name] += $row['AMOUNT'];
                 }
-                $totals[$cat_name] += $totals[$subcat_name];
+                $totals[$cat_name]['TOTAL'] += $totals[$cat_name]['SUBCATS'][$subcat_name];
             }
         }
-        $intTotal += $totals[$cat_name];
+        $intTotal += $totals[$cat_name]['TOTAL'];
     }
 }
-
+echo "<pre>"; print_r($totals); echo "</pre>";
 require_once TEMPLATES . "/costs.php";
