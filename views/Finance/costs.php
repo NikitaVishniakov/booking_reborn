@@ -30,5 +30,4 @@ if($costs) {
         $intTotal += $totals[$cat_name]['TOTAL'];
     }
 }
-echo "<pre>"; print_r($totals); echo "</pre>";
 require_once TEMPLATES . "/costs.php";
