@@ -13,6 +13,8 @@ else{
 <html lang="RU">
 <head>
     <meta charset="UTF-8">
+        /node_modules/lightbox2/dist/css/lightbox.min.css
+
     <title>Система управления отелем</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="icon" type="image/png" href="favicon.png" sizes="192x192">

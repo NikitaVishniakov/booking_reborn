@@ -9,7 +9,8 @@
     "gulp-sass": "^3.1.0"
   },
   "devDependencies": {
-    "gulp-autoprefixer": "^4.0.0"
+    "gulp-autoprefixer": "^4.0.0",
+    "lightbox2": "^2.9.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

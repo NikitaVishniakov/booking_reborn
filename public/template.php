@@ -12,6 +12,8 @@
     <script src="/libs/jquery/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/libs/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="/libs/slick/slick-theme.css"/>
+    <link href="/node_modules/lightbox2/dist/css/lightbox.min.css" rel="stylesheet">
+
 
 
     <title>Мини отель Welcome | Санкт-Петербург</title>
@@ -79,7 +81,7 @@
                 <div class="left" id="_bn_widget_">
    <a href="http://bnovo.ru/" id="_bnovo_link_" target="_blank">Bnovo</a>
 </div>
-<script src="http://widget.bnovo.ru/v2/js/bnovo.js"></script>
+<script src="https://widget.bnovo.ru/v2/js/bnovo.js"></script>
 <script type="text/javascript">
   Bnovo_Widget.init(function(){
     Bnovo_Widget.open('_bn_widget_', {
@@ -110,27 +112,6 @@
     });
   });
 </script>
-
-            
-                <!--<div class="dates">
-                    <div class="form-group col-md-5 col-md-offset-1">
-                        <label for="startDate" class="bold label-dates">Въезд:</label>
-                        <input type="date" id="startDate" class="dates-input" name="startDate">
-                    </div>
-                    <div class="form-group col-md-5">
-                        <label for="endDate" class="bold label-dates">Выезд:</label>
-                        <input type="date" id="endDate" class="dates-input" name="endDate">
-                    </div>
-                </div>
-                <div class="guests">
-                    <label for="guestsNum" class="bold white">Количество гостей:</label>
-                    <select class="guest-select" id="guestsNum" name="guestsNum">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>2+1</option>
-                    </select>
-                </div>
-                <input type="submit" name="submit" class="btn-booking" value="Подобрать номер"> -->
             </form>
             <div class="slider">
                 <div class="slide" id="slide1">
@@ -191,13 +172,12 @@
                     <div class="room-block-body bottom-room">
                         <div class="room-img-slider">
                             <div class="room-img" title="images-standart">
-                                <img src="/public/standart/1_1.jpg">
+                                <a href="/public/standart/1_1.jpg" data-lightbox="standart-room-slider"><img src="/public/standart/1_1.jpg"></a>
                             </div>
                             <div class="img-row-bottom"  id="images-standart">
-                                <img src="/public/standart/1_1.jpg">
-                                <img src="/public/standart/1_4.jpg">
-                                <img src="/public/standart/1_2.jpg">
-                                <img src="/public/standart/1_3.jpg">
+                                <a href="/public/standart/1_4.jpg" data-lightbox="standart-room-slider"><img src="/public/standart/1_4.jpg"></a>
+                                <a href="/public/standart/1_2.jpg" data-lightbox="standart-room-slider"><img src="/public/standart/1_2.jpg"></a>
+                                <a href="/public/standart/1_3.jpg" data-lightbox="standart-room-slider"><img src="/public/standart/1_3.jpg"></a>
                             </div>
                         </div>
                         <div class="room-description">
@@ -217,8 +197,7 @@
                             </ul>
                         </div>
                         <div class="float-right btn-room-wrapper">
-                            <!--<a href="javascript:void(0)" class="btn-room btn-booking">Забронировать</a>-->
-                            <a href="https://wubook.net/wbkd/wbk/?lcode=1508341078&dfrom=&dto=&onlyrooms=257850&lang=ru" class="btn-room btn-booking">Забронировать</a>
+                            <a href="https://wubook.net/wbkd/wbk/?lcode=1508341078&dfrom=&dto=&onlyrooms=257850&lang=ru" target="_blank" class="btn-room btn-booking">Забронировать</a>
                             <div class="room-price">
                                 <p>От <?=$STANDART['ROOM_PRICE']?> рублей</p>
                             </div>
@@ -232,17 +211,17 @@
                     <div class="room-block-body">
                         <div class="room-img-slider">
                             <div class="room-img" title="images-superior">
-                                <img src="/public/superior/pushk9_01.jpg">
+                                <a href="/public/superior/pushk9_01.jpg" data-lightbox="superiour-room-slider"><img src="/public/superior/pushk9_01.jpg"></a>
                             </div>
                             <div class="img-row-bottom" id="images-superior">
-                                <img src="/public/superior/pushk9_01.jpg">
-                                <img src="/public/superior/pushk9_02.jpg">
-                                <img src="/public/superior/pushk9_04.jpg">
-                                <img src="/public/superior/pushk9_05.jpg">
-                                <img src="/public/superior/pushk9_06.jpg">
-                                <img src="/public/superior/pushk9_09.jpg">
-                                <img src="/public/superior/pushk9_13.jpg">
-                                <img src="/public/superior/pushk9_14.jpg">
+                                <a href="/public/superior/pushk9_02.jpg" data-lightbox="superiour-room-slider"><img src="/public/superior/pushk9_02.jpg"></a>
+                                <a href="/public/superior/pushk9_04.jpg" data-lightbox="superiour-room-slider"><img src="/public/superior/pushk9_04.jpg"></a>
+                                <a href="/public/superior/pushk9_05.jpg" data-lightbox="superiour-room-slider"><img src="/public/superior/pushk9_05.jpg"></a>
+                                <a href="/public/superior/pushk9_06.jpg" data-lightbox="superiour-room-slider"><img src="/public/superior/pushk9_06.jpg"></a>
+                                <a href="/public/superior/pushk9_09.jpg" data-lightbox="superiour-room-slider"><img src="/public/superior/pushk9_09.jpg"></a>
+                                <a href="/public/superior/pushk9_13.jpg" data-lightbox="superiour-room-slider"><img src="/public/superior/pushk9_13.jpg"></a>
+                                <a href="/public/superior/pushk9_14.jpg" data-lightbox="superiour-room-slider"><img src="/public/superior/pushk9_14.jpg"></a>
+
                             </div>
                         </div>
                         <div class="room-description">
@@ -266,7 +245,7 @@
                         </div>
                         <div class="float-right btn-room-wrapper">
                             <!--<a href="javascript:void(0)" class="btn-room btn-booking">Забронировать</a>-->
-                            <a href="https://wubook.net/wbkd/wbk/?lcode=1508341078&dfrom=&dto=&onlyrooms=257852&lang=ru" class="btn-room btn-booking">Забронировать</a>
+                            <a href="https://wubook.net/wbkd/wbk/?lcode=1508341078&dfrom=&dto=&onlyrooms=257852&lang=ru" target="_blank" class="btn-room btn-booking">Забронировать</a>
                             <div class="room-price">
                                 <p>От <?=$SUPERIOR['ROOM_PRICE']?> рублей</p>
                             </div>
@@ -402,63 +381,11 @@
     </div>
 </footer>
 <script type="text/javascript" src="../libs/slick/slick.min.js"></script>
+<script src="/node_modules/lightbox2/dist/js/lightbox.js"></script>
 </body>
 </html>
 <script>
     $(document).ready(function(){
-        var screen = $(window).height();
-        screen = Math.round(0.8 * screen) + 'px';
-        $('.img-box').css('height', screen);
-        $(window).resize(function(){
-            var screen = $(window).height();
-            screen = Math.round(0.8 * screen) + 'px';
-            $('.img-box').css('height', screen);
-        })
-
-        $('.arrow-next-img').click(function(){
-            var current = $('.img-box img').attr('title');
-            var classImg = $('.img-box img').attr('class');
-            var images = $('#'+ classImg +' img').length;
-            var next = parseInt(current) + 1;
-            if(next >= images){
-                next = 0;
-            }
-            var src = $('#'+ classImg +' img').eq(next).attr('src');
-            $('.img-box').html('<img src="' + src + '" title="' + next + '" class="' + classImg + '">');
-        });
-        $('.arrow-prev-img').click(function(){
-            var current = $('.img-box img').attr('title');
-            var classImg = $('.img-box img').attr('class');
-            var images = $('#'+ classImg +' img').length;
-            var prev = parseInt(current) - 1;
-            if(prev <= 0){
-                prev = 3;
-            }
-            var src = $('#'+ classImg +' img').eq(prev).attr('src');
-            $('.img-box').html('<img src="' + src + '" title="' + prev + '" class="' + classImg + '">');
-        });
-        $('.room-img img').click(function(){
-            var src = $(this).attr('src');
-            var id = $(this).parent().attr('title');
-            var images = $('#'+ id +' img').length;
-            $('.layout-global').removeClass('hidden');
-            $('.container-img').removeClass('hidden');
-            $('.close-img').removeClass('hidden');
-            $('.img-box').html('<img src="' + src + '" title="1" class="' + id + '">');
-        });
-        $('.img-row-bottom img').click(function(){
-            var src = $(this).attr('src');
-            var classImg = $(this).parent().attr('id');
-            var images = $('#'+ classImg +' img').length;
-            var num = $(this).index();
-            $('.layout-global').removeClass('hidden');
-            $('.container-img').removeClass('hidden');
-            $('.img-box').html('<img src="' + src + '" title="' + num + '" class="' + classImg + '">');
-        });
-        $('.close-img').click(function(){
-            $('.container-img').addClass('hidden');
-            $('.layout-global').addClass('hidden');
-        });
         $('.btn-menu-mobile').click(function(){
             $('.dropdown').toggleClass('hidden');
         });
@@ -467,15 +394,6 @@
         });
         $('.content').click(function(){
             $('.dropdown').addClass('hidden');
-        });
-        $('.booking-form').on('submit', function(e) {
-            e.preventDefault();
-            $('.modal-error').removeClass('hidden');
-            $('.layout-global').removeClass('hidden');
-        });
-        $('.btn-booking').click(function(){
-            $('.modal-error').removeClass('hidden');
-            $('.layout-global').removeClass('hidden');
         });
         $('.layout-global, .close').click(function(){
             $('.modal-error').addClass('hidden');
@@ -498,7 +416,7 @@
             autoplaySpeed: 3000,
             speed: 600
         });
-        $("a").click(function() {
+        $("nav a").click(function() {
             var elementClick = $(this).attr("href")
             var destination = $(elementClick).offset().top;
             jQuery("html:not(:animated),body:not(:animated)").animate({

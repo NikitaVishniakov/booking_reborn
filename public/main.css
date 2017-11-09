@@ -394,7 +394,8 @@ select, input[type="text"], input[type="date"]{
     overflow: hidden;
     height: 50px;
     width: 350px;
-    margin: 10px auto;
+    margin-top: 10px;
+    text-align: center;
 }
 .text-wide{
     display: inline-block;
