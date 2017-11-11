@@ -73,8 +73,9 @@ body{
 }
 nav{
     width: 100%;
-    position: absolute;
-    z-index: 1000;
+    position: sticky;
+    top: 0;
+    z-index: 1000000;
     background: rgba(101,65,53, 0.8)
 }
 nav ul{
