@@ -403,7 +403,7 @@
         </div>
         <p>Мини-отель Welcome | 2017<br>
             Разработка сайта <a target="_blank" href="https://vk.com/nikita_vishniakov">Никита Вишняков</a></p>
-        <a class="open-modal" style="">sddasds</a>
+        <a class="open-modal" style=""></a>
     </div>
     <div class="layout-global hidden"></div>
     <div class="modal-error hidden">
