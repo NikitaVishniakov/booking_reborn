@@ -30,7 +30,6 @@
     ga('send', 'pageview');
 
 </script>
-<div class="layout-global hidden"></div>
 <div class="container main">
     <header>
         <div class="header-wrapper">
@@ -319,7 +318,7 @@
                     Адрес
                 </p>
                 <address>
-                    г. Санкт-Петербург, ул. Пушкинская, д.9, кв. 27
+                    191040, г.Санкт-Петербург, ул.Пушкинская, д.9, лит.А, кв.27
                 </address>
             </div>
             <div class="cont-phone-email-wrap">
@@ -341,14 +340,14 @@
                 </div>
             </div>
         </div>
-        <form class="backlink-form" method="post" action="send_mail.php" novalidate="novalidate">
+        <form class="backlink-form" method="post" action="/admin/site/send_mail" novalidate="novalidate">
             <h3 class="backlink-header">Отправить письмо</h3>
             <div class="form-row">
                 <label for="backlink-name">Имя</label>
                 <input type="text" name="name" id="backlink-name" required class="backlink" placeholder="Введите ваше имя">
             </div>
             <div class="form-row">
-                <label for="backlink-email">E-mail</label>
+                <label for="backlink-email"><b>E-mail</b></label>
                 <input type="text" name="mail" id="backlink-email" required class="backlink" placeholder="Введите ваш email">
             </div>
             <div class="form-row">
@@ -361,24 +360,63 @@
         </form>
     </div>
     <div class="footer">
+        <div class="contact-info">
+            <div class="contacts-block">
+                <div class="contacts-title">
+                    Реквизиты организации:
+                </div>
+                <div class="row">
+                    <div class="label">
+                        Наименование:
+                    </div>
+                    <div class="value">
+                        ИП Вишняков Игорь Николаевич
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="label">
+                        ИНН:
+                    </div>
+                    <div class="value">
+                        744705562530
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="label">
+                        ОГРН:
+                    </div>
+                    <div class="value">
+                        312746010200011
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="label">
+                        юридический адрес:
+                    </div>
+                    <div class="value">
+                        197345,
+                        г.Санкт-Петербург, ул.Мебельная, д.19, корп.2, лит.А, кв.708
+                    </div>
+                </div>
+            </div>
+
+        </div>
         <p>Мини-отель Welcome | 2017<br>
             Разработка сайта <a target="_blank" href="https://vk.com/nikita_vishniakov">Никита Вишняков</a></p>
+        <a class="open-modal" style="">sddasds</a>
     </div>
+    <div class="layout-global hidden"></div>
     <div class="modal-error hidden">
-        <p class="modal-header">Упс! <span class="close">  x</span></p>
+        <p class="modal-header">Сообщение отправлено! <span class="close">  x</span></p>
         <div class="modal-text">
-            <p>К сожалению, бронирования через сайт по техническим причинам временно недоступны :( </p>
-            <p>Свяжитесь с нами по телефону <strong>8(812) 314-18-55</strong> или отправьте письмо по электронной почте <a href="mailto:hotel-welcome@yandex.ru">hotel-welcome@yandex.ru</a>
-            <p class="thanks">Спасибо за понимание! <br> Ждем вас в Welcome!</p>
+            <p>Спасибо за интерес! Ваше сообщение отправлено. </p>
+            <p>В случае срочных вопросов: </p>
+            <p>Свяжитесь с нами по телефону <strong>8(812) 314-18-55</strong> или отправьте письмо по электронной
+                почте <a href="mailto:hotel-welcome@yandex.ru">hotel-welcome@yandex.ru</a>
+            <p class="thanks"> Ждем вас в Welcome!</p>
         </div>
     </div>
     <div id="toTop"><img title="Наверх" alt="button_up" src="/public/icons-mini/arrow-up.png"></div>
-    <div class="container-img hidden">
-        <div class="close-img">X</div>
-        <div class="arrow-img arrow-prev-img"> < </div>
-        <div class="img-box"></div>
-        <div class="arrow-img arrow-next-img"> > </div>
-    </div>
 </footer>
 <script type="text/javascript" src="../libs/slick/slick.min.js"></script>
 <script src="/node_modules/lightbox2/dist/js/lightbox.js"></script>
@@ -386,6 +424,16 @@
 </html>
 <script>
     $(document).ready(function(){
+        $('.open-modal').on("click", function () {
+            $('.modal-error').removeClass('hidden');
+            $('.layout-global').removeClass('hidden');
+        });
+        <?php    if($_SESSION['msg-send'] == "Y") { ?>
+        $('.open-modal').trigger('click');
+<?php
+$_SESSION['msg-send'] = "N";
+}?>
+
         $('.btn-menu-mobile').click(function(){
             $('.dropdown').toggleClass('hidden');
         });

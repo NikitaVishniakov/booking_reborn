@@ -15,4 +15,8 @@ class Site extends \core\base\Controller
         $this->layout = false;
         include PUBLIC_PATH . 'index.php';
     }
+    public function sendMailAction(){
+        $this->layout = false;
+        include PUBLIC_PATH . 'send_mail.php';
+    }
 }
