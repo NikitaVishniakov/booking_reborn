@@ -399,7 +399,9 @@
                     </div>
                 </div>
             </div>
-
+            <div class="contacts-block payment-info">
+                <a target="_blank" href="/public/payment_info.docx">Скачать информацию об оплате и возвратах</a>
+            </div>
         </div>
         <p>Мини-отель Welcome | 2017<br>
             Разработка сайта <a target="_blank" href="https://vk.com/nikita_vishniakov">Никита Вишняков</a></p>
@@ -428,11 +430,12 @@
             $('.modal-error').removeClass('hidden');
             $('.layout-global').removeClass('hidden');
         });
-        <?php    if($_SESSION['msg-send'] == "Y") { ?>
+        <?php    if(isset($_SESSION['msg-send'])){ if($_SESSION['msg-send'] == "Y") { ?>
         $('.open-modal').trigger('click');
 <?php
 $_SESSION['msg-send'] = "N";
-}?>
+}
+        }?>
 
         $('.btn-menu-mobile').click(function(){
             $('.dropdown').toggleClass('hidden');

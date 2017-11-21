@@ -649,9 +649,16 @@ footer{
     padding: 15px;
 }
 .contacts-block{
-    width: 50%;
+    width: 49%;
     display: inline-block;
 }
+ .payment-info{
+     text-align: right;
+ }
+ .payment-info a{
+     color: #fff;
+     text-decoration: underline;
+ }
 .contacts-block .label{
     margin-bottom: 5px;
 }
