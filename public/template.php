@@ -357,7 +357,7 @@
             </div>
             <div class="form-row">
                 <input type="checkbox" name="personal" class="checkbox" value="Y" id="personal_agree">
-                <label for="personal_agree">Даю согласие на обработку персональных данных
+                <label for="personal_agree" class="personal-label">Даю согласие на обработку персональных данных
                     <span class="switcher"></span>
                 </label>
             </div>

@@ -1180,3 +1180,6 @@ textarea{
     color: rgba(238, 92, 92, 0.7) !important;
     border-color: rgba(238, 92, 92, 0.7) !important;
 }
+.personal-label{
+    display: block !important;
+}
