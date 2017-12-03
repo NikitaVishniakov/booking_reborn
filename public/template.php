@@ -519,7 +519,7 @@ $_SESSION['msg-send'] = "N";
                 errorClass: "invalid",
                 errorElement: "div",
                 errorPlacement: function (error, element) {
-                    var error_wrapper = $('<div class="form-row"></div>').insertBefore(element.parent());
+                    var error_wrapper = $('<div class="error-wrapper"></div>').insertBefore(element.parent());
 
                     error.appendTo( error_wrapper);
                 },
