@@ -10,7 +10,7 @@
     <link rel="icon" type="image/x-icon" href="/public/pics/favicon.png" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700|Open+Sans" rel="stylesheet">
     <script src="/libs/jquery/jquery-3.2.1.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
     <link rel="stylesheet" type="text/css" href="/libs/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="/libs/slick/slick-theme.css"/>
     <link href="/node_modules/lightbox2/dist/css/lightbox.min.css" rel="stylesheet">
