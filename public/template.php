@@ -10,6 +10,7 @@
     <link rel="icon" type="image/x-icon" href="/public/pics/favicon.png" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700|Open+Sans" rel="stylesheet">
     <script src="/libs/jquery/jquery-3.2.1.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
     <link rel="stylesheet" type="text/css" href="/libs/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="/libs/slick/slick-theme.css"/>
     <link href="/node_modules/lightbox2/dist/css/lightbox.min.css" rel="stylesheet">
@@ -340,11 +341,11 @@
                 </div>
             </div>
         </div>
-        <form class="backlink-form" method="post" action="/admin/site/send_mail" novalidate="novalidate">
+        <form class="backlink-form" method="post" action="/admin/site/send_mail" id="backlink-form">
             <h3 class="backlink-header">Отправить письмо</h3>
             <div class="form-row">
                 <label for="backlink-name">Имя</label>
-                <input type="text" name="name" id="backlink-name" required class="backlink" placeholder="Введите ваше имя">
+                <input type="text" name="name" id="backlink-name" class="backlink" placeholder="Введите ваше имя">
             </div>
             <div class="form-row">
                 <label for="backlink-email"><b>E-mail</b></label>
@@ -353,6 +354,12 @@
             <div class="form-row">
                 <label for="backlink-message">Сообщение</label>
                 <textarea rows="3" class="backlink" required name="message" id="backlink-message" placeholder="Введите текст вашего сообщения"></textarea>
+            </div>
+            <div class="form-row">
+                <input type="checkbox" name="personal" class="checkbox" value="Y" id="personal_agree">
+                <label for="personal_agree">Даю согласие на обработку персональных данных
+                    <span class="switcher"></span>
+                </label>
             </div>
             <div class="form-row btn-row">
                 <input type="submit" name="submit-msg" class="backlink-btn float-right" value="Отправить">
@@ -487,6 +494,36 @@ $_SESSION['msg-send'] = "N";
             $('#toTop').click(function() {
                 $('body,html').animate({scrollTop:0},800);
             });
+        });
+
+
+        $('#backlink-form').validate({
+                rules: {
+                    // simple rule, converted to {required:true}
+                    name: "required",
+                    mail: {
+                        required: true,
+                        email: true
+                    },
+                    personal: "required"
+                },
+                messages: {
+                    name: "Введите имя",
+                    mail: {
+                        required: "Введите email",
+                        email: "Некорректный адрес электронной почты"
+                    },
+                    message: "Не указан текст сообщения",
+                    personal: "Не принято согласие на обработку данных",
+                },
+                errorClass: "invalid",
+                errorElement: "div",
+                errorPlacement: function (error, element) {
+                    var error_wrapper = $('<div class="form-row"></div>').insertBefore(element.parent());
+
+                    error.appendTo( error_wrapper);
+                },
+
         });
     });
 </script>

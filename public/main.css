@@ -648,6 +648,7 @@ footer{
     text-align: left;
     padding: 15px;
 }
+
 .contacts-block{
     width: 49%;
     display: inline-block;
@@ -1140,4 +1141,42 @@ textarea{
         height: 40px;
         display: inline-block;
     }
+}
+
+.checkbox{
+    width: 0;
+    opacity: 0;
+    height: 0;
+}
+.checkbox + label .switcher{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 15px;
+    width: 42px;
+    height:22px;
+    background-color: rgba(238, 92, 92, 0.5);
+    position: relative;
+    border-radius: 10px;
+}
+.checkbox + label .switcher:after{
+    content: '';
+    display: inline-block;
+    transition: all ease 0.5s;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    border-radius: 50%;
+    background: #fff;
+    top: 1px;
+    left: 1px;
+}
+.checkbox:checked + label .switcher{
+ background: rgba(140, 252, 96, 0.8);
+}
+.checkbox:checked + label .switcher:after{
+    left: calc(100% - 21px);
+}
+.invalid{
+    color: rgba(238, 92, 92, 0.7) !important;
+    border-color: rgba(238, 92, 92, 0.7) !important;
 }
