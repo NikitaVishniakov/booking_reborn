@@ -64,7 +64,13 @@
             <li><a href="#contacts">Контакты</a></li>
             <!--                <li><a href="#contacts">Блог</a></li>-->
         </ul>
-        <a href="javascript:void(0)" class="btn-menu-mobile"><img alt="menu-mobile" src="/public/icons-mini/white-menu-icon.png"></a>
+        <div class="menu-dropdown-button btn-menu-mobile">
+            <div class="burger burger-in-button">
+                <span class="burger__line"></span>
+                <span class="burger__line"></span>
+                <span class="burger__line"></span>
+            </div>
+        </div>
         <div class="clear"></div>
     </nav>
     <ul class="dropdown hidden">
@@ -357,7 +363,7 @@
             </div>
             <div class="form-row">
                 <input type="checkbox" name="personal" class="checkbox" value="Y" id="personal_agree">
-                <label for="personal_agree" class="personal-label">Даю согласие на обработку персональных данных
+                <label for="personal_agree" class="personal-label">Согласие на обработку персональных данных
                     <span class="switcher"></span>
                 </label>
             </div>
@@ -369,45 +375,58 @@
     <div class="footer">
         <div class="contact-info">
             <div class="contacts-block">
-                <div class="contacts-title">
-                    Реквизиты организации:
-                </div>
-                <div class="row">
-                    <div class="label">
-                        Наименование:
+                <a target="_blank" href="/public/payment_info.pdf" class="contacts-action">Информация об оплате и возвратах</a>
+
+                <a href="javascript:void()" class="contacts-action" id="rekvizity">
+                    Реквизиты организации
+                    <div class="contacts-line"></div>
+                </a>
+                <div class="contacts-toggle" style="display: none">
+                    <div class="row">
+                        <div class="label">
+                            Наименование:
+                        </div>
+                        <div class="value">
+                            ИП Вишняков Игорь Николаевич
+                        </div>
                     </div>
-                    <div class="value">
-                        ИП Вишняков Игорь Николаевич
+                    <div class="row">
+                        <div class="label">
+                            ИНН:
+                        </div>
+                        <div class="value">
+                            744705562530
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="label">
-                        ИНН:
+                    <div class="row">
+                        <div class="label">
+                            ОГРН:
+                        </div>
+                        <div class="value">
+                            312746010200011
+                        </div>
                     </div>
-                    <div class="value">
-                        744705562530
+                    <div class="row">
+                        <div class="label">
+                            юридический адрес:
+                        </div>
+                        <div class="value">
+                            197345,
+                            г.Санкт-Петербург, ул.Мебельная, д.19, корп.2, лит.А, кв.708
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="label">
-                        ОГРН:
-                    </div>
-                    <div class="value">
-                        312746010200011
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="label">
-                        юридический адрес:
-                    </div>
-                    <div class="value">
-                        197345,
-                        г.Санкт-Петербург, ул.Мебельная, д.19, корп.2, лит.А, кв.708
-                    </div>
+                    <div class="clear"></div>
                 </div>
             </div>
             <div class="contacts-block payment-info">
-                <a target="_blank" href="/public/payment_info.docx">Скачать информацию об оплате и возвратах</a>
+                <div id="TA_cdsratingsonlywide720" class="TA_cdsratingsonlywide tripadvisor">
+                    <ul id="vOuMF6UMIt" class="TA_links bxjlAnErRwC">
+                        <li id="BbnaNBc" class="R8CPkh">
+                            <a target="_blank" href="https://www.tripadvisor.ru/"><img src="https://www.tripadvisor.ru/img/cdsi/img2/branding/tripadvisor_logo_transp_340x80-18034-2.png" alt="TripAdvisor"/></a>
+                        </li>
+                    </ul>
+                </div>
+                <script src="https://www.jscache.com/wejs?wtype=cdsratingsonlywide&amp;uniq=720&amp;locationId=2049688&amp;lang=ru&amp;border=true&amp;shadow=false&amp;display_version=2"></script>
             </div>
         </div>
         <p>Мини-отель Welcome | 2017<br>
@@ -444,8 +463,15 @@ $_SESSION['msg-send'] = "N";
 }
         }?>
 
+        $('#rekvizity').click(function () {
+            $(this).toggleClass('active');
+            $('.contacts-toggle').toggle();
+            $('.contacts-line').toggleClass('expanded');
+        })
+
         $('.btn-menu-mobile').click(function(){
-            $('.dropdown').toggleClass('hidden');
+            $('.burger').toggleClass('opened');
+            $('.dropdown').slideToggle('fast');
         });
         $('.dropdown').click(function(){
             $('.dropdown').addClass('hidden');

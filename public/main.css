@@ -14,12 +14,12 @@ body{
 a:-webkit-any-link{
     text-decoration: none;
 }
-a:hover, a:focus{
-    text-decoration: none !important;
-    color: #fff;
-}
+/*a:hover, a:focus{*/
+    /*text-decoration: none !important;*/
+    /*color: #fff;*/
+/*}*/
 a:visited{
-    color: #fff;
+    color: rgb(101,65,53);
     text-decoration: none;
 }
 body{
@@ -417,10 +417,11 @@ select, input[type="text"], input[type="date"]{
 }
 .btn-menu-mobile{
     display: none;
-    float: right;
-    margin: 10px;
-    height: 30px;
+    height: 20px;
     width: 30px;
+    position: absolute;
+    right: 10px;
+    top: 15px;
 }
 .btn-menu-mobile img{
     width: 100%;
@@ -652,6 +653,7 @@ footer{
 .contacts-block{
     width: 49%;
     display: inline-block;
+    vertical-align: top;
 }
  .payment-info{
      text-align: right;
@@ -663,10 +665,14 @@ footer{
 .contacts-block .label{
     margin-bottom: 5px;
 }
-.contacts-title{
+.contacts-action{
+    display: block;
     font-size: 18px;
-    margin-bottom: 5px;
-    border-bottom: 2px solid #fff;
+    margin-bottom: 10px;
+}
+.contacts-action.active{
+    color: #fff;
+    font-weight: bold;
 }
 .contacts-block .value, .contacts-block .label{
     width: 49%;
@@ -700,8 +706,11 @@ address{
     background: rgba(101,65,53,0.9);
     color: #fff;
 }
+footer a{
+    color: rgb(101,65,53);
+}
 footer a:hover{
-    color: red !important;
+    color: #fff !important;
 }
 .contacts-footer{
     width: 50%;
@@ -1028,6 +1037,10 @@ textarea{
     .contacts-block{
         width: 100%;
     }
+    .payment-info {
+        margin-left: -20px;
+    }
+
     .icon-work{
         background-size: cover;
         top: 10px;
@@ -1170,6 +1183,15 @@ textarea{
     top: 1px;
     left: 1px;
 }
+.contacts-line{
+    width: 0;
+    height: 2px;
+    background: #fff;
+    transition: all ease 1s;
+}
+.contacts-line.expanded{
+    width: 100%;
+}
 .checkbox:checked + label .switcher{
  background: rgba(140, 252, 96, 0.8);
 }
@@ -1185,4 +1207,56 @@ textarea{
 }
 .personal-label{
     display: block !important;
+}
+
+.tripadvisor{
+    display: inline-block;
+}
+.contacts-toggle{
+    color: #fff;
+    padding: 10px;
+}
+
+
+.burger.burger-in-button {
+    margin-right: 16px;
+    top: 1px;
+}
+
+.burger__line {
+    position: absolute;
+    content: '';
+    height: 4px;
+    background: #fff;
+    width: 100%;
+    transition: .25s ease-in-out;
+    transform: rotate(0deg);
+}
+.burger {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: inline-block;
+}
+.burger__line:nth-child(2){
+     top: calc(50% - 2px);
+}
+.burger__line:first-child{
+     top: 0px;
+ }
+.burger__line:last-child{
+     bottom: 0px;
+}
+
+.burger.opened .burger__line:nth-child(2){
+     width: 0%;
+     opacity: 0;
+}
+.burger.opened .burger__line:first-child{
+     transform: rotate(45deg);
+     top: 7px;
+}
+.burger.opened .burger__line:last-child{
+     transform: rotate(-45deg);
+     top: 7px;
 }
