@@ -667,7 +667,7 @@ footer{
 }
 .contacts-action{
     display: block;
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 10px;
 }
 .contacts-action.active{
@@ -1259,4 +1259,7 @@ textarea{
 .burger.opened .burger__line:last-child{
      transform: rotate(-45deg);
      top: 7px;
+}
+.cdsROW .cdsLocName a{
+    color: #000 !important;
 }
