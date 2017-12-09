@@ -18,10 +18,10 @@ a:-webkit-any-link{
     /*text-decoration: none !important;*/
     /*color: #fff;*/
 /*}*/
-a:visited{
-    color: rgb(101,65,53);
-    text-decoration: none;
-}
+/*a:visited{*/
+    /*color: #fff;*/
+    /*text-decoration: none;*/
+/*}*/
 body{
     margin: 0;
     font-family: 'Noto Sans', sans-serif;
