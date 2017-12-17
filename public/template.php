@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/public/main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/public/pics/favicon.png" />
+    <link rel="stylesheet" href="/libs/font-awesome-4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700|Open+Sans" rel="stylesheet">
     <script src="/libs/jquery/jquery-3.2.1.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
@@ -261,55 +262,166 @@
                 </div>
             </div>
         </div>
-        <div class="row block" >
-            <h2 class="around-header" id="around">Что рядом?</h2>
-            <div class="around-slider">
-                <div class="float-left around-block">
-                    <div class="around-img" id="metro">
-                    </div>
-                    <div class="around-description metro-desc">
-                        <div class="around-header-block">
-                            <h4>Метро Маяковская</h4><p class="distance">400 м.</p>
-                        </div>
-                        <div class="around-header-block">
-                            <h4>Метро Площадь Восстания</h4><p class="distance">500 м.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="float-left around-block">
-                    <div class="around-img" id="galeria">
-                    </div>
-                    <div class="around-description">
-                        <div class="around-header-block">
-                            <h4>ТРК Галерея</h4><p class="distance">300 м.</p>
-                        </div>
-                        <p class="decs-text">Один из крупнейших и красивейших ТЦ Санкт-Петербурга</p>
-                    </div>
-                </div>
-                <div class="float-left around-block">
-                    <div class="around-img"  id="station">
-                    </div>
-                    <div class="around-description">
-                        <div class="around-header-block">
-                            <h4>Московский вокзал</h4><p class="distance">450 м.</p>
-                        </div>
-                        <p class="decs-text">Главный ж/д вокзал города в 5 минутах ходьбы</p>
-                    </div>
-                </div>
-                <div class="float-left around-block">
-                    <div class="around-img"  id="nevskiy">
-                    </div>
-                    <div class="around-description">
-                        <div class="around-header-block">
-                            <h4>Невский проспект</h4><p class="distance">300 м.</p>
-                        </div>
-                        <p class="decs-text">Главная туристическая улица города, где и происходит вся магия Петербурга</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row block" id="contacts">
+        <div class="row block comments" >
+            <h2 class="around-header" id="around">Отзывы и рейтинги</h2>
+                <div class="rating-block">
+<!--                    <div class="rating-block__title">Мы на Booking.com</div>-->
+                    <div class="booking-rating">
+                        <a target="_blank" class="booking-rating__logo" href="https://www.booking.com/hotel/ru/ave-caesar-on-pushkinskaya-st.ru.html">
+                            <img src="/public/pics/booking.png" />
+                        </a>
 
+                        <span class="booking-rating__rating-title">Рейтинг: </span>
+                        <span class="booking-rating__rating">8.5</span>
+                    </div>
+                    <div id="TA_rated789" class="TA_rated">
+                        <ul id="A1a3JpMp4kj" class="TA_links vtyITsAEPM">
+                            <li id="ehEdgd6q" class="OFNmYRC4">
+                                <a target="_blank" href="https://www.tripadvisor.ru/"><img src="https://www.tripadvisor.ru/img/cdsi/img2/badges/ollie-11424-2.gif" alt="TripAdvisor"/></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            <div class="around-slider">
+
+                <div class="comment-wrapper">
+                    <div class="comment-header">
+                        <span class="comment-header__author">Александр, </span>
+                        <span class="comment-header__source">
+                            <img src="/public/pics/booking.png" class="booking"/>
+                        </span>
+                    </div>
+                    <div class="comment-body">
+                        <div class="comment-body__text">
+                            «В номере очень чисто и уютно, постельное белье превосходно белое. Утренний завтрак очень вкусный и питательный, каша с утра очень кстати) , кофе, ветчина, тосты, масло, джем. Персоналу огромное спасибо за заботу. Отдельное спасибо Наталье) Месторасположение отеля отличное, метро в 3-х шагах. В следующий раз я обязательно к вам) В номере тихо, окна выходят во двор и ничего не слышно, даже при открытом окне. Спокойно и по домашнему. »
+                        </div>
+                        <div class="comment-body__date">20.04.2017</div>
+                    </div>
+                </div>
+
+                <div class="comment-wrapper">
+                    <div class="comment-header">
+                        <span class="comment-header__author">Вера, </span>
+                        <span class="comment-header__source">
+                            <img src="/public/pics/booking.png" class="booking"/>
+                        </span>
+                    </div>
+                    <div class="comment-body">
+                        <div class="comment-body__text">
+                            «Сама гостиница, по-сути, является квартирой, но все ключи и пароли выдаются сразу при заезде. Окна выходят внутрь колодца, что вовсе не портит впечатления для тех, кто не собирается все время пребывания просидеть на подоконнике. В комнате прохладно, но есть мощный обогреватель. :) Слышимость между комнатами минимальная (либо нам очень повезло с соседями). Дружелюбный, заботливый персонал кормит завтраком, предварительно оговорив с вами время, когда накрывать. В вашем доступе будет кухня без плиты и возможности помыть за собой посуду (не разрешают гостям и делают это сами). Чай 24 часа в сутки! Расположение вблизи к транспортным средствам, торговому центру и различным злачным местам. В общем, ничего не пропустите, все в шаговой доступности.»                        </div>
+                        <div class="comment-body__date">08.12.2016</div>
+                    </div>
+                </div>
+
+                <div class="comment-wrapper">
+                    <div class="comment-header">
+                        <span class="comment-header__author">Кирилл, </span>
+                        <span class="comment-header__source">
+                            <img src="/public/pics/tripadvisor.png" class="tripadvisor"/>
+                        </span>
+                    </div>
+                    <div class="comment-body">
+                        <div class="comment-body__text">
+                            «Останавливались здесь же год назад в августе 2016. Второй раз найти дорогу проще, чем в первый, к тому же над аркой с Пушкинской улицы есть вывеска, которую видно издалека. Да, двор и подъезд видели и лучшие дни (честнее сказать, годы), но это Питер. Сам отель абсолютно нормальный, отлично расположен - от Московского вокзала пешком 10 минут. Внутри чисто, мебель из ИКЕА, был подогреватель, который оказался очень кстати. Бесплатный вай-фай. Женщина на стойке была очень любезна и заселила нас раньше положенных 14 часов. Двор - колодец, зато никакого шума (не забываем, что до Невского проспекта 200 метров). На следующий день оставили вещи в комнате для хранения и великолепно провели весь день, вернувшись за 30 минут до отправления Сапсана. Отличный выбор для пар без детей и служебных поездок. »
+                        </div>
+
+                        <div class="comment-body__date">02.10.2017</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="row block " >
+            <h2 class="around-header" id="around">Рядом с отелем:</h2>
+            <div class="near-wrapper">
+                <div class="near-block">
+                    <div class="near-block__header">
+                        <h3 class="near-block__title">
+                            ТРК Галерея
+                        </h3>
+                    </div>
+                    <div class="near-block__body" id="galeria">
+                        <div class="near-block__layout">
+                            <div class="near-block__body-text"> Крупнейший торговый центр санкт-петерубрга в 200 метрах. <br/> <a  target="_blank" href="http://www.galeria.spb.ru/">Сайт ТРК</a> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="near-block">
+                    <div class="near-block__header">
+                        <h3 class="near-block__title">
+                            Московский вокзал
+                        </h3>
+                    </div>
+                    <div class="near-block__body" id="station">
+                        <div class="near-block__layout">
+                            <div class="near-block__body-text">  Главный ж/д вокзал города в 5 минутах ходьбы </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="near-block">
+                    <div class="near-block__header">
+                        <h3 class="near-block__title">
+                            Невский проспект
+                        </h3>
+                    </div>
+                    <div class="near-block__body" id="nevskiy">
+                        <div class="near-block__layout">
+                            <div class="near-block__body-text">Главная туристическая улица города, где и происходит вся магия Петербурга находится в 150 метрах</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="near-block">
+                    <div class="near-block__header">
+                        <h3 class="near-block__title">
+                            2 станции метро
+                        </h3>
+                    </div>
+                    <div class="near-block__body" id="metro">
+                        <div class="near-block__layout">
+                            <div class="near-block__body-text">
+                                Менее, чем за 5 минут вы сможете дойти до станций метро:
+                                <ul>
+                                    <li>Маяковская</li>
+                                    <li>Площадь восстания</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="near-block">
+                    <div class="near-block__header">
+                        <h3 class="near-block__title">
+                            Лофт проект Этажи
+                        </h3>
+                    </div>
+                    <div class="near-block__body" id="etagy">
+                        <div class="near-block__layout">
+                            <div class="near-block__body-text">
+                                Главное креативное проставноство Санкт-Петербурга
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="near-block">
+                    <div class="near-block__header">
+                        <h3 class="near-block__title">
+                            Более 30 ресторанов и кафе
+                        </h3>
+                    </div>
+                    <div class="near-block__body" id="restoraunt">
+                        <div class="near-block__layout">
+                            <div class="near-block__body-text">В шаговой доступности расположено огромное количество заведений общественнного питания.</div>
+                            </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
         <div class="clear"></div>
     </div>
@@ -348,7 +460,7 @@
             </div>
         </div>
         <form class="backlink-form" method="post" action="/admin/site/send_mail" id="backlink-form">
-            <h3 class="backlink-header">Отправить письмо</h3>
+            <h3 class="backlink-header">Связь с отелем:</h3>
             <div class="form-row">
                 <label for="backlink-name">Имя</label>
                 <input type="text" name="name" id="backlink-name" class="backlink" placeholder="Введите ваше имя">
@@ -419,14 +531,7 @@
                 </div>
             </div>
             <div class="contacts-block payment-info">
-                <div id="TA_cdsratingsonlywide720" class="TA_cdsratingsonlywide tripadvisor">
-                    <ul id="vOuMF6UMIt" class="TA_links bxjlAnErRwC">
-                        <li id="BbnaNBc" class="R8CPkh">
-                            <a target="_blank" href="https://www.tripadvisor.ru/"><img src="https://www.tripadvisor.ru/img/cdsi/img2/branding/tripadvisor_logo_transp_340x80-18034-2.png" alt="TripAdvisor"/></a>
-                        </li>
-                    </ul>
-                </div>
-                <script src="https://www.jscache.com/wejs?wtype=cdsratingsonlywide&amp;uniq=720&amp;locationId=2049688&amp;lang=ru&amp;border=true&amp;shadow=false&amp;display_version=2"></script>
+
             </div>
         </div>
         <p>Мини-отель Welcome | 2017<br>
@@ -488,6 +593,10 @@ $_SESSION['msg-send'] = "N";
             dots: true,
             mobileFirst: true,
             adaptiveHeight: true,
+            customPaging : function(slider, i) {
+                var thumb = $(slider.$slides[i]).data();
+                return '<a class="slick-dot" title="'+i+' слайд"></a>';
+            },
             autoplay: true,
             autoplaySpeed: 3000,
             speed: 1200
@@ -495,6 +604,10 @@ $_SESSION['msg-send'] = "N";
         $('.around-slider').slick({
             dots: true,
             mobileFirst: true,
+            customPaging : function(slider, i) {
+                var thumb = $(slider.$slides[i]).data();
+                return '<a class="slick-dot" title="'+i+' слайд"></a>';
+            },
             adaptiveHeight: true,
             autoplay: true,
             autoplaySpeed: 3000,
@@ -553,3 +666,4 @@ $_SESSION['msg-send'] = "N";
         });
     });
 </script>
+<script src="https://www.jscache.com/wejs?wtype=rated&amp;uniq=789&amp;locationId=2049688&amp;lang=ru&amp;display_version=2"></script>
