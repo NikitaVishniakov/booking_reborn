@@ -226,10 +226,27 @@ $(document).ready(function(){
         $(this).addClass('hidden')
     });
 
-    $('#month-select, #year-select').change(function () {
+    $('#month-select').change(function () {
         var month = $(this).val()
         var data = $(this).data();
         var year = $('#year-select').val();
+        $.ajax({
+            url: '/admin/' + data.action,
+            type: 'GET',
+            data: {
+                month: month,
+                year: year,
+                ajax: 'Y'
+            },
+            success: function (data) {
+                $('.main-container').replaceWith(data);
+            }
+        })
+    });
+    $('#year-select').change(function () {
+        var month = $('#month-select').val()
+        var data = $('#month-select').data();
+        var year = $(this).val();
         $.ajax({
             url: '/admin/' + data.action,
             type: 'GET',
