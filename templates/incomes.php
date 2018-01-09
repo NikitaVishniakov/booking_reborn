@@ -15,6 +15,14 @@
             </select>
             <label for="month-select" class="month-select-caret"><i class="fa fa-caret-down" aria-hidden="true"></i>
             </label>
+            <span class="left">
+                <select name="year" id="year-select" class="month-select">
+                    <?php foreach ($arrYears as $opt_year):?>
+                        <option <?= ($year == $opt_year) ? 'selected' : '' ?> ><?=$opt_year?></option>
+                    <?endforeach; ?>
+                </select>
+                <label for="id-select" class="month-select-caret"><i class="fa fa-caret-down" aria-hidden="true"></i>
+            </span>
         </div>
     </div>
     <div class="incomes-container">

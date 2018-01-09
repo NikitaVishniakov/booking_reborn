@@ -6,17 +6,24 @@
  * Time: 14:43
  */
 $month = date("m");
+$year = date("Y");
+$arrYears = array(2016,2017,2018);
 if(isset($_GET['month'])){
+//    if(is_numeric($_GET['month']) && 0 > $_GET['month'] && $_GET['month'] <= 12){
     $month = $_GET['month'];
+//    }
+}
+if((isset($_GET['year']))){
+    $year = $_GET['year'];
 }
 
-$totalCosts = getCostsAmount($month);
-$arrCosts = getGroupsCategoryTotal($month);
+$totalCosts = getCostsAmount($month, $year);
+$arrCosts = getGroupsCategoryTotal($month,$year);
 
-$totalBalance = getPaymentsBalance($month)['total'];
-$totalServices = getServicesBalance($month);
+$totalBalance = getPaymentsBalance($month, $year)['total'];
+$totalServices = getServicesBalance($month, $year);
 
-$payment_types = getBalanceByPaymentTypes($month);
+$payment_types = getBalanceByPaymentTypes($month, $year);
 
 $equairing = 0.025;
 $totalEquairing = $payment_types['cashless']*$equairing;

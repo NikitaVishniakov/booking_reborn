@@ -11,12 +11,19 @@
     <div class="page-header">
         <div class="left">
             Список расходов за
-
                 <select name="" id="month-select" data-action="finance/costs" class="month-select">
                     <?php selectMonth($month) ?>
                 </select>
           <label for="month-select" class="month-select-caret"><i class="fa fa-caret-down" aria-hidden="true"></i>
             </label>
+            <span class="left">
+                <select name="year" id="year-select" class="month-select">
+                    <?php foreach ($arrYears as $opt_year):?>
+                        <option <?= ($year == $opt_year) ? 'selected' : '' ?> ><?=$opt_year?></option>
+                    <?endforeach; ?>
+                </select>
+                <label for="id-select" class="month-select-caret"><i class="fa fa-caret-down" aria-hidden="true"></i>
+            </span>
         </div>
         <div class="right">
             <span data-action="add_cost" data-modal="modal"  class="btn btn-small btn-default">Добавить элемент</span  >

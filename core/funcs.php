@@ -1270,13 +1270,13 @@ function getBookingBalance($month){
     return $booking_revenue;
 }
 
-function getServicesBalance($month){
+function getServicesBalance($month, $year){
     global $link;
 
     if(strlen($month) == 1){
         $month = "0".$month;
     }
-    $current_date = date("Y-{$month}")."-01";
+    $current_date = $year."-".$month."-01";
     $end_of_month = date_format(date_modify(date_modify(date_create($current_date), "+1 month"), "-1 day"), "Y-m-d");
 
     $sql = "SELECT sum(price) as total from services where (date BETWEEN '{$current_date}' AND '{$end_of_month}')";
@@ -1308,12 +1308,12 @@ function getReturns($month){
     $returns_array['total'] = $total;
     return $returns_array;
 }
-function getPaymentsBalance($month){
+function getPaymentsBalance($month, $year){
     global $link;
     if(strlen($month) == 1){
         $month = "0".$month;
     }
-    $current_date = date("Y-").$month."-01";
+    $current_date = $year."-".$month."-01";
     $end_of_month = date_format(date_modify(date_modify(date_create($current_date), "+1 month"), "-1 day"), "Y-m-d");
     $income_revenue = $link->query("SELECT m_sum - first_payment as total FROM (SELECT SUM(amount) as m_sum from payments where (DATE_FORMAT(date, '%Y-%m-%d') BETWEEN '{$current_date}' AND '{$end_of_month}') AND (NOT name = 'Остаток в кассе') AND (NOT name = 'внесение в кассу') AND (status = '+')) total, (SELECT amount as first_payment FROM payments WHERE DATE_FORMAT(date, '%Y-%m-%d') = '{$current_date}' AND name = 'Остаток в кассе') first_p")->fetch_assoc();
     return $income_revenue;
@@ -1381,12 +1381,12 @@ function getBookingComission($month){
     $revenue = $link->query("SELECT SUM(p.amount)*0.15 as total FROM payments p INNER JOIN booking b ON bookingId = b.id WHERE (date BETWEEN '{$start_of_month}' AND '{$end_of_month}') AND (source = 'booking')")->fetch_array();
     return $revenue['total'];
 }
-function getBalanceByPaymentTypes($month){
+function getBalanceByPaymentTypes($month, $year){
         global $link;
         if(strlen($month) == 1){
             $month = "0".$month;
         }
-        $current_date = date("Y")."-".$month."-01";
+    $current_date = $year."-".$month."-01";
         $end_of_month = date_format(date_modify(date_modify(date_create($current_date), "+1 month"), "-1 day"), "Y-m-d");
         $payment_types = $link->query("SELECT type, SUM(amount) as total from payments where (DATE_FORMAT(date, '%Y-%m-%d') BETWEEN '{$current_date}' AND '{$end_of_month}') AND (NOT name = 'Остаток в кассе') AND (NOT name = 'внесение в кассу') AND (status = '+') GROUP BY type");
         $first_day = $link->query("SELECT amount as first FROM payments WHERE DATE_FORMAT(date, '%Y-%m-%d') = '{$current_date}' AND name = 'Остаток в кассе'")->fetch_array();
@@ -1513,12 +1513,12 @@ function prolongationCostType($choosen){
     
 }
 
-function getCostsAmount($month){
+function getCostsAmount($month, $year){
     global $link;
     if(strlen($month) == 1){
         $month = "0".$month;
     }
-    $current_date = date("Y-").$month."-01";
+    $current_date = $year . "-" .$month."-01";
     $end_of_month = date_format(date_modify(date_modify(date_create($current_date), "+1 month"), "-1 day"), "Y-m-d");
     $sql = "SELECT SUM(AMOUNT) as total FROM `costs` WHERE (DATE_FORMAT(DATE, '%Y-%m-%d') BETWEEN '{$current_date}' AND '{$end_of_month}')";
     $total = $link->query($sql)->fetch_array()['total'];
@@ -1540,12 +1540,12 @@ function getSourcesList($choosen = ''){
     return $options;
 }
 
-function getSortedCosts($month){
+function getSortedCosts($month, $year){
     global $link;
     if(strlen($month) == 1){
         $month = "0".$month;
     }
-    $current_date = date("Y-").$month."-01";
+    $current_date = $year . "-" .$month."-01";
     $end_of_month = date_format(date_modify(date_modify(date_create($current_date), "+1 month"), "-1 day"), "Y-m-d");
     $sql = "SELECT * FROM `costs` WHERE (DATE_FORMAT(DATE, '%Y-%m-%d') BETWEEN '{$current_date}' AND '{$end_of_month}')";
     $all_costs = $link->query($sql);
@@ -1586,12 +1586,12 @@ function getSortedCosts($month){
     }
     return $costs_sorted;
 }
-function getGroupsCategoryTotal($month){
+function getGroupsCategoryTotal($month, $year){
     global $link;
     if(strlen($month) == 1){
         $month = "0".$month;
     }
-    $current_date = date("Y-").$month."-01";
+    $current_date = $year ."-".$month."-01";
     $end_of_month = date_format(date_modify(date_modify(date_create($current_date), "+1 month"), "-1 day"), "Y-m-d");
     $sql = "SELECT SUM(AMOUNT) as total, CATEGORY FROM costs WHERE (DATE_FORMAT(DATE, '%Y-%m-%d') BETWEEN '{$current_date}' AND '{$end_of_month}') GROUP BY CATEGORY";
     $query = $link->query($sql);

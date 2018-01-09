@@ -7,13 +7,21 @@
  */
 use models\{Booking, Services};
 
-$month = $_GET['month'] ?? date('m');
-if(strlen($month) == 1){
-    $month = '0' . $month;
+$month = date("m");
+$year = date("Y");
+$arrYears = array(2016,2017,2018);
+if(isset($_GET['month'])){
+//    if(is_numeric($_GET['month']) && 0 > $_GET['month'] && $_GET['month'] <= 12){
+    $month = $_GET['month'];
+//    }
 }
-$dateStart = '2017-' . $month . '-01';
+if((isset($_GET['year']))){
+    $year = $_GET['year'];
+}
+
+$dateStart = $year . "-" . $month . '-01';
 $lastDay = daysInMonth($dateStart);
-$dateEnd = '2017-' . $month . "-$lastDay";
+$dateEnd = $year . "-" . $month . "-$lastDay";
 
 $breakfast_price = 150;
 
@@ -22,7 +30,9 @@ $filter = "(checkIn = 1) AND (breakfast = 1) AND (canceled = 0) AND ((dateStart 
 $arrBooking =Booking::getElementList('booking', array('id as b_id', 'dateStart', 'dateEnd', 'breakfast', 'guestsNum' , 'guestName'), $filter);
 //Нужно учитывать, что если бронь частично находится в другом месяце, то завтраки, которые находятся вне текущего месяца мы не учитываем
 //Поэтому пройдемся по полученым броням
-
+if(empty($arrBooking)){
+    $arrBooking = array();
+}
 foreach ($arrBooking as &$booking){
     if($booking['dateStart'] < $dateStart){
         $bookingDays = intval(getDaysCount($booking['dateEnd'], $booking['dateStart']));
@@ -65,6 +75,9 @@ foreach ($arrBooking as &$booking){
 //Общее количество завтраков по бронированиям
 $bookingBreakfast = array();
 $bookingBreakfast['total_quantity'] = 0;
+if(empty($breakfast)){
+    $breakfast = array();
+}
 foreach ($breakfast as $value){
     $bookingBreakfast['total_quantity'] += $value['quantity'];
 }

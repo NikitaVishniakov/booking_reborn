@@ -6,15 +6,23 @@
  * Time: 14:48
  */
 $month = date("m");
+$year = date("Y");
+$arrYears = array(2016,2017,2018);
 if(isset($_GET['month'])){
 //    if(is_numeric($_GET['month']) && 0 > $_GET['month'] && $_GET['month'] <= 12){
         $month = $_GET['month'];
 //    }
 }
+if((isset($_GET['year']))){
+    $year = $_GET['year'];
+}
+?>
+
+<?php
 $totals = [];
 $intTotal = 0;
-$totalCostsAmount = separateThousands(getCostsAmount($month), 'руб.');
-$costs = getSortedCosts($month);
+$totalCostsAmount = separateThousands(getCostsAmount($month, $year), 'руб.');
+$costs = getSortedCosts($month, $year);
 if($costs) {
     foreach ($costs as $cat_name => $category) {
         $totals[$cat_name]['TOTAL'] = 0;
