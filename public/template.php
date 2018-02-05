@@ -62,12 +62,6 @@
     ga('send', 'pageview');
 
 </script>
-
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule (.*) index.php?$1 [QSA]
-
 <div class="container main">
     <header>
         <div class="header-wrapper">
