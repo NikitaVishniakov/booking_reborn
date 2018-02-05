@@ -62,6 +62,12 @@
     ga('send', 'pageview');
 
 </script>
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*) index.php?$1 [QSA]
+
 <div class="container main">
     <header>
         <div class="header-wrapper">
@@ -302,7 +308,7 @@
                         </a>
 
                         <span class="booking-rating__rating-title">Рейтинг: </span>
-                        <span class="booking-rating__rating">8.5</span>
+                        <span class="booking-rating__rating">8.6</span>
                     </div>
                     <div id="TA_rated789" class="TA_rated">
                         <ul id="A1a3JpMp4kj" class="TA_links vtyITsAEPM">
